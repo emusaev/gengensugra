@@ -1,0 +1,716 @@
+% Cadabra notebook version 1.2
+\documentclass[11pt]{article}
+\usepackage[textwidth=460pt, textheight=660pt]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{breqn}
+\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\begin{document}
+{\color[named]{Blue}\begin{verbatim}
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Indices(name=oddcurved, position=independent).
+{A,B,C,D,E,F,G,H, A#}::Indices(name=oddflat, position=independent).
+{m,n,k,l,p,q,r,s,t,u,v,m#}::Indices(name=gl10curved, parent=oddcurved, position=independent).
+{a,b,c,d,f,g,h,a#}::Indices(name=gl10flat, parent=oddflat, position=independent).
+{em,en,ek,el,ep,eq,er,es,et,eu,ev,em#}::Indices(name=egl10curved, parent=oddcurved, position=independent).
+{ea,eb,ec,ed,ef,eg,eh,ea#}::Indices(name=egl10flat, parent=oddflat, position=independent).
+
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Integer(1..20).
+{A,B,C,D,E,F,G,H, A#}::Integer(1..20).
+{m,n,k,l,p,q,r,s,t,u,v,m#}::Integer(1..10).
+{a,b,c,d,f,g,h,a#}::Integer(1..10).
+{em,en,ek,el,ep,eq,er,es,et,eu,ev,em#}::Integer(1..10).
+{ea,eb,ec,ed,ef,eg,eh,ea#}::Integer(1..10).
+
+F^{A B C}::AntiSymmetric.
+F_{A B C}::AntiSymmetric.
+F_{a b c}::AntiSymmetric.
+H_{a b c}::AntiSymmetric.
+H_{m n k}::AntiSymmetric.
+H^{a b c}::AntiSymmetric.
+H^{m n k}::AntiSymmetric.
+b_{m n}::AntiSymmetric.
+db_{m n}::AntiSymmetric.
+
+H^{A B}::Symmetric.
+H_{A B}::Symmetric.
+h_{m n}::Metric.
+h^{m n}::Metric.
+\eta^{A B}::Symmetric.
+\eta_{A B}::Symmetric.
+Symf^{a b}::Symmetric.
+
+F_{a b ec}::TableauSymmetry(shape={1,1}, indices={0,1}).
+f_{a b}^{c}::TableauSymmetry(shape={1,1}, indices={0,1}).
+f_{a b c}::TableauSymmetry(shape={1,1}, indices={0,1}).
+F_{a b}^{c}::TableauSymmetry(shape={2}, indices={0,1}).
+
+\partial{#}::PartialDerivative.
+D{#}::PartialDerivative.
+\nabla{#}::Derivative.
+\delta{#}::KroneckerDelta.
+\epsilon{#}::EpsilonTensor(delta = \delta).
+
+{u^{A}_{B}, df, db_{m n}, de_{a}^{m}, dD, F_{A B C}, F_{A}, \eta^{M N}, \eta_{M N}, \eta^{A B}, \eta_{A B}, H^{M N}, H_{M N}, H^{A B}, H_{A B},
+E_{A}^{M}, E^{A}_{M}, \partial_{K}{E^{A}_{M}}, \partial_{K}{E_{A}^{M}}, \partial_{K L}{E_{A}^{M}}}::SortOrder.
+\end{verbatim}}
+% Begin TeX comment
+Assigning list property Indices to $\{M,\; N,\; K,\; L,\; P,\; Q,\; R,\; S,\; T,\; U,\; V,\; M\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{A,\; B,\; C,\; D,\; E,\; F,\; G,\; H,\; A\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{m,\; n,\; k,\; l,\; p,\; q,\; r,\; s,\; t,\; u,\; v,\; m\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{a,\; b,\; c,\; d,\; f,\; g,\; h,\; a\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{em,\; en,\; ek,\; el,\; ep,\; eq,\; er,\; es,\; et,\; eu,\; ev,\; em\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{ea,\; eb,\; ec,\; ed,\; ef,\; eg,\; eh,\; ea\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $M$, $N$, $K$, $L$, $P$, $Q$, $R$, $S$, $T$, $U$, $V$, $M\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$, $A\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $m$, $n$, $k$, $l$, $p$, $q$, $r$, $s$, $t$, $u$, $v$, $m\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $a$, $b$, $c$, $d$, $f$, $g$, $h$, $a\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $em$, $en$, $ek$, $el$, $ep$, $eq$, $er$, $es$, $et$, $eu$, $ev$, $em\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $ea$, $eb$, $ec$, $ed$, $ef$, $eg$, $eh$, $ea\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}_{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}_{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${H}_{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${H}_{m n k}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${H}^{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${H}^{m n k}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${b}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${db}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Metric to ${h}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Metric to ${h}^{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${Symf}^{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${F}_{a b ec}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${f}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${f}_{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${F}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property PartialDerivative to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property PartialDerivative to $D{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Derivative to $\nabla{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property KroneckerDelta to $\delta(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property EpsilonTensor to $\epsilon(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property SortOrder to $\{{u}^{A}\,_{B},\; df,\; {db}_{m n},\; {de}_{a}\,^{m},\; dD,\; {F}_{A B C},\; {F}_{A},\; {\eta}^{M N},\; {\eta}_{M N},\; {\eta}^{A B},\; {\eta}_{A B},\; {H}^{M N},\; {H}_{M N},\; {H}^{A B},\; {H}_{A B},\; {E}_{A}\,^{M},\; {E}^{A}\,_{M},\; {\partial}_{K}{{E}^{A}\,_{M}}\, ,\; {\partial}_{K}{{E}_{A}\,^{M}}\, ,\; {\partial}_{K L}{{E}_{A}\,^{M}}\, \}$.
+\\
+% End TeX comment
+{\color[named]{Blue}\begin{verbatim}
+Lagrangian := eD * H^{A B} F_{A} F_{B} + eD * F_{A B C} F_{D E F} (1/4 * H^{A D} \eta^{B E} \eta^{C F} - 1/12 * H^{A D} H^{B E} H^{C F})
+                      - eD * \eta^{A B} F_{A} F_{B} - 1/6 * eD * F_{A B C} F_{D E F} \eta^{A D} \eta^{B E} \eta^{C F};
+#Lagrangian := eD * H^{A B} F_{A} F_{B} + eD * F_{A B C} F_{D E F} (1/4 * H^{A D} \eta^{B E} \eta^{C F} - 1/12 * H^{A D} H^{B E} H^{C F});
+@distribute!!(%):
+Variation := @(Lagrangian);
+@vary(%)(
+eD -> - 2 eD * dD,
+F_{A} -> F_{B} u^{B}_{A} - E_{B}^{M} D_{M}{u^{B}_{A}} + 2 * E_{A}^{M} D_{M}{dD},
+F_{A B C} -> u^{D}_{A} F_{B C D} + u^{D}_{B} F_{C A D} + u^{D}_{C} F_{A B D} 
++ 1/2 * E_{A}^{M} \eta_{C D} D_{M}{u^{D}_{B}} - 1/2 * E_{B}^{M} \eta_{C D} D_{M}{u^{D}_{A}} - 1/2 * E_{C}^{M} \eta_{A D} D_{M}{u^{D}_{B}} + 
+ - 1/2 * E_{A}^{M} \eta_{B D} D_{M}{u^{D}_{C}} + 1/2 * E_{B}^{M} \eta_{A D} D_{M}{u^{D}_{C}} + 1/2 * E_{C}^{M} \eta_{B D} D_{M}{u^{D}_{A}},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@sumflatten!!(%):
+@pintegrate!(%){D}:
+@prodrule!!(%):
+@distribute!!(%):
+@sumflatten!!(%):
+@substitute!!(%)(
+D_{M}{A??} -> \partial_{M}{A??},
+\partial_{M}{H_{A B}} -> 0,
+\partial_{M}{H^{A B}} -> 0,
+\partial_{M}{\eta^{A B}} -> 0,
+\partial_{M}{\eta_{A B}} -> 0,
+\partial_{M}{eD} -> - 2 * eD \partial_{M}{d},
+E_{A}^{M} \partial_{M}{d} -> 1/2 * F_{A} + 1/2 * \partial_{M}{E_{A}^{M}},
+):
+@distribute!!(%):
+@substitute!!(%)(
+eD -> 1,
+):
+@prodsort!!(%):
+@rename_dummies!(%):
+@distribute!!(%):
+@canonicalise!!(%):
+@collect_terms!!(%):
+@factor_out!!(%){u^{A}_{B}, dD}:
+@rename_dummies!(%):
+@distribute!!(%):
+@factor_out!!(%){u^{A}_{B}, dD}:
+@collect_terms!!(%);
+\end{verbatim}}
+% orig
+% eD H^{A B} F_{A} F_{B} + eD F_{A B C} F_{D E F} (1/4 H^{A D} \eta^{B E} \eta^{C F} - 1/12 H^{A D} H^{B E} H^{C F}) - eD \eta^{A B} F_{A} F_{B} - 1/6 eD F_{A B C} F_{D E F} \eta^{A D} \eta^{B E} \eta^{C F}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Lagrangian\specialcolon{}= eD {H}^{A B} {F}_{A} {F}_{B} + eD {F}_{A B C} {F}_{D\,  E F} (\frac{1}{4}\, {H}^{A D\, } {\eta}^{B E} {\eta}^{C F} - \frac{1}{12}\, {H}^{A D\, } {H}^{B E} {H}^{C F}) - eD {\eta}^{A B} {F}_{A} {F}_{B} - \frac{1}{6}\, eD {F}_{A B C} {F}_{D\,  E F} {\eta}^{A D\, } {\eta}^{B E} {\eta}^{C F};
+\end{dmath*}
+% orig
+% eD H^{A B} F_{A} F_{B} + 1/4 eD F_{A B C} F_{D E F} H^{A D} \eta^{B E} \eta^{C F} - 1/12 eD F_{A B C} F_{D E F} H^{A D} H^{B E} H^{C F} - eD \eta^{A B} F_{A} F_{B} - 1/6 eD F_{A B C} F_{D E F} \eta^{A D} \eta^{B E} \eta^{C F}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Variation\specialcolon{}= eD {H}^{A B} {F}_{A} {F}_{B} + \frac{1}{4}\, eD {F}_{A B C} {F}_{D\,  E F} {H}^{A D\, } {\eta}^{B E} {\eta}^{C F} - \frac{1}{12}\, eD {F}_{A B C} {F}_{D\,  E F} {H}^{A D\, } {H}^{B E} {H}^{C F} - eD {\eta}^{A B} {F}_{A} {F}_{B} - \frac{1}{6}\, eD {F}_{A B C} {F}_{D\,  E F} {\eta}^{A D\, } {\eta}^{B E} {\eta}^{C F};
+\end{dmath*}
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@sumflatten: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@collect\_terms: not applicable.
+% End TeX comment
+% orig
+% dD (2 F_{A} F_{B} H^{A B} - 4 \partial_{M}{F_{A}} H^{A B} E_{B}^{M} - 1/2 F_{A B C} F_{D E F} \eta^{A D} \eta^{B E} H^{C F} + 1/6 F_{A B C} F_{D E F} H^{A D} H^{B E} H^{C F} - 2 F_{A} F_{B} \eta^{A B} + 4 \partial_{M}{F_{A}} \eta^{A B} E_{B}^{M} + 1/3 F_{A B C} F_{D E F} \eta^{A D} \eta^{B E} \eta^{C F}) + u^{A}_{B} (2 \partial_{M}{F_{C}} H^{B C} E_{A}^{M} + 1/2 F_{A C D} F_{E F G} \eta^{C E} \eta^{D F} H^{B G} + F_{A C D} F_{E F G} \eta^{B E} \eta^{C F} H^{D G} + 1/2 F_{C D E} F_{F} \eta^{B C} \eta^{D G} \eta_{A G} H^{E F} - 1/2 \partial_{M}{F_{C D E}} \eta^{B C} \eta^{D F} \eta_{A F} H^{E G} E_{G}^{M} - 1/2 F_{C D E} F_{F} \eta^{C F} \eta^{D G} \eta_{A G} H^{B E} - 1/2 \partial_{M}{F_{C D E}} \eta^{C F} \eta^{D G} \eta_{A F} H^{B E} E_{G}^{M} - 1/2 F_{C D E} F_{F} \eta^{B C} \eta^{D F} \eta_{A G} H^{E G} + 1/2 \partial_{M}{F_{C D E}} \eta^{B C} \eta^{D F} \eta_{A G} H^{E G} E_{F}^{M} - 1/2 F_{A C D} F_{E F G} H^{B E} H^{C F} H^{D G} + 1/2 F_{C D E} F_{F} \eta_{A G} H^{B C} H^{D F} H^{E G} + 1/2 \partial_{M}{F_{C D E}} \eta_{A F} H^{B C} H^{D F} H^{E G} E_{G}^{M} - 2 \partial_{M}{F_{C}} \eta^{B C} E_{A}^{M} - F_{A C D} F_{E F G} \eta^{B E} \eta^{C F} \eta^{D G} + F_{C D E} F_{F} \eta^{B C} \eta^{D F} \eta^{E G} \eta_{A G} + \partial_{M}{F_{C D E}} \eta^{B C} \eta^{D F} \eta^{E G} \eta_{A F} E_{G}^{M})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Variation\specialcolon{}= dD (2\, {F}_{A} {F}_{B} {H}^{A B} - 4\, {\partial}_{M}{{F}_{A}}\,  {H}^{A B} {E}_{B}\,^{M} - \frac{1}{2}\, {F}_{A B C} {F}_{D\,  E F} {\eta}^{A D\, } {\eta}^{B E} {H}^{C F} + \frac{1}{6}\, {F}_{A B C} {F}_{D\,  E F} {H}^{A D\, } {H}^{B E} {H}^{C F} - 2\, {F}_{A} {F}_{B} {\eta}^{A B} + 4\, {\partial}_{M}{{F}_{A}}\,  {\eta}^{A B} {E}_{B}\,^{M} + \frac{1}{3}\, {F}_{A B C} {F}_{D\,  E F} {\eta}^{A D\, } {\eta}^{B E} {\eta}^{C F}) + {u}^{A}\,_{B} (2\, {\partial}_{M}{{F}_{C}}\,  {H}^{B C} {E}_{A}\,^{M} + \frac{1}{2}\, {F}_{A C D\, } {F}_{E F G} {\eta}^{C E} {\eta}^{D\,  F} {H}^{B G} + {F}_{A C D\, } {F}_{E F G} {\eta}^{B E} {\eta}^{C F} {H}^{D\,  G} + \frac{1}{2}\, {F}_{C D\,  E} {F}_{F} {\eta}^{B C} {\eta}^{D\,  G} {\eta}_{A G} {H}^{E F} - \frac{1}{2}\, {\partial}_{M}{{F}_{C D\,  E}}\,  {\eta}^{B C} {\eta}^{D\,  F} {\eta}_{A F} {H}^{E G} {E}_{G}\,^{M} - \frac{1}{2}\, {F}_{C D\,  E} {F}_{F} {\eta}^{C F} {\eta}^{D\,  G} {\eta}_{A G} {H}^{B E} - \frac{1}{2}\, {\partial}_{M}{{F}_{C D\,  E}}\,  {\eta}^{C F} {\eta}^{D\,  G} {\eta}_{A F} {H}^{B E} {E}_{G}\,^{M} - \frac{1}{2}\, {F}_{C D\,  E} {F}_{F} {\eta}^{B C} {\eta}^{D\,  F} {\eta}_{A G} {H}^{E G} + \frac{1}{2}\, {\partial}_{M}{{F}_{C D\,  E}}\,  {\eta}^{B C} {\eta}^{D\,  F} {\eta}_{A G} {H}^{E G} {E}_{F}\,^{M} - \frac{1}{2}\, {F}_{A C D\, } {F}_{E F G} {H}^{B E} {H}^{C F} {H}^{D\,  G} + \frac{1}{2}\, {F}_{C D\,  E} {F}_{F} {\eta}_{A G} {H}^{B C} {H}^{D\,  F} {H}^{E G} + \frac{1}{2}\, {\partial}_{M}{{F}_{C D\,  E}}\,  {\eta}_{A F} {H}^{B C} {H}^{D\,  F} {H}^{E G} {E}_{G}\,^{M} - 2\, {\partial}_{M}{{F}_{C}}\,  {\eta}^{B C} {E}_{A}\,^{M} - {F}_{A C D\, } {F}_{E F G} {\eta}^{B E} {\eta}^{C F} {\eta}^{D\,  G} + {F}_{C D\,  E} {F}_{F} {\eta}^{B C} {\eta}^{D\,  F} {\eta}^{E G} {\eta}_{A G} + {\partial}_{M}{{F}_{C D\,  E}}\,  {\eta}^{B C} {\eta}^{D\,  F} {\eta}^{E G} {\eta}_{A F} {E}_{G}\,^{M});
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@distribute!!(%):
+@split_index!!(%){M, m, em}:
+@split_index!!(%){A, a, ea}:
+@distribute!!(%):
+@substitute!!(%)(
+\partial_{en}{A??} -> 0,
+\partial_{en k}{A??} -> 0,
+\partial_{en ek}{A??} -> 0,
+\eta_{a ea} -> \delta_{a ea},
+\eta_{ea a} -> \delta_{a ea},
+\eta_{a b} -> 0,
+\eta_{ea eb} -> 0,
+\eta^{a ea} -> \delta^{a ea},
+\eta^{ea a} -> \delta^{a ea},
+\eta^{a b} -> 0,
+\eta^{ea eb} -> 0,
+H^{a b} -> \delta^{a b},
+H^{ea eb} -> \delta^{ea eb},
+H^{a ea} -> 0,
+H^{ea a} -> 0,
+H_{a b} -> \delta_{a b},
+H_{ea eb} -> \delta_{ea eb},
+H_{a ea} -> 0,
+H_{ea a} -> 0,
+F_{ea eb ec} -> 0,
+F_{a eb ec} -> 0,
+F_{ea b ec} -> 0,
+F_{ea eb c} -> 0,
+F_{a b c} -> - H_{a b c},
+F_{a eb c} -> F_{c a eb},
+F_{ea b c} -> F_{b c ea},
+F_{a b ec} -> f_{a b}^{c} g_{ec c},
+F_{a} -> 2 * e_{a}^{m} \nabla_{m}{\phi} + f_{a} + 2 I^{m} b_{m n} e_{a}^{n},
+F_{ea} -> 2 * I^{m} e^{a}_{m} g_{ea a},
+dD -> df + 1/2 * e^{a}_{m} de_{a}^{m},
+u^{b}_{a} -> e^{b}_{m} de_{a}^{m},
+u^{eb}_{a} -> e_{a}^{p} e_{b}^{m} db_{m p} g^{eb b},
+u^{eb}_{ea} -> - e^{a}_{m} de_{b}^{m} g_{ea a} g^{eb b},
+u^{b}_{ea} -> 0,
+\delta^{ea eb} -> \delta_{a b} g^{ea a} g^{eb b},
+\delta^{a eb} -> \delta^{a}_{b} g^{eb b},
+\delta_{ea eb} -> \delta^{a b} g_{ea a} g_{eb b},
+\delta_{a eb} -> \delta^{b}_{a} g_{eb b},
+\delta^{m en} -> \delta^{m}_{n} g^{en n},
+\delta_{m en} -> \delta_{m}^{n} g_{en n},
+E_{a}^{m} -> e_{a}^{m},
+E_{ea}^{m} -> 0,
+E_{a}^{em} -> - e_{a}^{k} b_{k m} g^{em m},
+E_{ea}^{em} -> e^{a}_{m} g_{ea a} g^{em m},
+d -> \phi - \frac{1}{2} * lne,
+\partial_{m}{\phi} -> \nabla_{m}{\phi},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@substitute!!(%)(
+\partial_{m}{lne} -> - e^{a}_{k} \partial_{m}{e_{a}^{k}},
+\partial_{m}{g_{ea b}} -> 0,
+\partial_{m}{g^{ea a}} -> 0,
+\partial_{n}{g^{em m}} -> 0,
+\partial_{n}{g_{em m}} -> 0,
+g^{em m} g_{em n} -> \delta^{m}_{n},
+g^{ea a} g_{ea b} -> \delta^{a}_{b},
+\delta^{c}_{g} \delta^{g}_{d} -> \delta^{c}_{d},
+\delta^{a}_{b} g^{ea b} -> g^{ea a},
+\delta_{c d} \delta^{c}_{g} -> \delta_{d g},
+\delta^{g d} \delta^{c}_{g} -> \delta^{c d},
+\delta^{a b} e_{a}^{m} e_{b}^{n} -> h^{m n},
+\delta_{a b} e^{a}_{m} e^{b}_{n} -> h_{m n},
+e_{a}^{m} e^{a}_{k} -> \delta^{m}_{k},
+e_{a}^{m} e^{b}_{m} -> \delta^{b}_{a},
+\partial_{m}{\phi} -> \nabla_{m}{\phi},
+):
+@distribute!!(%):
+@prodrule!!(%):
+#@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%):
+@factor_out!!(%){df, de_{a}^{m}, db_{m n}}:
+@rename_dummies!(%):
+@distribute!!(%):
+@factor_out!!(%){df, de_{a}^{m}, db_{m n}};
+\end{verbatim}}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+% db_{m n} (H_{a b c} I^{k} \delta^{d}_{f} \delta^{a f} \delta^{b g} \delta^{c h} b_{k l} e_{d}^{m} e_{g}^{l} e_{h}^{n} + 1/2 H_{a b c} \delta^{d}_{f} \delta^{a g} \delta^{b h} \delta^{c a1} e_{d}^{m} e_{g}^{n} f_{h a1}^{f} - 1/2 H_{a b c} \delta^{d}_{f} \delta^{a f} \delta^{b g} \delta^{c h} e_{d}^{m} e_{g}^{n} f_{h} + I^{k} \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} e_{a}^{m} e_{f}^{n} e^{d}_{k} f_{c g}^{b} - I^{k} \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} \delta^{b h} e_{a}^{m} e_{c}^{n} e^{g}_{k} f_{f h}^{d} + H_{a b c} \delta^{d}_{f} \delta^{a f} \delta^{b g} \delta^{c h} \nabla_{k}{\phi} e_{d}^{m} e_{g}^{k} e_{h}^{n} + I^{k} \delta_{a b} \delta^{c}_{d} \delta^{d f} \delta^{g h} e_{c}^{m} e_{g}^{n} e^{a}_{k} f_{f h}^{b} + 1/2 \delta^{a}_{b} \delta^{b c} \delta^{d f} \delta^{g h} \partial_{k}{-H_{c d g}} e_{a}^{m} e_{f}^{k} e_{h}^{n}) + de_{a}^{m} (4 \nabla_{n}{\phi} \nabla_{k}{\phi} e^{a}_{m} h^{n k} + 4 I^{n} I^{k} e^{a}_{m} h_{n k} - 4 \partial_{n}{\nabla_{k}{\phi}} e^{a}_{m} h^{n k} + 4 I^{n} \delta^{a b} \delta^{k}_{m} \partial_{k}{b_{n l}} e_{b}^{l} + 2 I^{n} \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} b_{n k} e_{f}^{k} e^{d}_{m} f_{c g}^{b} - I^{n} \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} \delta^{b h} b_{n k} e_{c}^{k} e^{g}_{m} f_{f h}^{d} - 4 I^{n} \delta^{a}_{b} \delta^{k}_{m} \partial_{k}{e^{b}_{n}} + 8 I^{n} \nabla_{k}{\phi} b_{n l} e^{a}_{m} h^{k l} - 4 \partial_{n}{I^{k}} b_{k l} e^{a}_{m} h^{n l} - 4 I^{n} \partial_{k}{b_{n l}} e^{a}_{m} h^{k l} + \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} e^{h}_{m} f_{c f}^{b} f_{g h}^{d} + \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} \delta^{h a1} e^{d}_{m} f_{c h}^{g} f_{f a1}^{b} + \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} e^{d}_{m} f_{f} f_{c g}^{b} - 1/2 \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} \delta^{b h} e^{d}_{m} f_{f} f_{c h}^{g} + 4 \delta^{a b} \delta^{n}_{m} \partial_{n}{\nabla_{k}{\phi}} e_{b}^{k} + 4 \delta^{a b} \delta^{n}_{m} \partial_{n}{I^{k}} b_{k l} e_{b}^{l} + 2 \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} \nabla_{n}{\phi} e_{f}^{n} e^{d}_{m} f_{c g}^{b} - \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} \delta^{b h} \nabla_{n}{\phi} e_{c}^{n} e^{g}_{m} f_{f h}^{d} + 1/2 \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} \delta^{b h} \partial_{n}{f_{c h}^{g}} e_{f}^{n} e^{d}_{m} - 4 \delta^{a}_{b} \delta^{n}_{m} \partial_{n}{I^{k}} e^{b}_{k} + 4 I^{n} \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} e^{d}_{n} e^{g}_{m} f_{c f}^{b} + 4 I^{n} I^{k} b_{n l} b_{k p} e^{a}_{m} h^{l p} + 4 I^{n} \delta^{b a} \delta^{k}_{m} \partial_{k}{e_{b}^{l}} b_{n l} + 4 \delta^{b a} \delta^{n}_{m} \nabla_{k}{\phi} \partial_{n}{e_{b}^{k}} + 2 \delta^{b a} \delta^{n}_{m} \partial_{n}{f_{b}} + 4 I^{n} \delta^{b c} b_{n k} e_{b}^{k} e^{a}_{m} f_{c} - 4 \delta^{b c} \nabla_{n}{\phi} \partial_{k}{e_{b}^{n}} e_{c}^{k} e^{a}_{m} - 8 I^{n} \delta^{b}_{c} \nabla_{k}{\phi} e_{b}^{k} e^{c}_{n} e^{a}_{m} + 4 \delta^{b}_{c} \partial_{n}{I^{k}} e_{b}^{n} e^{c}_{k} e^{a}_{m} + 4 I^{n} \delta^{b}_{c} \partial_{k}{e^{c}_{n}} e_{b}^{k} e^{a}_{m} + I^{n} \delta_{b c} \delta^{a d} \delta^{f g} b_{n k} e_{f}^{k} e^{b}_{m} f_{d g}^{c} + I^{n} \delta_{b c} \delta^{a}_{d} \delta^{d f} \delta^{g h} b_{n k} e_{g}^{k} e^{b}_{m} f_{f h}^{c} - 4 I^{n} \delta^{b c} \partial_{k}{e_{b}^{l}} b_{n l} e_{c}^{k} e^{a}_{m} - 8 I^{n} I^{k} \delta^{b}_{c} b_{n l} e_{b}^{l} e^{c}_{k} e^{a}_{m} + \delta^{b c} e^{a}_{m} f_{b} f_{c} + \delta_{b c} \delta^{a d} \delta^{f g} e^{h}_{m} f_{d f}^{b} f_{g h}^{c} + 1/2 \delta_{b c} \delta^{a}_{d} \delta^{f g} \delta^{h a1} e^{b}_{m} f_{f h}^{c} f_{g a1}^{d} + 1/2 \delta_{b c} \delta^{a d} \delta^{f g} e^{b}_{m} f_{f} f_{d g}^{c} + 1/2 \delta_{b c} \delta^{a}_{d} \delta^{d f} \delta^{g h} e^{b}_{m} f_{g} f_{f h}^{c} + 4 \delta^{b c} \nabla_{n}{\phi} e_{b}^{n} e^{a}_{m} f_{c} - 2 \delta^{b c} \partial_{n}{f_{b}} e_{c}^{n} e^{a}_{m} - 4 I^{n} \delta^{b}_{c} e^{c}_{n} e^{a}_{m} f_{b} - \delta^{b}_{c} \delta^{a}_{d} \delta^{f g} \partial_{n}{f_{b f}^{d}} e_{g}^{n} e^{c}_{m} + \delta_{b c} \delta^{a d} \delta^{f g} \nabla_{n}{\phi} e_{f}^{n} e^{b}_{m} f_{d g}^{c} + \delta_{b c} \delta^{a}_{d} \delta^{d f} \delta^{g h} \nabla_{n}{\phi} e_{g}^{n} e^{b}_{m} f_{f h}^{c} - 1/2 \delta_{b c} \delta^{a}_{d} \delta^{d f} \delta^{g h} \partial_{n}{f_{f g}^{b}} e_{h}^{n} e^{c}_{m} - 1/2 \delta_{b c} \delta^{d a} \delta^{f g} \partial_{n}{f_{d f}^{b}} e_{g}^{n} e^{c}_{m} - I^{n} \delta^{b}_{c} \delta^{d}_{f} \delta^{a g} b_{n k} e_{b}^{k} e^{f}_{m} f_{d g}^{c} - \delta^{b}_{c} \delta^{d}_{f} \delta^{a g} e^{h}_{m} f_{b g}^{f} f_{d h}^{c} - 1/2 \delta^{b}_{c} \delta^{d}_{f} \delta^{a g} e^{c}_{m} f_{d} f_{b g}^{f} - \delta^{b}_{c} \delta^{d}_{f} \delta^{a g} \nabla_{n}{\phi} e_{b}^{n} e^{f}_{m} f_{d g}^{c} + H_{b c d} I^{n} \delta^{b}_{f} \delta^{c}_{g} \delta^{d a} e^{f}_{n} e^{g}_{m} + 1/2 \delta^{b}_{c} \delta^{d}_{f} \delta^{g a} \partial_{n}{f_{b g}^{f}} e_{d}^{n} e^{c}_{m} + H_{b c d} I^{n} \delta^{b}_{f} \delta^{c}_{g} \delta^{a}_{h} \delta^{d h} e^{f}_{n} e^{g}_{m} + 1/2 \delta^{b}_{c} \delta^{d}_{f} \delta^{g h} e^{a}_{m} f_{b g}^{f} f_{d h}^{c} + 1/12 H_{b c d} H_{f g h} \delta^{b f} \delta^{c g} \delta^{d h} e^{a}_{m} + 1/4 \delta_{b c} \delta^{d f} \delta^{g h} e^{a}_{m} f_{d g}^{b} f_{f h}^{c} - 1/2 H_{b c d} H_{f g h} \delta^{b f} \delta^{c g} \delta^{d a} e^{h}_{m}) + df (8 \nabla_{m}{\phi} \nabla_{n}{\phi} h^{m n} + 8 \delta^{a b} \nabla_{m}{\phi} e_{a}^{m} f_{b} + 16 I^{m} \nabla_{n}{\phi} b_{m k} h^{n k} + 2 \delta^{a b} f_{a} f_{b} + 8 I^{m} \delta^{a b} b_{m n} e_{a}^{n} f_{b} + 8 I^{m} I^{n} b_{m k} b_{n l} h^{k l} + 8 I^{m} I^{n} h_{m n} - 8 \delta^{a b} \nabla_{m}{\phi} \partial_{n}{e_{a}^{m}} e_{b}^{n} - 8 \partial_{m}{\nabla_{n}{\phi}} h^{m n} - 4 \delta^{a b} \partial_{m}{f_{a}} e_{b}^{m} - 8 \partial_{m}{I^{n}} b_{n k} h^{m k} - 8 I^{m} \partial_{n}{b_{m k}} h^{n k} - 8 I^{m} \delta^{a b} \partial_{n}{e_{a}^{k}} b_{m k} e_{b}^{n} + \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} f_{a f}^{d} f_{c g}^{b} + 1/6 H_{a b c} H_{d f g} \delta^{a d} \delta^{b f} \delta^{c g} + 1/2 \delta_{a b} \delta^{c d} \delta^{f g} f_{c f}^{a} f_{d g}^{b} - 16 I^{m} \delta^{a}_{b} \nabla_{n}{\phi} e_{a}^{n} e^{b}_{m} - 8 I^{m} \delta^{a}_{b} e^{b}_{m} f_{a} - 16 I^{m} I^{n} \delta^{a}_{b} b_{m k} e_{a}^{k} e^{b}_{n} + 8 \delta^{a}_{b} \partial_{m}{I^{n}} e_{a}^{m} e^{b}_{n} + 8 I^{m} \delta^{a}_{b} \partial_{n}{e^{b}_{m}} e_{a}^{n})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Variation\specialcolon{}= {db}_{m n} ({H}_{a b c} {I}^{k} {\delta}^{d}\,_{f} {\delta}^{a f} {\delta}^{b g} {\delta}^{c h} {b}_{k l} {e}_{d}\,^{m} {e}_{g}\,^{l} {e}_{h}\,^{n} + \frac{1}{2}\, {H}_{a b c} {\delta}^{d}\,_{f} {\delta}^{a g} {\delta}^{b h} {\delta}^{c a1} {e}_{d}\,^{m} {e}_{g}\,^{n} {f}_{h a1}\,^{f} - \frac{1}{2}\, {H}_{a b c} {\delta}^{d}\,_{f} {\delta}^{a f} {\delta}^{b g} {\delta}^{c h} {e}_{d}\,^{m} {e}_{g}\,^{n} {f}_{h} + {I}^{k} {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {e}_{a}\,^{m} {e}_{f}\,^{n} {e}^{d}\,_{k} {f}_{c g}\,^{b} - {I}^{k} {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {\delta}^{b h} {e}_{a}\,^{m} {e}_{c}\,^{n} {e}^{g}\,_{k} {f}_{f h}\,^{d} + {H}_{a b c} {\delta}^{d}\,_{f} {\delta}^{a f} {\delta}^{b g} {\delta}^{c h} {\nabla}_{k}{\phi}\,  {e}_{d}\,^{m} {e}_{g}\,^{k} {e}_{h}\,^{n} + {I}^{k} {\delta}_{a b} {\delta}^{c}\,_{d} {\delta}^{d f} {\delta}^{g h} {e}_{c}\,^{m} {e}_{g}\,^{n} {e}^{a}\,_{k} {f}_{f h}\,^{b} + \frac{1}{2}\, {\delta}^{a}\,_{b} {\delta}^{b c} {\delta}^{d f} {\delta}^{g h} {\partial}_{k}{-{H}_{c d g}}\,  {e}_{a}\,^{m} {e}_{f}\,^{k} {e}_{h}\,^{n}) + {de}_{a}\,^{m} (4\, {\nabla}_{n}{\phi}\,  {\nabla}_{k}{\phi}\,  {e}^{a}\,_{m} {h}^{n k} + 4\, {I}^{n} {I}^{k} {e}^{a}\,_{m} {h}_{n k} - 4\, {\partial}_{n}{{\nabla}_{k}{\phi}\, }\,  {e}^{a}\,_{m} {h}^{n k} + 4\, {I}^{n} {\delta}^{a b} {\delta}^{k}\,_{m} {\partial}_{k}{{b}_{n l}}\,  {e}_{b}\,^{l} + 2\, {I}^{n} {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {b}_{n k} {e}_{f}\,^{k} {e}^{d}\,_{m} {f}_{c g}\,^{b} - {I}^{n} {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {\delta}^{b h} {b}_{n k} {e}_{c}\,^{k} {e}^{g}\,_{m} {f}_{f h}\,^{d} - 4\, {I}^{n} {\delta}^{a}\,_{b} {\delta}^{k}\,_{m} {\partial}_{k}{{e}^{b}\,_{n}}\,  + 8\, {I}^{n} {\nabla}_{k}{\phi}\,  {b}_{n l} {e}^{a}\,_{m} {h}^{k l} - 4\, {\partial}_{n}{{I}^{k}}\,  {b}_{k l} {e}^{a}\,_{m} {h}^{n l} - 4\, {I}^{n} {\partial}_{k}{{b}_{n l}}\,  {e}^{a}\,_{m} {h}^{k l} + {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {e}^{h}\,_{m} {f}_{c f}\,^{b} {f}_{g h}\,^{d} + {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {\delta}^{h a1} {e}^{d}\,_{m} {f}_{c h}\,^{g} {f}_{f a1}\,^{b} + {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {e}^{d}\,_{m} {f}_{f} {f}_{c g}\,^{b} - \frac{1}{2}\, {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {\delta}^{b h} {e}^{d}\,_{m} {f}_{f} {f}_{c h}\,^{g} + 4\, {\delta}^{a b} {\delta}^{n}\,_{m} {\partial}_{n}{{\nabla}_{k}{\phi}\, }\,  {e}_{b}\,^{k} + 4\, {\delta}^{a b} {\delta}^{n}\,_{m} {\partial}_{n}{{I}^{k}}\,  {b}_{k l} {e}_{b}\,^{l} + 2\, {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {\nabla}_{n}{\phi}\,  {e}_{f}\,^{n} {e}^{d}\,_{m} {f}_{c g}\,^{b} - {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {\delta}^{b h} {\nabla}_{n}{\phi}\,  {e}_{c}\,^{n} {e}^{g}\,_{m} {f}_{f h}\,^{d} + \frac{1}{2}\, {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {\delta}^{b h} {\partial}_{n}{{f}_{c h}\,^{g}}\,  {e}_{f}\,^{n} {e}^{d}\,_{m}%
+ - 4\, {\delta}^{a}\,_{b} {\delta}^{n}\,_{m} {\partial}_{n}{{I}^{k}}\,  {e}^{b}\,_{k} + 4\, {I}^{n} {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {e}^{d}\,_{n} {e}^{g}\,_{m} {f}_{c f}\,^{b} + 4\, {I}^{n} {I}^{k} {b}_{n l} {b}_{k p} {e}^{a}\,_{m} {h}^{l p} + 4\, {I}^{n} {\delta}^{b a} {\delta}^{k}\,_{m} {\partial}_{k}{{e}_{b}\,^{l}}\,  {b}_{n l} + 4\, {\delta}^{b a} {\delta}^{n}\,_{m} {\nabla}_{k}{\phi}\,  {\partial}_{n}{{e}_{b}\,^{k}}\,  + 2\, {\delta}^{b a} {\delta}^{n}\,_{m} {\partial}_{n}{{f}_{b}}\,  + 4\, {I}^{n} {\delta}^{b c} {b}_{n k} {e}_{b}\,^{k} {e}^{a}\,_{m} {f}_{c} - 4\, {\delta}^{b c} {\nabla}_{n}{\phi}\,  {\partial}_{k}{{e}_{b}\,^{n}}\,  {e}_{c}\,^{k} {e}^{a}\,_{m} - 8\, {I}^{n} {\delta}^{b}\,_{c} {\nabla}_{k}{\phi}\,  {e}_{b}\,^{k} {e}^{c}\,_{n} {e}^{a}\,_{m} + 4\, {\delta}^{b}\,_{c} {\partial}_{n}{{I}^{k}}\,  {e}_{b}\,^{n} {e}^{c}\,_{k} {e}^{a}\,_{m} + 4\, {I}^{n} {\delta}^{b}\,_{c} {\partial}_{k}{{e}^{c}\,_{n}}\,  {e}_{b}\,^{k} {e}^{a}\,_{m} + {I}^{n} {\delta}_{b c} {\delta}^{a d} {\delta}^{f g} {b}_{n k} {e}_{f}\,^{k} {e}^{b}\,_{m} {f}_{d g}\,^{c} + {I}^{n} {\delta}_{b c} {\delta}^{a}\,_{d} {\delta}^{d f} {\delta}^{g h} {b}_{n k} {e}_{g}\,^{k} {e}^{b}\,_{m} {f}_{f h}\,^{c} - 4\, {I}^{n} {\delta}^{b c} {\partial}_{k}{{e}_{b}\,^{l}}\,  {b}_{n l} {e}_{c}\,^{k} {e}^{a}\,_{m} - 8\, {I}^{n} {I}^{k} {\delta}^{b}\,_{c} {b}_{n l} {e}_{b}\,^{l} {e}^{c}\,_{k} {e}^{a}\,_{m} + {\delta}^{b c} {e}^{a}\,_{m} {f}_{b} {f}_{c} + {\delta}_{b c} {\delta}^{a d} {\delta}^{f g} {e}^{h}\,_{m} {f}_{d f}\,^{b} {f}_{g h}\,^{c} + \frac{1}{2}\, {\delta}_{b c} {\delta}^{a}\,_{d} {\delta}^{f g} {\delta}^{h a1} {e}^{b}\,_{m} {f}_{f h}\,^{c} {f}_{g a1}\,^{d} + \frac{1}{2}\, {\delta}_{b c} {\delta}^{a d} {\delta}^{f g} {e}^{b}\,_{m} {f}_{f} {f}_{d g}\,^{c} + \frac{1}{2}\, {\delta}_{b c} {\delta}^{a}\,_{d} {\delta}^{d f} {\delta}^{g h} {e}^{b}\,_{m} {f}_{g} {f}_{f h}\,^{c}%
+ + 4\, {\delta}^{b c} {\nabla}_{n}{\phi}\,  {e}_{b}\,^{n} {e}^{a}\,_{m} {f}_{c} - 2\, {\delta}^{b c} {\partial}_{n}{{f}_{b}}\,  {e}_{c}\,^{n} {e}^{a}\,_{m} - 4\, {I}^{n} {\delta}^{b}\,_{c} {e}^{c}\,_{n} {e}^{a}\,_{m} {f}_{b} - {\delta}^{b}\,_{c} {\delta}^{a}\,_{d} {\delta}^{f g} {\partial}_{n}{{f}_{b f}\,^{d}}\,  {e}_{g}\,^{n} {e}^{c}\,_{m} + {\delta}_{b c} {\delta}^{a d} {\delta}^{f g} {\nabla}_{n}{\phi}\,  {e}_{f}\,^{n} {e}^{b}\,_{m} {f}_{d g}\,^{c} + {\delta}_{b c} {\delta}^{a}\,_{d} {\delta}^{d f} {\delta}^{g h} {\nabla}_{n}{\phi}\,  {e}_{g}\,^{n} {e}^{b}\,_{m} {f}_{f h}\,^{c} - \frac{1}{2}\, {\delta}_{b c} {\delta}^{a}\,_{d} {\delta}^{d f} {\delta}^{g h} {\partial}_{n}{{f}_{f g}\,^{b}}\,  {e}_{h}\,^{n} {e}^{c}\,_{m} - \frac{1}{2}\, {\delta}_{b c} {\delta}^{d a} {\delta}^{f g} {\partial}_{n}{{f}_{d f}\,^{b}}\,  {e}_{g}\,^{n} {e}^{c}\,_{m} - {I}^{n} {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{a g} {b}_{n k} {e}_{b}\,^{k} {e}^{f}\,_{m} {f}_{d g}\,^{c} - {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{a g} {e}^{h}\,_{m} {f}_{b g}\,^{f} {f}_{d h}\,^{c} - \frac{1}{2}\, {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{a g} {e}^{c}\,_{m} {f}_{d} {f}_{b g}\,^{f} - {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{a g} {\nabla}_{n}{\phi}\,  {e}_{b}\,^{n} {e}^{f}\,_{m} {f}_{d g}\,^{c} + {H}_{b c d} {I}^{n} {\delta}^{b}\,_{f} {\delta}^{c}\,_{g} {\delta}^{d a} {e}^{f}\,_{n} {e}^{g}\,_{m} + \frac{1}{2}\, {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{g a} {\partial}_{n}{{f}_{b g}\,^{f}}\,  {e}_{d}\,^{n} {e}^{c}\,_{m} + {H}_{b c d} {I}^{n} {\delta}^{b}\,_{f} {\delta}^{c}\,_{g} {\delta}^{a}\,_{h} {\delta}^{d h} {e}^{f}\,_{n} {e}^{g}\,_{m} + \frac{1}{2}\, {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{g h} {e}^{a}\,_{m} {f}_{b g}\,^{f} {f}_{d h}\,^{c} + \frac{1}{12}\, {H}_{b c d} {H}_{f g h} {\delta}^{b f} {\delta}^{c g} {\delta}^{d h} {e}^{a}\,_{m} + \frac{1}{4}\, {\delta}_{b c} {\delta}^{d f} {\delta}^{g h} {e}^{a}\,_{m} {f}_{d g}\,^{b} {f}_{f h}\,^{c} - \frac{1}{2}\, {H}_{b c d} {H}_{f g h} {\delta}^{b f} {\delta}^{c g} {\delta}^{d a} {e}^{h}\,_{m}) + df (8\, {\nabla}_{m}{\phi}\,  {\nabla}_{n}{\phi}\,  {h}^{m n} + 8\, {\delta}^{a b} {\nabla}_{m}{\phi}\,  {e}_{a}\,^{m} {f}_{b} + 16\, {I}^{m} {\nabla}_{n}{\phi}\,  {b}_{m k} {h}^{n k} + 2\, {\delta}^{a b} {f}_{a} {f}_{b} + 8\, {I}^{m} {\delta}^{a b} {b}_{m n} {e}_{a}\,^{n} {f}_{b} + 8\, {I}^{m} {I}^{n} {b}_{m k} {b}_{n l} {h}^{k l} + 8\, {I}^{m} {I}^{n} {h}_{m n} - 8\, {\delta}^{a b} {\nabla}_{m}{\phi}\,  {\partial}_{n}{{e}_{a}\,^{m}}\,  {e}_{b}\,^{n} - 8\, {\partial}_{m}{{\nabla}_{n}{\phi}\, }\,  {h}^{m n} - 4\, {\delta}^{a b} {\partial}_{m}{{f}_{a}}\,  {e}_{b}\,^{m} - 8\, {\partial}_{m}{{I}^{n}}\,  {b}_{n k} {h}^{m k} - 8\, {I}^{m} {\partial}_{n}{{b}_{m k}}\,  {h}^{n k} - 8\, {I}^{m} {\delta}^{a b} {\partial}_{n}{{e}_{a}\,^{k}}\,  {b}_{m k} {e}_{b}\,^{n} + {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {f}_{a f}\,^{d} {f}_{c g}\,^{b} + \frac{1}{6}\, {H}_{a b c} {H}_{d f g} {\delta}^{a d} {\delta}^{b f} {\delta}^{c g} + \frac{1}{2}\, {\delta}_{a b} {\delta}^{c d} {\delta}^{f g} {f}_{c f}\,^{a} {f}_{d g}\,^{b} - 16\, {I}^{m} {\delta}^{a}\,_{b} {\nabla}_{n}{\phi}\,  {e}_{a}\,^{n} {e}^{b}\,_{m} - 8\, {I}^{m} {\delta}^{a}\,_{b} {e}^{b}\,_{m} {f}_{a} - 16\, {I}^{m} {I}^{n} {\delta}^{a}\,_{b} {b}_{m k} {e}_{a}\,^{k} {e}^{b}\,_{n}%
+ + 8\, {\delta}^{a}\,_{b} {\partial}_{m}{{I}^{n}}\,  {e}_{a}\,^{m} {e}^{b}\,_{n} + 8\, {I}^{m} {\delta}^{a}\,_{b} {\partial}_{n}{{e}^{b}\,_{m}}\,  {e}_{a}\,^{n});
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+Further := @(Variation):
+@substitute!!(%)(
+\partial_{m}{e_{c}^{n}} e^{a}_{n} -> - \partial_{m}{e^{a}_{n}} e_{c}^{n},
+\partial_{m}{e_{c}^{n}} -> - \partial_{m}{e^{a}_{k}} e_{c}^{k} e_{a}^{n},
+\partial_{m}{e^{c}_{k}} -> - \frac{1}{2} * f_{a b}^{c} e^{a}_{m} e^{b}_{k} - \frac{1}{2} * F_{a b}^{c} e^{a}_{m} e^{b}_{k},
+\partial_{n}{I^{m}} -> \nabla_{n}{I^{m}} - \Gamma^{m}_{k n} I^{k},
+\partial_{n}{\nabla_{m}{\phi}} -> \nabla_{n}{\nabla_{m}{\phi}} + \Gamma^{k}_{m n} \nabla_{k}{\phi},
+\partial_{n}{b_{m l}} -> \nabla_{n}{b_{m l}} + \Gamma^{k}_{m n} b_{k l} + \Gamma^{k}_{l n} b_{m k},
+\Gamma^{k}_{m n} -> - 1/2 \delta_{a b} h^{k l} e^{c}_{m} e^{a}_{n} e^{d}_{l} f_{c d}^{b} + 1/2 e_{a}^{k} \partial_{m}{e^{a}_{n}} 
+                                        - 1/2 \delta_{a b} h^{k l} e^{a}_{m} e^{c}_{n} e^{d}_{l} f_{c d}^{b} + 1/2 e_{a}^{k} \partial_{n}{e^{a}_{m}},
+\delta^{c}_{g} \delta^{g}_{d} -> \delta^{c}_{d},
+\delta_{c d} \delta^{c}_{g} -> \delta_{d g},
+\delta^{g d} \delta^{c}_{g} -> \delta^{c d},
+\delta^{a b} e_{a}^{m} e_{b}^{n} -> h^{m n},
+\delta_{a b} e^{a}_{m} e^{b}_{n} -> h_{m n},
+e_{a}^{m} e^{a}_{k} -> \delta^{m}_{k},
+e_{a}^{m} e^{b}_{m} -> \delta^{b}_{a},
+):
+@distribute!!(%):
+@substitute!!(%)(
+\delta^{c}_{g} \delta^{g}_{d} -> \delta^{c}_{d},
+\delta_{c d} \delta^{c}_{g} -> \delta_{d g},
+\delta^{g d} \delta^{c}_{g} -> \delta^{c d},
+\delta^{a b} e_{a}^{m} e_{b}^{n} -> h^{m n},
+\delta_{a b} e^{a}_{m} e^{b}_{n} -> h_{m n},
+e_{a}^{m} e^{a}_{k} -> \delta^{m}_{k},
+e_{a}^{m} e^{b}_{m} -> \delta^{b}_{a},
+e_{a}^{m} e^{b}_{k} \delta^{a}_{b} -> \delta^{m}_{k},
+e_{a}^{m} e^{b}_{k} \delta^{k}_{m} -> \delta^{b}_{a},
+f_{a b}^{c} \delta^{b}_{c} -> f_{a},
+f_{a b}^{c} \delta^{a}_{c} -> - f_{b},
+e^{a}_{n} e^{d}_{l} h^{n l} -> \delta^{a d},
+\delta_{a b} \delta^{a c} -> \delta^{c}_{b},
+\delta_{b a} \delta^{a c} -> \delta^{c}_{b},
+\delta_{a b} \delta^{c a} -> \delta^{c}_{b},
+\delta_{b a} \delta^{c a} -> \delta^{c}_{b},
+):
+@distribute!!(%):
+#@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%):
+@factor_out!!(%){df, de_{a}^{m}, db_{m n}}:
+@rename_dummies!(%):
+@distribute!!(%):
+@factor_out!!(%){df, de_{a}^{m}, db_{m n}};
+@eliminate_kr!!(%):
+@eliminate_metric!!(%):
+@eliminate_kr!!(%);
+\end{verbatim}}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+% db_{m n} (H_{a b c} I^{k} \delta^{d}_{f} \delta^{a f} \delta^{b g} \delta^{c h} b_{k l} e_{d}^{m} e_{g}^{l} e_{h}^{n} + 1/2 H_{a b c} \delta^{d}_{f} \delta^{a g} \delta^{b h} \delta^{c a1} e_{d}^{m} e_{g}^{n} f_{h a1}^{f} - 1/2 H_{a b c} \delta^{d}_{f} \delta^{a f} \delta^{b g} \delta^{c h} e_{d}^{m} e_{g}^{n} f_{h} + 2 I^{k} \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} e_{a}^{m} e_{f}^{n} e^{d}_{k} f_{c g}^{b} + H_{a b c} \delta^{d}_{f} \delta^{a f} \delta^{b g} \delta^{c h} \nabla_{k}{\phi} e_{d}^{m} e_{g}^{k} e_{h}^{n} + I^{k} \delta_{a b} \delta^{c d} \delta^{f g} e_{c}^{m} e_{f}^{n} e^{a}_{k} f_{d g}^{b} - 1/2 \delta^{a b} \delta^{c d} \delta^{f g} \partial_{k}{-H_{a c f}} e_{b}^{k} e_{d}^{m} e_{g}^{n}) + de_{a}^{m} (4 \nabla_{n}{\phi} \nabla_{k}{\phi} e^{a}_{m} h^{n k} + 4 I^{n} I^{k} e^{a}_{m} h_{n k} - 4 \nabla_{n}{\nabla_{k}{\phi}} e^{a}_{m} h^{n k} + 4 I^{n} \delta^{a b} \delta^{k}_{m} \nabla_{k}{b_{n l}} e_{b}^{l} - 2 I^{n} \delta^{a}_{b} \delta^{k}_{m} b_{n l} e^{c}_{k} e^{d}_{p} f_{c d}^{b} h^{l p} + 2 I^{n} \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} b_{n k} e_{f}^{k} e^{d}_{m} f_{c g}^{b} - 2 I^{n} \delta^{a}_{b} \delta^{k}_{m} e^{c}_{n} e^{d}_{k} f_{c d}^{b} - 4 I^{n} b_{n k} e^{a}_{m} e^{b}_{l} f_{b} h^{k l} - 2 I^{n} \delta^{a b} \delta^{k}_{m} b_{n l} e_{c}^{l} e^{d}_{k} f_{b d}^{c} - 8 I^{n} \delta_{n}^{k} \nabla_{k}{\phi} e^{a}_{m} + 4 \delta^{n}_{k} \nabla_{n}{I^{k}} e^{a}_{m} + 8 I^{n} \nabla_{k}{\phi} b_{n l} e^{a}_{m} h^{k l} - 4 \nabla_{n}{I^{k}} b_{k l} e^{a}_{m} h^{n l} - 4 I^{n} \nabla_{k}{b_{n l}} e^{a}_{m} h^{k l} - 8 I^{n} I^{k} \delta_{n}^{l} b_{k l} e^{a}_{m} + \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} e^{h}_{m} f_{c f}^{b} f_{g h}^{d} + \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} \delta^{h a1} e^{d}_{m} f_{c h}^{g} f_{f a1}^{b} + \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} e^{d}_{m} f_{f} f_{c g}^{b} - 4 \nabla_{n}{\phi} e^{a}_{m} e^{b}_{k} f_{b} h^{n k} + 4 \delta^{a b} \delta^{n}_{m} \nabla_{n}{\nabla_{k}{\phi}} e_{b}^{k} - 2 \delta^{a}_{b} \delta^{n}_{m} \nabla_{k}{\phi} e^{c}_{n} e^{d}_{l} f_{c d}^{b} h^{k l} + 4 \delta^{a b} \delta^{n}_{m} \nabla_{n}{I^{k}} b_{k l} e_{b}^{l} + 2 \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} \nabla_{n}{\phi} e_{f}^{n} e^{d}_{m} f_{c g}^{b} - 4 \delta^{a}_{b} \delta^{n}_{m} \nabla_{n}{I^{k}} e^{b}_{k} + 4 I^{n} \delta^{a}_{b} \delta^{c}_{d} \delta^{f}_{g} e^{d}_{n} e^{g}_{m} f_{c f}^{b} - 2 \delta^{a b} \delta^{n}_{m} \nabla_{k}{\phi} e_{c}^{k} e^{d}_{n} f_{b d}^{c} + 4 I^{n} e^{a}_{m} e^{b}_{n} f_{b} + 4 I^{n} I^{k} b_{n l} b_{k p} e^{a}_{m} h^{l p} + 2 \delta^{b a} \delta^{n}_{m} \partial_{n}{f_{b}} + 2 I^{n} \delta_{b c} \delta^{a d} \delta^{k}_{m} e^{b}_{k} e^{f}_{n} f_{d f}^{c} + 2 I^{n} \delta_{b c} \delta^{a d} \delta^{k}_{m} e^{b}_{n} e^{f}_{k} f_{d f}^{c} + 4 I^{n} \delta^{b c} b_{n k} e_{b}^{k} e^{a}_{m} f_{c} + 2 I^{n} \delta_{b c} \delta^{a d} \delta^{f g} b_{n k} e_{f}^{k} e^{b}_{m} f_{d g}^{c} + \delta^{b c} e^{a}_{m} f_{b} f_{c} + \delta_{b c} \delta^{a d} \delta^{f g} e^{h}_{m} f_{d f}^{b} f_{g h}^{c} + 1/2 \delta_{b c} \delta^{a}_{d} \delta^{f g} \delta^{h a1} e^{b}_{m} f_{f h}^{c} f_{g a1}^{d} + \delta_{b c} \delta^{a d} \delta^{f g} e^{b}_{m} f_{f} f_{d g}^{c} + 4 \delta^{b c} \nabla_{n}{\phi} e_{b}^{n} e^{a}_{m} f_{c} - 2 \delta^{b c} \partial_{n}{f_{b}} e_{c}^{n} e^{a}_{m} - 4 I^{n} \delta^{b}_{c} e^{c}_{n} e^{a}_{m} f_{b} - \delta^{b}_{c} \delta^{a}_{d} \delta^{f g} \partial_{n}{f_{b f}^{d}} e_{g}^{n} e^{c}_{m} + 2 \delta_{b c} \delta^{a d} \delta^{f g} \nabla_{n}{\phi} e_{f}^{n} e^{b}_{m} f_{d g}^{c} + 2 F_{b c}^{d} I^{n} \delta^{b a} \delta^{k}_{m} b_{n l} e_{d}^{l} e^{c}_{k} + 2 F_{b c}^{d} \delta^{b a} \delta^{n}_{m} \nabla_{k}{\phi} e_{d}^{k} e^{c}_{n} - \delta_{b c} \delta^{d a} \delta^{f g} \partial_{n}{f_{d f}^{b}} e_{g}^{n} e^{c}_{m} - 2 I^{n} \delta_{b c} \delta^{d}_{f} \delta^{f a} \delta^{k}_{m} b_{n l} e^{b}_{k} e^{g}_{p} f_{d g}^{c} h^{l p} - 2 F_{b c}^{d} I^{n} \delta^{b}_{f} \delta^{f a} \delta^{k}_{m} b_{n l} e_{d}^{l} e^{c}_{k} - 2 I^{n} \delta^{b}_{c} \delta^{d}_{f} \delta^{a g} b_{n k} e_{b}^{k} e^{f}_{m} f_{d g}^{c} - \delta^{b}_{c} \delta^{d}_{f} \delta^{a g} e^{c}_{m} f_{d} f_{b g}^{f} - \delta^{b}_{c} \delta^{d}_{f} \delta^{a g} e^{h}_{m} f_{b g}^{f} f_{d h}^{c} - 2 \delta_{b c} \delta^{d}_{f} \delta^{f a} \delta^{n}_{m} \nabla_{k}{\phi} e^{b}_{n} e^{g}_{l} f_{d g}^{c} h^{k l} - 2 F_{b c}^{d} \delta^{b}_{f} \delta^{f a} \delta^{n}_{m} \nabla_{k}{\phi} e_{d}^{k} e^{c}_{n} - 2 \delta^{b}_{c} \delta^{d}_{f} \delta^{a g} \nabla_{n}{\phi} e_{b}^{n} e^{f}_{m} f_{d g}^{c} + \delta^{b}_{c} \delta^{d}_{f} \delta^{g a} \partial_{n}{f_{b g}^{f}} e_{d}^{n} e^{c}_{m} + H_{b c d} I^{n} \delta^{b}_{f} \delta^{c}_{g} \delta^{d a} e^{f}_{n} e^{g}_{m} + H_{b c d} I^{n} \delta^{b}_{f} \delta^{c}_{g} \delta^{a}_{h} \delta^{d h} e^{f}_{n} e^{g}_{m} + 1/2 \delta^{b}_{c} \delta^{d}_{f} \delta^{g h} e^{a}_{m} f_{b g}^{f} f_{d h}^{c} + 1/12 H_{b c d} H_{f g h} \delta^{b f} \delta^{c g} \delta^{d h} e^{a}_{m} + 1/4 \delta_{b c} \delta^{d f} \delta^{g h} e^{a}_{m} f_{d g}^{b} f_{f h}^{c} - 1/2 H_{b c d} H_{f g h} \delta^{b f} \delta^{c g} \delta^{d a} e^{h}_{m}) + df (8 \nabla_{m}{\phi} \nabla_{n}{\phi} h^{m n} + 8 \delta^{a b} \nabla_{m}{\phi} e_{a}^{m} f_{b} + 16 I^{m} \nabla_{n}{\phi} b_{m k} h^{n k} + 2 \delta^{a b} f_{a} f_{b} + 8 I^{m} \delta^{a b} b_{m n} e_{a}^{n} f_{b} + 8 I^{m} I^{n} b_{m k} b_{n l} h^{k l} + 8 I^{m} I^{n} h_{m n} - 8 \nabla_{m}{\nabla_{n}{\phi}} h^{m n} - 8 \nabla_{m}{\phi} e^{a}_{n} f_{a} h^{m n} - 4 \delta^{a b} \partial_{m}{f_{a}} e_{b}^{m} - 8 \nabla_{m}{I^{n}} b_{n k} h^{m k} - 8 I^{m} \nabla_{n}{b_{m k}} h^{n k} - 8 I^{m} b_{m n} e^{a}_{k} f_{a} h^{n k} + \delta^{a}_{b} \delta^{c}_{d} \delta^{f g} f_{a f}^{d} f_{c g}^{b} + 1/6 H_{a b c} H_{d f g} \delta^{a d} \delta^{b f} \delta^{c g} + 1/2 \delta_{a b} \delta^{c d} \delta^{f g} f_{c f}^{a} f_{d g}^{b} - 16 I^{m} \delta_{m}^{n} \nabla_{n}{\phi} - 8 I^{m} \delta^{a}_{b} e^{b}_{m} f_{a} - 16 I^{m} I^{n} \delta_{m}^{k} b_{n k} + 8 \delta^{m}_{n} \nabla_{m}{I^{n}} + 8 I^{m} e^{a}_{m} f_{a})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Further\specialcolon{}= {db}_{m n} ({H}_{a b c} {I}^{k} {\delta}^{d}\,_{f} {\delta}^{a f} {\delta}^{b g} {\delta}^{c h} {b}_{k l} {e}_{d}\,^{m} {e}_{g}\,^{l} {e}_{h}\,^{n} + \frac{1}{2}\, {H}_{a b c} {\delta}^{d}\,_{f} {\delta}^{a g} {\delta}^{b h} {\delta}^{c a1} {e}_{d}\,^{m} {e}_{g}\,^{n} {f}_{h a1}\,^{f} - \frac{1}{2}\, {H}_{a b c} {\delta}^{d}\,_{f} {\delta}^{a f} {\delta}^{b g} {\delta}^{c h} {e}_{d}\,^{m} {e}_{g}\,^{n} {f}_{h} + 2\, {I}^{k} {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {e}_{a}\,^{m} {e}_{f}\,^{n} {e}^{d}\,_{k} {f}_{c g}\,^{b} + {H}_{a b c} {\delta}^{d}\,_{f} {\delta}^{a f} {\delta}^{b g} {\delta}^{c h} {\nabla}_{k}{\phi}\,  {e}_{d}\,^{m} {e}_{g}\,^{k} {e}_{h}\,^{n} + {I}^{k} {\delta}_{a b} {\delta}^{c d} {\delta}^{f g} {e}_{c}\,^{m} {e}_{f}\,^{n} {e}^{a}\,_{k} {f}_{d g}\,^{b} - \frac{1}{2}\, {\delta}^{a b} {\delta}^{c d} {\delta}^{f g} {\partial}_{k}{-{H}_{a c f}}\,  {e}_{b}\,^{k} {e}_{d}\,^{m} {e}_{g}\,^{n}) + {de}_{a}\,^{m} (4\, {\nabla}_{n}{\phi}\,  {\nabla}_{k}{\phi}\,  {e}^{a}\,_{m} {h}^{n k} + 4\, {I}^{n} {I}^{k} {e}^{a}\,_{m} {h}_{n k} - 4\, {\nabla}_{n}{{\nabla}_{k}{\phi}\, }\,  {e}^{a}\,_{m} {h}^{n k} + 4\, {I}^{n} {\delta}^{a b} {\delta}^{k}\,_{m} {\nabla}_{k}{{b}_{n l}}\,  {e}_{b}\,^{l} - 2\, {I}^{n} {\delta}^{a}\,_{b} {\delta}^{k}\,_{m} {b}_{n l} {e}^{c}\,_{k} {e}^{d}\,_{p} {f}_{c d}\,^{b} {h}^{l p} + 2\, {I}^{n} {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {b}_{n k} {e}_{f}\,^{k} {e}^{d}\,_{m} {f}_{c g}\,^{b} - 2\, {I}^{n} {\delta}^{a}\,_{b} {\delta}^{k}\,_{m} {e}^{c}\,_{n} {e}^{d}\,_{k} {f}_{c d}\,^{b} - 4\, {I}^{n} {b}_{n k} {e}^{a}\,_{m} {e}^{b}\,_{l} {f}_{b} {h}^{k l} - 2\, {I}^{n} {\delta}^{a b} {\delta}^{k}\,_{m} {b}_{n l} {e}_{c}\,^{l} {e}^{d}\,_{k} {f}_{b d}\,^{c} - 8\, {I}^{n} {\delta}_{n}\,^{k} {\nabla}_{k}{\phi}\,  {e}^{a}\,_{m} + 4\, {\delta}^{n}\,_{k} {\nabla}_{n}{{I}^{k}}\,  {e}^{a}\,_{m} + 8\, {I}^{n} {\nabla}_{k}{\phi}\,  {b}_{n l} {e}^{a}\,_{m} {h}^{k l} - 4\, {\nabla}_{n}{{I}^{k}}\,  {b}_{k l} {e}^{a}\,_{m} {h}^{n l} - 4\, {I}^{n} {\nabla}_{k}{{b}_{n l}}\,  {e}^{a}\,_{m} {h}^{k l} - 8\, {I}^{n} {I}^{k} {\delta}_{n}\,^{l} {b}_{k l} {e}^{a}\,_{m} + {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {e}^{h}\,_{m} {f}_{c f}\,^{b} {f}_{g h}\,^{d} + {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {\delta}^{h a1} {e}^{d}\,_{m} {f}_{c h}\,^{g} {f}_{f a1}\,^{b} + {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {e}^{d}\,_{m} {f}_{f} {f}_{c g}\,^{b} - 4\, {\nabla}_{n}{\phi}\,  {e}^{a}\,_{m} {e}^{b}\,_{k} {f}_{b} {h}^{n k}%
+ + 4\, {\delta}^{a b} {\delta}^{n}\,_{m} {\nabla}_{n}{{\nabla}_{k}{\phi}\, }\,  {e}_{b}\,^{k} - 2\, {\delta}^{a}\,_{b} {\delta}^{n}\,_{m} {\nabla}_{k}{\phi}\,  {e}^{c}\,_{n} {e}^{d}\,_{l} {f}_{c d}\,^{b} {h}^{k l} + 4\, {\delta}^{a b} {\delta}^{n}\,_{m} {\nabla}_{n}{{I}^{k}}\,  {b}_{k l} {e}_{b}\,^{l} + 2\, {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {\nabla}_{n}{\phi}\,  {e}_{f}\,^{n} {e}^{d}\,_{m} {f}_{c g}\,^{b} - 4\, {\delta}^{a}\,_{b} {\delta}^{n}\,_{m} {\nabla}_{n}{{I}^{k}}\,  {e}^{b}\,_{k} + 4\, {I}^{n} {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f}\,_{g} {e}^{d}\,_{n} {e}^{g}\,_{m} {f}_{c f}\,^{b} - 2\, {\delta}^{a b} {\delta}^{n}\,_{m} {\nabla}_{k}{\phi}\,  {e}_{c}\,^{k} {e}^{d}\,_{n} {f}_{b d}\,^{c} + 4\, {I}^{n} {e}^{a}\,_{m} {e}^{b}\,_{n} {f}_{b} + 4\, {I}^{n} {I}^{k} {b}_{n l} {b}_{k p} {e}^{a}\,_{m} {h}^{l p} + 2\, {\delta}^{b a} {\delta}^{n}\,_{m} {\partial}_{n}{{f}_{b}}\,  + 2\, {I}^{n} {\delta}_{b c} {\delta}^{a d} {\delta}^{k}\,_{m} {e}^{b}\,_{k} {e}^{f}\,_{n} {f}_{d f}\,^{c} + 2\, {I}^{n} {\delta}_{b c} {\delta}^{a d} {\delta}^{k}\,_{m} {e}^{b}\,_{n} {e}^{f}\,_{k} {f}_{d f}\,^{c} + 4\, {I}^{n} {\delta}^{b c} {b}_{n k} {e}_{b}\,^{k} {e}^{a}\,_{m} {f}_{c} + 2\, {I}^{n} {\delta}_{b c} {\delta}^{a d} {\delta}^{f g} {b}_{n k} {e}_{f}\,^{k} {e}^{b}\,_{m} {f}_{d g}\,^{c} + {\delta}^{b c} {e}^{a}\,_{m} {f}_{b} {f}_{c} + {\delta}_{b c} {\delta}^{a d} {\delta}^{f g} {e}^{h}\,_{m} {f}_{d f}\,^{b} {f}_{g h}\,^{c} + \frac{1}{2}\, {\delta}_{b c} {\delta}^{a}\,_{d} {\delta}^{f g} {\delta}^{h a1} {e}^{b}\,_{m} {f}_{f h}\,^{c} {f}_{g a1}\,^{d} + {\delta}_{b c} {\delta}^{a d} {\delta}^{f g} {e}^{b}\,_{m} {f}_{f} {f}_{d g}\,^{c} + 4\, {\delta}^{b c} {\nabla}_{n}{\phi}\,  {e}_{b}\,^{n} {e}^{a}\,_{m} {f}_{c} - 2\, {\delta}^{b c} {\partial}_{n}{{f}_{b}}\,  {e}_{c}\,^{n} {e}^{a}\,_{m}%
+ - 4\, {I}^{n} {\delta}^{b}\,_{c} {e}^{c}\,_{n} {e}^{a}\,_{m} {f}_{b} - {\delta}^{b}\,_{c} {\delta}^{a}\,_{d} {\delta}^{f g} {\partial}_{n}{{f}_{b f}\,^{d}}\,  {e}_{g}\,^{n} {e}^{c}\,_{m} + 2\, {\delta}_{b c} {\delta}^{a d} {\delta}^{f g} {\nabla}_{n}{\phi}\,  {e}_{f}\,^{n} {e}^{b}\,_{m} {f}_{d g}\,^{c} + 2\, {F}_{b c}\,^{d} {I}^{n} {\delta}^{b a} {\delta}^{k}\,_{m} {b}_{n l} {e}_{d}\,^{l} {e}^{c}\,_{k} + 2\, {F}_{b c}\,^{d} {\delta}^{b a} {\delta}^{n}\,_{m} {\nabla}_{k}{\phi}\,  {e}_{d}\,^{k} {e}^{c}\,_{n} - {\delta}_{b c} {\delta}^{d a} {\delta}^{f g} {\partial}_{n}{{f}_{d f}\,^{b}}\,  {e}_{g}\,^{n} {e}^{c}\,_{m} - 2\, {I}^{n} {\delta}_{b c} {\delta}^{d}\,_{f} {\delta}^{f a} {\delta}^{k}\,_{m} {b}_{n l} {e}^{b}\,_{k} {e}^{g}\,_{p} {f}_{d g}\,^{c} {h}^{l p} - 2\, {F}_{b c}\,^{d} {I}^{n} {\delta}^{b}\,_{f} {\delta}^{f a} {\delta}^{k}\,_{m} {b}_{n l} {e}_{d}\,^{l} {e}^{c}\,_{k} - 2\, {I}^{n} {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{a g} {b}_{n k} {e}_{b}\,^{k} {e}^{f}\,_{m} {f}_{d g}\,^{c} - {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{a g} {e}^{c}\,_{m} {f}_{d} {f}_{b g}\,^{f} - {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{a g} {e}^{h}\,_{m} {f}_{b g}\,^{f} {f}_{d h}\,^{c} - 2\, {\delta}_{b c} {\delta}^{d}\,_{f} {\delta}^{f a} {\delta}^{n}\,_{m} {\nabla}_{k}{\phi}\,  {e}^{b}\,_{n} {e}^{g}\,_{l} {f}_{d g}\,^{c} {h}^{k l} - 2\, {F}_{b c}\,^{d} {\delta}^{b}\,_{f} {\delta}^{f a} {\delta}^{n}\,_{m} {\nabla}_{k}{\phi}\,  {e}_{d}\,^{k} {e}^{c}\,_{n} - 2\, {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{a g} {\nabla}_{n}{\phi}\,  {e}_{b}\,^{n} {e}^{f}\,_{m} {f}_{d g}\,^{c} + {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{g a} {\partial}_{n}{{f}_{b g}\,^{f}}\,  {e}_{d}\,^{n} {e}^{c}\,_{m} + {H}_{b c d} {I}^{n} {\delta}^{b}\,_{f} {\delta}^{c}\,_{g} {\delta}^{d a} {e}^{f}\,_{n} {e}^{g}\,_{m} + {H}_{b c d} {I}^{n} {\delta}^{b}\,_{f} {\delta}^{c}\,_{g} {\delta}^{a}\,_{h} {\delta}^{d h} {e}^{f}\,_{n} {e}^{g}\,_{m} + \frac{1}{2}\, {\delta}^{b}\,_{c} {\delta}^{d}\,_{f} {\delta}^{g h} {e}^{a}\,_{m} {f}_{b g}\,^{f} {f}_{d h}\,^{c} + \frac{1}{12}\, {H}_{b c d} {H}_{f g h} {\delta}^{b f} {\delta}^{c g} {\delta}^{d h} {e}^{a}\,_{m} + \frac{1}{4}\, {\delta}_{b c} {\delta}^{d f} {\delta}^{g h} {e}^{a}\,_{m} {f}_{d g}\,^{b} {f}_{f h}\,^{c}%
+ - \frac{1}{2}\, {H}_{b c d} {H}_{f g h} {\delta}^{b f} {\delta}^{c g} {\delta}^{d a} {e}^{h}\,_{m}) + df (8\, {\nabla}_{m}{\phi}\,  {\nabla}_{n}{\phi}\,  {h}^{m n} + 8\, {\delta}^{a b} {\nabla}_{m}{\phi}\,  {e}_{a}\,^{m} {f}_{b} + 16\, {I}^{m} {\nabla}_{n}{\phi}\,  {b}_{m k} {h}^{n k} + 2\, {\delta}^{a b} {f}_{a} {f}_{b} + 8\, {I}^{m} {\delta}^{a b} {b}_{m n} {e}_{a}\,^{n} {f}_{b} + 8\, {I}^{m} {I}^{n} {b}_{m k} {b}_{n l} {h}^{k l} + 8\, {I}^{m} {I}^{n} {h}_{m n} - 8\, {\nabla}_{m}{{\nabla}_{n}{\phi}\, }\,  {h}^{m n} - 8\, {\nabla}_{m}{\phi}\,  {e}^{a}\,_{n} {f}_{a} {h}^{m n} - 4\, {\delta}^{a b} {\partial}_{m}{{f}_{a}}\,  {e}_{b}\,^{m} - 8\, {\nabla}_{m}{{I}^{n}}\,  {b}_{n k} {h}^{m k} - 8\, {I}^{m} {\nabla}_{n}{{b}_{m k}}\,  {h}^{n k} - 8\, {I}^{m} {b}_{m n} {e}^{a}\,_{k} {f}_{a} {h}^{n k} + {\delta}^{a}\,_{b} {\delta}^{c}\,_{d} {\delta}^{f g} {f}_{a f}\,^{d} {f}_{c g}\,^{b} + \frac{1}{6}\, {H}_{a b c} {H}_{d f g} {\delta}^{a d} {\delta}^{b f} {\delta}^{c g} + \frac{1}{2}\, {\delta}_{a b} {\delta}^{c d} {\delta}^{f g} {f}_{c f}\,^{a} {f}_{d g}\,^{b} - 16\, {I}^{m} {\delta}_{m}\,^{n} {\nabla}_{n}{\phi}\,  - 8\, {I}^{m} {\delta}^{a}\,_{b} {e}^{b}\,_{m} {f}_{a} - 16\, {I}^{m} {I}^{n} {\delta}_{m}\,^{k} {b}_{n k}%
+ + 8\, {\delta}^{m}\,_{n} {\nabla}_{m}{{I}^{n}}\,  + 8\, {I}^{m} {e}^{a}\,_{m} {f}_{a});
+\end{dmath*}
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% orig
+% db_{m n} (H^{d g h} I^{k} b_{k l} e_{d}^{m} e_{g}^{l} e_{h}^{n} + 1/2 H^{g h a1} e_{f}^{m} e_{g}^{n} f_{h a1}^{f} - 1/2 H^{d g h} e_{d}^{m} e_{g}^{n} f_{h} + 2 I^{k} e_{b}^{m} e^{g n} e^{c}_{k} f_{c g}^{b} + H^{d g h} \nabla_{k}{\phi} e_{d}^{m} e_{g}^{k} e_{h}^{n} + I^{k} e^{d m} e^{g n} e_{b k} f_{d g}^{b} - 1/2 \partial_{k}{-H^{b d g}} e_{b}^{k} e_{d}^{m} e_{g}^{n}) + de_{a}^{m} (4 \nabla^{k}{\phi} \nabla_{k}{\phi} e^{a}_{m} + 4 I_{k} I^{k} e^{a}_{m} - 4 \nabla^{k}{\nabla_{k}{\phi}} e^{a}_{m} + 4 I^{n} \nabla_{m}{b_{n l}} e^{a l} - 2 I^{n} b_{n}^{p} e^{c}_{m} e^{d}_{p} f_{c d}^{a} + 2 I^{n} b_{n k} e^{g k} e^{c}_{m} f_{c g}^{a} - 2 I^{n} e^{c}_{n} e^{d}_{m} f_{c d}^{a} - 4 I^{n} b_{n}^{l} e^{a}_{m} e^{b}_{l} f_{b} - 2 I^{n} b_{n l} e_{c}^{l} e^{d}_{m} f^{a}_{d}^{c} - 8 I^{k} \nabla_{k}{\phi} e^{a}_{m} + 4 \nabla_{k}{I^{k}} e^{a}_{m} + 8 I^{n} \nabla^{l}{\phi} b_{n l} e^{a}_{m} - 4 \nabla^{l}{I^{k}} b_{k l} e^{a}_{m} - 4 I^{n} \nabla^{l}{b_{n l}} e^{a}_{m} - 8 I^{l} I^{k} b_{k l} e^{a}_{m} + e^{h}_{m} f_{d}^{g a} f_{g h}^{d} + e^{c}_{m} f_{c}^{a1 f} f_{f a1}^{a} + e^{c}_{m} f^{g} f_{c g}^{a} - 4 \nabla^{k}{\phi} e^{a}_{m} e^{b}_{k} f_{b} + 4 \nabla_{m}{\nabla_{k}{\phi}} e^{a k} - 2 \nabla^{l}{\phi} e^{c}_{m} e^{d}_{l} f_{c d}^{a} + 4 \nabla_{m}{I^{k}} b_{k l} e^{a l} + 2 \nabla_{n}{\phi} e^{g n} e^{c}_{m} f_{c g}^{a} - 4 \nabla_{m}{I^{k}} e^{a}_{k} + 4 I^{n} e^{c}_{n} e^{f}_{m} f_{c f}^{a} - 2 \nabla_{k}{\phi} e_{c}^{k} e^{d}_{m} f^{a}_{d}^{c} + 4 I^{n} e^{a}_{m} e^{b}_{n} f_{b} + 4 I^{n} I^{k} b_{n}^{p} b_{k p} e^{a}_{m} + 2 \partial_{m}{f^{a}} + 2 I^{n} e_{c m} e^{f}_{n} f^{a}_{f}^{c} + 2 I^{n} e_{c n} e^{f}_{m} f^{a}_{f}^{c} + 4 I^{n} b_{n k} e^{c k} e^{a}_{m} f_{c} + 2 I^{n} b_{n k} e^{g k} e_{c m} f^{a}_{g}^{c} + e^{a}_{m} f^{c} f_{c} + e^{h}_{m} f^{a g}_{c} f_{g h}^{c} + 1/2 e_{c m} f^{g a1 c} f_{g a1}^{a} + e_{c m} f^{g} f^{a}_{g}^{c} + 4 \nabla_{n}{\phi} e^{c n} e^{a}_{m} f_{c} - 2 \partial_{n}{f^{c}} e_{c}^{n} e^{a}_{m} - 4 I^{n} e^{b}_{n} e^{a}_{m} f_{b} - \partial_{n}{f_{c}^{g a}} e_{g}^{n} e^{c}_{m} + 2 \nabla_{n}{\phi} e^{g n} e_{c m} f^{a}_{g}^{c} + 2 F^{a}_{c}^{d} I^{n} b_{n l} e_{d}^{l} e^{c}_{m} + 2 F^{a}_{c}^{d} \nabla_{k}{\phi} e_{d}^{k} e^{c}_{m} - \partial_{n}{f^{a g}_{c}} e_{g}^{n} e^{c}_{m} - 2 I^{n} b_{n}^{p} e_{c m} e^{g}_{p} f^{a}_{g}^{c} - 2 F^{a}_{c}^{d} I^{n} b_{n l} e_{d}^{l} e^{c}_{m} - 2 I^{n} b_{n k} e_{c}^{k} e^{d}_{m} f_{d}^{a c} - e^{b}_{m} f_{f} f_{b}^{a f} - e^{h}_{m} f_{c}^{a d} f_{d h}^{c} - 2 \nabla^{l}{\phi} e_{c m} e^{g}_{l} f^{a}_{g}^{c} - 2 F^{a}_{c}^{d} \nabla_{k}{\phi} e_{d}^{k} e^{c}_{m} - 2 \nabla_{n}{\phi} e_{c}^{n} e^{d}_{m} f_{d}^{a c} + \partial_{n}{f_{c}^{a d}} e_{d}^{n} e^{c}_{m} + H_{f g}^{a} I^{n} e^{f}_{n} e^{g}_{m} + H_{f g}^{a} I^{n} e^{f}_{n} e^{g}_{m} + 1/2 e^{a}_{m} f_{c}^{h d} f_{d h}^{c} + 1/12 H^{f g h} H_{f g h} e^{a}_{m} + 1/4 e^{a}_{m} f^{f h}_{c} f_{f h}^{c} - 1/2 H^{f g a} H_{f g h} e^{h}_{m}) + df (8 \nabla^{n}{\phi} \nabla_{n}{\phi} + 8 \nabla_{m}{\phi} e^{b m} f_{b} + 16 I^{m} \nabla^{k}{\phi} b_{m k} + 2 f^{b} f_{b} + 8 I^{m} b_{m n} e^{b n} f_{b} + 8 I^{m} I^{n} b_{m}^{l} b_{n l} + 8 I_{n} I^{n} - 8 \nabla^{n}{\nabla_{n}{\phi}} - 8 \nabla^{n}{\phi} e^{a}_{n} f_{a} - 4 \partial_{m}{f^{b}} e_{b}^{m} - 8 \nabla^{k}{I^{n}} b_{n k} - 8 I^{m} \nabla^{k}{b_{m k}} - 8 I^{m} b_{m}^{k} e^{a}_{k} f_{a} + f_{b}^{g c} f_{c g}^{b} + 1/6 H^{d f g} H_{d f g} + 1/2 f^{d g}_{b} f_{d g}^{b} - 16 I^{n} \nabla_{n}{\phi} - 8 I^{m} e^{a}_{m} f_{a} - 16 I^{k} I^{n} b_{n k} + 8 \nabla_{n}{I^{n}} + 8 I^{m} e^{a}_{m} f_{a})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Further\specialcolon{}= {db}_{m n} ({H}^{d g h} {I}^{k} {b}_{k l} {e}_{d}\,^{m} {e}_{g}\,^{l} {e}_{h}\,^{n} + \frac{1}{2}\, {H}^{g h a1} {e}_{f}\,^{m} {e}_{g}\,^{n} {f}_{h a1}\,^{f} - \frac{1}{2}\, {H}^{d g h} {e}_{d}\,^{m} {e}_{g}\,^{n} {f}_{h} + 2\, {I}^{k} {e}_{b}\,^{m} {e}^{g n} {e}^{c}\,_{k} {f}_{c g}\,^{b} + {H}^{d g h} {\nabla}_{k}{\phi}\,  {e}_{d}\,^{m} {e}_{g}\,^{k} {e}_{h}\,^{n} + {I}^{k} {e}^{d m} {e}^{g n} {e}_{b k} {f}_{d g}\,^{b} - \frac{1}{2}\, {\partial}_{k}{-{H}^{b d g}}\,  {e}_{b}\,^{k} {e}_{d}\,^{m} {e}_{g}\,^{n}) + {de}_{a}\,^{m} (4\, {\nabla}^{k}{\phi}\,  {\nabla}_{k}{\phi}\,  {e}^{a}\,_{m} + 4\, {I}_{k} {I}^{k} {e}^{a}\,_{m} - 4\, {\nabla}^{k}{{\nabla}_{k}{\phi}\, }\,  {e}^{a}\,_{m} + 4\, {I}^{n} {\nabla}_{m}{{b}_{n l}}\,  {e}^{a l} - 2\, {I}^{n} {b}_{n}\,^{p} {e}^{c}\,_{m} {e}^{d}\,_{p} {f}_{c d}\,^{a} + 2\, {I}^{n} {b}_{n k} {e}^{g k} {e}^{c}\,_{m} {f}_{c g}\,^{a} - 2\, {I}^{n} {e}^{c}\,_{n} {e}^{d}\,_{m} {f}_{c d}\,^{a} - 4\, {I}^{n} {b}_{n}\,^{l} {e}^{a}\,_{m} {e}^{b}\,_{l} {f}_{b} - 2\, {I}^{n} {b}_{n l} {e}_{c}\,^{l} {e}^{d}\,_{m} {f}^{a}\,_{d}\,^{c} - 8\, {I}^{k} {\nabla}_{k}{\phi}\,  {e}^{a}\,_{m} + 4\, {\nabla}_{k}{{I}^{k}}\,  {e}^{a}\,_{m} + 8\, {I}^{n} {\nabla}^{l}{\phi}\,  {b}_{n l} {e}^{a}\,_{m} - 4\, {\nabla}^{l}{{I}^{k}}\,  {b}_{k l} {e}^{a}\,_{m} - 4\, {I}^{n} {\nabla}^{l}{{b}_{n l}}\,  {e}^{a}\,_{m} - 8\, {I}^{l} {I}^{k} {b}_{k l} {e}^{a}\,_{m} + {e}^{h}\,_{m} {f}_{d}\,^{g a} {f}_{g h}\,^{d} + {e}^{c}\,_{m} {f}_{c}\,^{a1 f} {f}_{f a1}\,^{a} + {e}^{c}\,_{m} {f}^{g} {f}_{c g}\,^{a} - 4\, {\nabla}^{k}{\phi}\,  {e}^{a}\,_{m} {e}^{b}\,_{k} {f}_{b}%
+ + 4\, {\nabla}_{m}{{\nabla}_{k}{\phi}\, }\,  {e}^{a k} - 2\, {\nabla}^{l}{\phi}\,  {e}^{c}\,_{m} {e}^{d}\,_{l} {f}_{c d}\,^{a} + 4\, {\nabla}_{m}{{I}^{k}}\,  {b}_{k l} {e}^{a l} + 2\, {\nabla}_{n}{\phi}\,  {e}^{g n} {e}^{c}\,_{m} {f}_{c g}\,^{a} - 4\, {\nabla}_{m}{{I}^{k}}\,  {e}^{a}\,_{k} + 4\, {I}^{n} {e}^{c}\,_{n} {e}^{f}\,_{m} {f}_{c f}\,^{a} - 2\, {\nabla}_{k}{\phi}\,  {e}_{c}\,^{k} {e}^{d}\,_{m} {f}^{a}\,_{d}\,^{c} + 4\, {I}^{n} {e}^{a}\,_{m} {e}^{b}\,_{n} {f}_{b} + 4\, {I}^{n} {I}^{k} {b}_{n}\,^{p} {b}_{k p} {e}^{a}\,_{m} + 2\, {\partial}_{m}{{f}^{a}}\,  + 2\, {I}^{n} {e}_{c m} {e}^{f}\,_{n} {f}^{a}\,_{f}\,^{c} + 2\, {I}^{n} {e}_{c n} {e}^{f}\,_{m} {f}^{a}\,_{f}\,^{c} + 4\, {I}^{n} {b}_{n k} {e}^{c k} {e}^{a}\,_{m} {f}_{c} + 2\, {I}^{n} {b}_{n k} {e}^{g k} {e}_{c m} {f}^{a}\,_{g}\,^{c} + {e}^{a}\,_{m} {f}^{c} {f}_{c} + {e}^{h}\,_{m} {f}^{a g}\,_{c} {f}_{g h}\,^{c} + \frac{1}{2}\, {e}_{c m} {f}^{g a1 c} {f}_{g a1}\,^{a} + {e}_{c m} {f}^{g} {f}^{a}\,_{g}\,^{c} + 4\, {\nabla}_{n}{\phi}\,  {e}^{c n} {e}^{a}\,_{m} {f}_{c} - 2\, {\partial}_{n}{{f}^{c}}\,  {e}_{c}\,^{n} {e}^{a}\,_{m}%
+ - 4\, {I}^{n} {e}^{b}\,_{n} {e}^{a}\,_{m} {f}_{b} - {\partial}_{n}{{f}_{c}\,^{g a}}\,  {e}_{g}\,^{n} {e}^{c}\,_{m} + 2\, {\nabla}_{n}{\phi}\,  {e}^{g n} {e}_{c m} {f}^{a}\,_{g}\,^{c} + 2\, {F}^{a}\,_{c}\,^{d} {I}^{n} {b}_{n l} {e}_{d}\,^{l} {e}^{c}\,_{m} + 2\, {F}^{a}\,_{c}\,^{d} {\nabla}_{k}{\phi}\,  {e}_{d}\,^{k} {e}^{c}\,_{m} - {\partial}_{n}{{f}^{a g}\,_{c}}\,  {e}_{g}\,^{n} {e}^{c}\,_{m} - 2\, {I}^{n} {b}_{n}\,^{p} {e}_{c m} {e}^{g}\,_{p} {f}^{a}\,_{g}\,^{c} - 2\, {F}^{a}\,_{c}\,^{d} {I}^{n} {b}_{n l} {e}_{d}\,^{l} {e}^{c}\,_{m} - 2\, {I}^{n} {b}_{n k} {e}_{c}\,^{k} {e}^{d}\,_{m} {f}_{d}\,^{a c} - {e}^{b}\,_{m} {f}_{f} {f}_{b}\,^{a f} - {e}^{h}\,_{m} {f}_{c}\,^{a d} {f}_{d h}\,^{c} - 2\, {\nabla}^{l}{\phi}\,  {e}_{c m} {e}^{g}\,_{l} {f}^{a}\,_{g}\,^{c} - 2\, {F}^{a}\,_{c}\,^{d} {\nabla}_{k}{\phi}\,  {e}_{d}\,^{k} {e}^{c}\,_{m} - 2\, {\nabla}_{n}{\phi}\,  {e}_{c}\,^{n} {e}^{d}\,_{m} {f}_{d}\,^{a c} + {\partial}_{n}{{f}_{c}\,^{a d}}\,  {e}_{d}\,^{n} {e}^{c}\,_{m} + {H}_{f g}\,^{a} {I}^{n} {e}^{f}\,_{n} {e}^{g}\,_{m} + {H}_{f g}\,^{a} {I}^{n} {e}^{f}\,_{n} {e}^{g}\,_{m} + \frac{1}{2}\, {e}^{a}\,_{m} {f}_{c}\,^{h d} {f}_{d h}\,^{c} + \frac{1}{12}\, {H}^{f g h} {H}_{f g h} {e}^{a}\,_{m} + \frac{1}{4}\, {e}^{a}\,_{m} {f}^{f h}\,_{c} {f}_{f h}\,^{c}%
+ - \frac{1}{2}\, {H}^{f g a} {H}_{f g h} {e}^{h}\,_{m}) + df (8\, {\nabla}^{n}{\phi}\,  {\nabla}_{n}{\phi}\,  + 8\, {\nabla}_{m}{\phi}\,  {e}^{b m} {f}_{b} + 16\, {I}^{m} {\nabla}^{k}{\phi}\,  {b}_{m k} + 2\, {f}^{b} {f}_{b} + 8\, {I}^{m} {b}_{m n} {e}^{b n} {f}_{b} + 8\, {I}^{m} {I}^{n} {b}_{m}\,^{l} {b}_{n l} + 8\, {I}_{n} {I}^{n} - 8\, {\nabla}^{n}{{\nabla}_{n}{\phi}\, }\,  - 8\, {\nabla}^{n}{\phi}\,  {e}^{a}\,_{n} {f}_{a} - 4\, {\partial}_{m}{{f}^{b}}\,  {e}_{b}\,^{m} - 8\, {\nabla}^{k}{{I}^{n}}\,  {b}_{n k} - 8\, {I}^{m} {\nabla}^{k}{{b}_{m k}}\,  - 8\, {I}^{m} {b}_{m}\,^{k} {e}^{a}\,_{k} {f}_{a} + {f}_{b}\,^{g c} {f}_{c g}\,^{b} + \frac{1}{6}\, {H}^{d f g} {H}_{d f g} + \frac{1}{2}\, {f}^{d g}\,_{b} {f}_{d g}\,^{b} - 16\, {I}^{n} {\nabla}_{n}{\phi}\,  - 8\, {I}^{m} {e}^{a}\,_{m} {f}_{a} - 16\, {I}^{k} {I}^{n} {b}_{n k}%
+ + 8\, {\nabla}_{n}{{I}^{n}}\,  + 8\, {I}^{m} {e}^{a}\,_{m} {f}_{a});
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+# THIS SECTION MUST BE USED/CALCULATED TWO TIMES
+@distribute!!(%):
+@substitute!!(%)(
+e^{b m} f_{b} -> f^{m},
+e^{a}_{m} f_{a} -> f_{m},
+\nabla^{m}{\phi} f_{m} -> \nabla_{m}{\phi} f^{m},
+e^{a}_{m} e_{a}^{n} -> \delta^{n}_{m},
+e^{a}_{m} e_{b}^{m} -> \delta^{a}_{b},
+e^{a}_{m} e_{a}^{m} -> 4,
+e_{a m} e_{b}^{m} -> \delta_{a b},
+e^{a m} e_{b}^{m} -> \delta^{a}_{b},
+e^{a m} e_{a}^{n} -> h^{m n},
+f_{a b}^{b} -> f_{a},
+f_{a b c} f^{a b c} -> f_{a b}^{c} f^{a b}_{c},
+f_{b}^{b a} -> 0,
+f_{b}^{a b} -> - f^{a},
+f^{a b}_{a} -> - f^{b},
+f^{b}_{b}^{a} -> 0,
+\partial_{m}{- f^{a}} -> - \partial_{m}{f^{a}},
+\nabla_{m}{\nabla_{n}{\phi}} h^{m n} -> \nabla^{m}{\nabla_{m}{\phi}},
+b_{m}^{n} I_{n} -> b_{m k} I^{k},
+\nabla_{m}{\phi} -> S_{m},
+\nabla^{m}{\phi} -> S^{m},
+\nabla^{m}{\nabla_{m}{\phi}} -> \nabla^{m}{S_{m}},
+\nabla_{m}{I_{n}} h^{m n} -> \nabla_{k}{I^{k}},
+\nabla_{m}{X_{n}} h^{m n} -> \nabla_{k}{X^{k}},
+\partial_{k}{- H^{a b c}} -> - \partial_{k}{H^{a b c}},
+):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%):
+@canonicalise!!(%):
+@distribute!!(%):
+@substitute!!(%)(
+S_{m} -> Z_{m} + I^{m1} b_{m m1},
+S^{m} -> Z^{m} + I_{m1} b^{m m1},
+Z_{m} -> X_{m} - I_{m},
+Z^{m} -> X^{m} - I^{m},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@substitute!!(%)(
+Z_{m} -> X_{m} - I_{m},
+Z^{m} -> X^{m} - I^{m},
+I^{m} h_{m n} -> I_{n},
+I_{m} h^{m n} -> I^{n},
+X_{m} X_{n} h^{m n} -> X_{k} X^{k},
+I^{m} X_{m} -> I^{k} I_{k},
+I_{m} X^{m} -> I^{k} I_{k},
+I_{m} b^{k m} -> - I^{m} b_{m}^{k},
+I_{m} b_{k}^{m} -> I^{m} b_{k m},
+I_{m} f^{m} -> I^{m} f_{m},
+X_{m} b^{k m} -> - X^{m} b_{m}^{k},
+X_{m} b_{k}^{m} -> X^{m} b_{k m},
+X_{m} f^{m} -> X^{m} f_{m},
+\nabla^{m}{I_{m}} -> 0,
+\nabla_{m}{I^{m}} -> 0,
+f_{a} f^{a} -> 2 * e_{a}^{m} \partial_{m}{f^{a}} + 1/2 * f_{a b}^{c} f_{c}^{a b} - 1/4 * f_{a b}^{c} f^{a b}_{c} - R,
+H_{a b c} H^{a b c} -> H**(2),
+H^{a b c} e_{a}^{m} e_{b}^{n} e_{c}^{k} -> H^{m n k},
+H^{k m n} I_{k} -> \nabla^{n}{Z^{m}} - \nabla^{m}{Z^{n}},
+H_{k m n} I^{k} -> \nabla_{n}{Z_{m}} - \nabla_{m}{Z_{n}},
+X_{n} e^{c n} -> X^{n} e^{c}_{n},
+H_{b c}^{a} e^{b}_{n} e^{c}_{m} -> H_{n m k} e^{a k},
+R e^{a}_{m} -> 4 X_{n} X^{n} e^{a}_{m} - 4 \nabla^{n}{X_{n}} e^{a}_{m} + 1/12 * H**(2) e^{a}_{m},
+\nabla_{m}{I_{n}} e^{a n} -> - \nabla_{n}{I_{m}} e^{a n},
+f^{a}_{b}^{c} -> - f_{b}^{a c},
+I_{n} e^{c n} -> I^{n} e^{c}_{n},
+\partial_{n}{f^{a1}} -> e^{a1 l} R_{n l} + 1/2 e^{a1 l} e^{a}_{l} e^{b}_{n} f_{b c}^{d} f_{a}^{c}_{d} + 1/2 e^{a1 l} \partial_{m}{f_{a}^{b}_{c}} e_{b}^{m} e^{c}_{l} e^{a}_{n} 
+- 1/2 e^{a1 l} e_{a l} e^{b}_{n} f^{c} f_{b c}^{a} + 1/2 e^{a1 l} e^{a}_{l} e^{b}_{n} f_{a c}^{d} f_{b d}^{c} 
++ 1/2 e^{a1 l} \partial_{m}{f_{a b}^{c}} e_{c}^{m} e^{a}_{l} e^{b}_{n} + 1/2 e^{a1 l} \partial_{m}{f_{a}^{b}_{c}} e_{b}^{m} e^{a}_{l} e^{c}_{n} 
+- 1/2 e^{a1 l} e_{a n} e^{b}_{l} f^{c} f_{b c}^{a} - 1/2 e^{a1 l} e^{a}_{l} e^{b}_{n} f_{c} f_{a b}^{c} - 1/4 e^{a1 l} e_{a l} e_{b n} f_{c d}^{b} f^{c d a},
+e^{a}_{m} e_{a}^{n} -> \delta^{n}_{m},
+e^{a}_{m} e_{b}^{m} -> \delta^{a}_{b},
+e^{a}_{m} e^{b m} -> \delta^{a b},
+e_{a m} e^{b m} -> \delta^{b}_{a},
+\partial_{n}{- f_{a}^{b c}} -> - \partial_{n}{f_{a}^{b c}},
+\partial_{n}{- f_{a b}^{c}} -> - \partial_{n}{f_{a b}^{c}},
+H_{b c d}  H^{b c a} e^{d}_{m} -> H_{k l m} H^{k l}_{n} e^{a n},
+):
+@distribute!!(%):
+@substitute!!(%)(
+R e^{a}_{m} -> 4 X_{n} X^{n} e^{a}_{m} - 4 \nabla^{n}{X_{n}} e^{a}_{m} + 1/12 * H**(2) e^{a}_{m},
+f_{c d}^{a} f^{c d b} -> Symf^{a b},
+f_{b c}^{d} f_{d}^{c a} -> f_{b}^{c d} f_{d c}^{a},
+):
+@distribute!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%):
+@factor_out!!(%){df, de_{a}^{m}, db_{m n}}:
+@rename_dummies!(%):
+@distribute!!(%):
+@factor_out!!(%){df, de_{a}^{m}, db_{m n}}:
+@eliminate_kr!!(%):
+@eliminate_metric!!(%):
+@eliminate_kr!!(%);
+\end{verbatim}}
+% Begin TeX comment
+@substitute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@substitute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@substitute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_metric: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% orig
+% db_{m n} ( - 1/2 H^{a b c} e_{a}^{m} e_{d}^{n} f_{b c}^{d} - 1/2 H^{a b c} e_{a}^{m} e_{b}^{n} f_{c} - 2 \nabla^{m}{X^{n}} + 2 \nabla^{m}{I^{n}} + 2 I^{k} e_{a}^{m} e^{b}_{k} e^{c n} f_{b c}^{a} - H^{k m n} X_{k} + I^{k} e_{a k} e^{b m} e^{c n} f_{b c}^{a} + 1/2 \partial_{k}{H^{a b c}} e_{a}^{k} e_{b}^{m} e_{c}^{n}) + de_{a}^{m} ( - 1/2 H_{n k m} H^{n k}_{l} e^{a l} + 2 \nabla_{m}{X_{n}} e^{a n} - 4 \nabla_{m}{I^{n}} e^{a}_{n} + 2 R_{m n} e^{a n} + 2 I^{n} e^{b}_{n} e^{c}_{m} f_{b c}^{a} - 2 I^{n} e_{b m} e^{c}_{n} f_{c}^{a b} - 2 I^{n} e_{b n} e^{c}_{m} f_{c}^{a b} + 2 \nabla_{n}{X_{m}} e^{a n}) + df (8 X_{m} X^{m} - 2 R - 8 \nabla^{m}{X_{m}} + 1/6 H**{2})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Further\specialcolon{}= {db}_{m n} ( - \frac{1}{2}\, {H}^{a b c} {e}_{a}\,^{m} {e}_{d}\,^{n} {f}_{b c}\,^{d} - \frac{1}{2}\, {H}^{a b c} {e}_{a}\,^{m} {e}_{b}\,^{n} {f}_{c} - 2\, {\nabla}^{m}{{X}^{n}}\,  + 2\, {\nabla}^{m}{{I}^{n}}\,  + 2\, {I}^{k} {e}_{a}\,^{m} {e}^{b}\,_{k} {e}^{c n} {f}_{b c}\,^{a} - {H}^{k m n} {X}_{k} + {I}^{k} {e}_{a k} {e}^{b m} {e}^{c n} {f}_{b c}\,^{a} + \frac{1}{2}\, {\partial}_{k}{{H}^{a b c}}\,  {e}_{a}\,^{k} {e}_{b}\,^{m} {e}_{c}\,^{n}) + {de}_{a}\,^{m} ( - \frac{1}{2}\, {H}_{n k m} {H}^{n k}\,_{l} {e}^{a l} + 2\, {\nabla}_{m}{{X}_{n}}\,  {e}^{a n} - 4\, {\nabla}_{m}{{I}^{n}}\,  {e}^{a}\,_{n} + 2\, {R}_{m n} {e}^{a n} + 2\, {I}^{n} {e}^{b}\,_{n} {e}^{c}\,_{m} {f}_{b c}\,^{a} - 2\, {I}^{n} {e}_{b m} {e}^{c}\,_{n} {f}_{c}\,^{a b} - 2\, {I}^{n} {e}_{b n} {e}^{c}\,_{m} {f}_{c}\,^{a b} + 2\, {\nabla}_{n}{{X}_{m}}\,  {e}^{a n}) + df (8\, {X}_{m} {X}^{m} - 2\, R - 8\, {\nabla}^{m}{{X}_{m}}\,  + \frac{1}{6}\, H{}^{2});
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+# THIS SECTION MUST BE USED/CALCULATED FOUR TIMES
+@distribute!!(%):
+@substitute!!(%)(
+\partial_{m}{H^{a b c}} -> \partial_{m}{H^{k l n} e^{a}_{k} e^{b}_{l} e^{c}_{n}},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@substitute!!(%)(
+\partial_{m}{e_{c}^{n}} e^{a}_{n} -> - \partial_{m}{e^{a}_{n}} e_{c}^{n},
+\partial_{m}{e_{c}^{n}} -> - \partial_{m}{e^{a}_{k}} e_{c}^{k} e_{a}^{n},
+\partial_{m}{e^{c}_{k}} -> - \frac{1}{2} * f_{a b}^{c} e^{a}_{m} e^{b}_{k} - \frac{1}{2} * F_{a b}^{c} e^{a}_{m} e^{b}_{k},
+\partial_{n}{I^{m}} -> \nabla_{n}{I^{m}} - \Gamma^{m}_{k n} I^{k},
+\partial_{n}{H^{m p q}} -> \nabla_{n}{H^{m p q}} - \Gamma^{m}_{k n} H^{k p q} - \Gamma^{p}_{k n} H^{m k q} - \Gamma^{q}_{k n} H^{m p k},
+\Gamma^{k}_{m n} -> - 1/2 \delta_{a b} h^{k l} e^{c}_{m} e^{a}_{n} e^{d}_{l} f_{c d}^{b} + 1/2 e_{a}^{k} \partial_{m}{e^{a}_{n}} 
+                                        - 1/2 \delta_{a b} h^{k l} e^{a}_{m} e^{c}_{n} e^{d}_{l} f_{c d}^{b} + 1/2 e_{a}^{k} \partial_{n}{e^{a}_{m}},
+\delta^{c}_{g} \delta^{g}_{d} -> \delta^{c}_{d},
+\delta_{c d} \delta^{c}_{g} -> \delta_{d g},
+\delta^{g d} \delta^{c}_{g} -> \delta^{c d},
+\delta^{a b} e_{a}^{m} e_{b}^{n} -> h^{m n},
+\delta_{a b} e^{a}_{m} e^{b}_{n} -> h_{m n},
+e_{a}^{m} e^{a}_{k} -> \delta^{m}_{k},
+e_{a}^{m} e^{b}_{m} -> \delta^{b}_{a},
+f_{a b}^{b} -> f_{a},
+e^{b}_{l} e^{c l} f_{b c}^{a} -> 0,
+H^{a b c} e_{a}^{m} e_{b}^{n} f_{c} -> H^{m n k} f_{k},
+e^{c}_{n} f_{c} -> f_{n},
+H^{a b c} e_{a}^{m} e_{d}^{n} f_{b c}^{d} -> H^{m p q} f_{p q}^{n},
+H^{m k l} e_{a}^{n} e^{b}_{k} e^{c}_{l} f_{b c}^{a} -> H^{m p q} f_{p q}^{n},
+I^{k} e_{a}^{m} e^{b}_{k} e^{c n} f_{b c}^{a} -> I^{k} f_{k}^{n m},
+I^{k} e_{a k} e^{b m} e^{c n} f_{b c}^{a} -> I^{k} f^{m n}_{k},
+I^{k} f_{k}^{m n} -> h^{m p} \partial_{p}{I^{n}} + I^{k} e_{c}^{n} h^{m p} \partial_{p}{e^{c}_{k}},
+):
+@distribute!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%):
+@factor_out!!(%){df, de_{a}^{m}, db_{m n}}:
+@rename_dummies!(%):
+@distribute!!(%):
+@factor_out!!(%){df, de_{a}^{m}, db_{m n}}:
+@eliminate_kr!!(%):
+@eliminate_metric!!(%):
+@eliminate_kr!!(%);
+\end{verbatim}}
+% Begin TeX comment
+@substitute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_metric: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% orig
+% db_{m n} ( - 2 \nabla^{m}{X^{n}} + 1/2 \nabla_{k}{H^{k m n}} - H^{k m n} X_{k}) + de_{a}^{m} ( - 1/2 H_{n k m} H^{n k}_{l} e^{a l} + 2 \nabla_{m}{X_{n}} e^{a n} - 4 \nabla_{m}{I^{n}} e^{a}_{n} + 2 R_{m n} e^{a n} + 2 I^{n} e^{b}_{n} e^{c}_{m} f_{b c}^{a} - 2 I^{n} e_{b m} e^{c}_{n} f_{c}^{a b} - 2 I^{n} e_{b n} e^{c}_{m} f_{c}^{a b} + 2 \nabla_{n}{X_{m}} e^{a n}) + df (8 X_{m} X^{m} - 2 R - 8 \nabla^{m}{X_{m}} + 1/6 H**{2})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Further\specialcolon{}= {db}_{m n} ( - 2\, {\nabla}^{m}{{X}^{n}}\,  + \frac{1}{2}\, {\nabla}_{k}{{H}^{k m n}}\,  - {H}^{k m n} {X}_{k}) + {de}_{a}\,^{m} ( - \frac{1}{2}\, {H}_{n k m} {H}^{n k}\,_{l} {e}^{a l} + 2\, {\nabla}_{m}{{X}_{n}}\,  {e}^{a n} - 4\, {\nabla}_{m}{{I}^{n}}\,  {e}^{a}\,_{n} + 2\, {R}_{m n} {e}^{a n} + 2\, {I}^{n} {e}^{b}\,_{n} {e}^{c}\,_{m} {f}_{b c}\,^{a} - 2\, {I}^{n} {e}_{b m} {e}^{c}\,_{n} {f}_{c}\,^{a b} - 2\, {I}^{n} {e}_{b n} {e}^{c}\,_{m} {f}_{c}\,^{a b} + 2\, {\nabla}_{n}{{X}_{m}}\,  {e}^{a n}) + df (8\, {X}_{m} {X}^{m} - 2\, R - 8\, {\nabla}^{m}{{X}_{m}}\,  + \frac{1}{6}\, H{}^{2});
+\end{dmath*}
+\end{document}

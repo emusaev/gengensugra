@@ -1,0 +1,261 @@
+% Cadabra notebook version 1.2
+\documentclass[11pt]{article}
+\usepackage[textwidth=460pt, textheight=660pt]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{breqn}
+\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\begin{document}
+{\color[named]{Blue}\begin{verbatim}
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Indices(name=oddcurved, position=independent).
+{A,B,C,D,E,F,G,H, A#}::Indices(name=oddflat, position=independent).
+{m,n,k,l,p,q,r,s,t,u,v,m#}::Indices(name=gl10curved, parent=oddcurved, position=independent).
+{a,b,c,d,f,g,h,a#}::Indices(name=gl10flat, parent=oddflat, position=independent).
+{em,en,ek,el,ep,eq,er,es,et,eu,ev,em#}::Indices(name=egl10curved, parent=oddcurved, position=independent).
+{ea,eb,ec,ed,ef,eg,eh,ea#}::Indices(name=egl10flat, parent=oddflat, position=independent).
+
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Integer(1..20).
+{A,B,C,D,E,F,G,H, A#}::Integer(1..20).
+{m,n,k,l,p,q,r,s,t,u,v,m#}::Integer(1..10).
+{a,b,c,d,f,g,h,a#}::Integer(1..10).
+{em,en,ek,el,ep,eq,er,es,et,eu,ev,em#}::Integer(1..10).
+{ea,eb,ec,ed,ef,eg,eh,ea#}::Integer(1..10).
+
+F^{A B C}::AntiSymmetric.
+F_{A B C}::AntiSymmetric.
+t^{A B C}::AntiSymmetric.
+t^{a b c}::AntiSymmetric.
+b_{m n}::AntiSymmetric.
+db_{m n}::AntiSymmetric.
+
+H^{A B}::Symmetric.
+H_{A B}::Symmetric.
+\eta^{A B}::Symmetric.
+\eta_{A B}::Symmetric.
+
+t^{a b ea}::TableauSymmetry(shape={1,1}, indices={0,1}).
+f_{a b}^{c}::TableauSymmetry(shape={1,1}, indices={0,1}).
+F_{a b}^{c}::TableauSymmetry(shape={2}, indices={0,1}).
+
+\partial{#}::PartialDerivative.
+\delta{#}::KroneckerDelta.
+\epsilon{#}::EpsilonTensor(delta = \delta).
+
+{F_{A B C}, \eta^{M N}, \eta_{M N}, \eta^{A B}, \eta_{A B}, H^{M N}, H_{M N}, H^{A B}, H_{A B},
+E_{A}^{M}, E^{A}_{M}, \partial_{K}{E^{A}_{M}}, \partial_{K}{E_{A}^{M}}, \partial_{K L}{E_{A}^{M}}}::SortOrder.
+\end{verbatim}}
+% Begin TeX comment
+Assigning list property Indices to $\{M,\; N,\; K,\; L,\; P,\; Q,\; R,\; S,\; T,\; U,\; V,\; M\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{A,\; B,\; C,\; D,\; E,\; F,\; G,\; H,\; A\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{m,\; n,\; k,\; l,\; p,\; q,\; r,\; s,\; t,\; u,\; v,\; m\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{a,\; b,\; c,\; d,\; f,\; g,\; h,\; a\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{em,\; en,\; ek,\; el,\; ep,\; eq,\; er,\; es,\; et,\; eu,\; ev,\; em\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{ea,\; eb,\; ec,\; ed,\; ef,\; eg,\; eh,\; ea\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $M$, $N$, $K$, $L$, $P$, $Q$, $R$, $S$, $T$, $U$, $V$, $M\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$, $A\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $m$, $n$, $k$, $l$, $p$, $q$, $r$, $s$, $t$, $u$, $v$, $m\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $a$, $b$, $c$, $d$, $f$, $g$, $h$, $a\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $em$, $en$, $ek$, $el$, $ep$, $eq$, $er$, $es$, $et$, $eu$, $ev$, $em\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $ea$, $eb$, $ec$, $ed$, $ef$, $eg$, $eh$, $ea\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}_{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${t}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${t}^{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${b}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${db}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${t}^{a b ea}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${f}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${F}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property PartialDerivative to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property KroneckerDelta to $\delta(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property EpsilonTensor to $\epsilon(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property SortOrder to $\{{F}_{A B C},\; {\eta}^{M N},\; {\eta}_{M N},\; {\eta}^{A B},\; {\eta}_{A B},\; {H}^{M N},\; {H}_{M N},\; {H}^{A B},\; {H}_{A B},\; {E}_{A}\,^{M},\; {E}^{A}\,_{M},\; {\partial}_{K}{{E}^{A}\,_{M}}\, ,\; {\partial}_{K}{{E}_{A}\,^{M}}\, ,\; {\partial}_{K L}{{E}_{A}\,^{M}}\, \}$.
+\\
+% End TeX comment
+{\color[named]{Blue}\begin{verbatim}
+U := u_{B}^{A} E^{B}_{M} G_{A}^{M};
+@split_index!!(%){M, m, em}:
+@split_index!!(%){A, a, ea}:
+@distribute!!(%):
+@substitute!!(%)(
+G_{a}^{m} -> de_{a}^{m},
+G_{ea}^{m} -> 0,
+G_{a}^{em} -> - b_{p m} de_{a}^{p} g^{m em} - e_{a}^{p} db_{p m} g^{m em},
+G_{ea}^{em} ->  - e^{b}_{m} e^{a}_{n} de_{b}^{n} g^{m em} g_{a ea},
+E^{a}_{m} -> e^{a}_{m},
+E^{a}_{em} -> 0,
+E^{ea}_{m} -> - e_{a}^{k} b_{k m} g^{a ea},
+E^{ea}_{em} -> e_{a}^{m} g^{a ea} g_{m em},
+):
+@prodrule!!(%):
+@distribute!!(%):
+@collect_factors!!(%):
+@prodsort!!(%):
+@distribute!!(%):
+@collect_factors!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@substitute!!(%)(
+e_{a}^{m} e^{b}_{m} -> \delta_{a}^{b},
+g_{m em} g^{n em} -> \delta_{m}^{n},
+):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@substitute!!(%)(
+e_{a}^{m} e^{b}_{m} -> \delta_{a}^{b},
+g_{m em} g^{n em} -> \delta_{m}^{n},
+):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% orig
+% u_{B}^{A} E^{B}_{M} G_{A}^{M}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+U\specialcolon{}= {u}_{B}\,^{A} {E}^{B}\,_{M} {G}_{A}\,^{M};
+\end{dmath*}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@collect\_factors: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@collect\_factors: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% Begin TeX comment
+@collect\_terms: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+% de_{a}^{m} e^{b}_{m} u_{b}^{a} + db_{m n} e_{a}^{m} e_{b}^{n} g^{a ea} u_{ea}^{b} - de_{a}^{m} e^{b}_{m} g_{b ea} g^{a eb} u_{eb}^{ea}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+U\specialcolon{}= {de}_{a}\,^{m} {e}^{b}\,_{m} {u}_{b}\,^{a} + {db}_{m n} {e}_{a}\,^{m} {e}_{b}\,^{n} {g}^{a ea} {u}_{ea}\,^{b} - {de}_{a}\,^{m} {e}^{b}\,_{m} {g}_{b ea} {g}^{a eb} {u}_{eb}\,^{ea};
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@factor_out!!(%){u_{a}^{b}, u_{a}^{eb}, u_{ea}^{b}, u_{ea}^{eb}};
+\end{verbatim}}
+% orig
+% u_{b}^{a} de_{a}^{m} e^{b}_{m} + u_{ea}^{b} db_{m n} e_{a}^{m} e_{b}^{n} g^{a ea} - u_{eb}^{ea} de_{a}^{m} e^{b}_{m} g_{b ea} g^{a eb}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+U\specialcolon{}= {u}_{b}\,^{a} {de}_{a}\,^{m} {e}^{b}\,_{m} + {u}_{ea}\,^{b} {db}_{m n} {e}_{a}\,^{m} {e}_{b}\,^{n} {g}^{a ea} - {u}_{eb}\,^{ea} {de}_{a}\,^{m} {e}^{b}\,_{m} {g}_{b ea} {g}^{a eb};
+\end{dmath*}
+\end{document}

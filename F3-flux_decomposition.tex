@@ -1,0 +1,322 @@
+% Cadabra notebook version 1.2
+\documentclass[11pt]{article}
+\usepackage[textwidth=460pt, textheight=660pt]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{breqn}
+\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\begin{document}
+{\color[named]{Blue}\begin{verbatim}
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Indices(name=oddcurved, position=independent).
+{A,B,C,D,E,F,G,H, A#}::Indices(name=oddflat, position=independent).
+{m,n,k,l,p,q,r,s,t,u,v,m#}::Indices(name=gl10curved, parent=oddcurved, position=independent).
+{a,b,c,d,f,g,h,a#}::Indices(name=gl10flat, parent=oddflat, position=independent).
+{em,en,ek,el,ep,eq,er,es,et,eu,ev,em#}::Indices(name=egl10curved, parent=oddcurved, position=independent).
+{ea,eb,ec,ed,ef,eg,eh,ea#}::Indices(name=egl10flat, parent=oddflat, position=independent).
+
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Integer(1..20).
+{A,B,C,D,E,F,G,H, A#}::Integer(1..20).
+{m,n,k,l,p,q,r,s,t,u,v,m#}::Integer(1..10).
+{a,b,c,d,f,g,h,a#}::Integer(1..10).
+{em,en,ek,el,ep,eq,er,es,et,eu,ev,em#}::Integer(1..10).
+{ea,eb,ec,ed,ef,eg,eh,ea#}::Integer(1..10).
+
+F^{A B C}::AntiSymmetric.
+F_{A B C}::AntiSymmetric.
+t^{A B C}::AntiSymmetric.
+t^{a b c}::AntiSymmetric.
+b_{m n}::AntiSymmetric.
+
+H^{A B}::Symmetric.
+H_{A B}::Symmetric.
+\eta^{A B}::Symmetric.
+\eta_{A B}::Symmetric.
+
+t^{a b ea}::TableauSymmetry(shape={1,1}, indices={0,1}).
+f_{a b}^{c}::TableauSymmetry(shape={1,1}, indices={0,1}).
+F_{a b}^{c}::TableauSymmetry(shape={2}, indices={0,1}).
+
+\partial{#}::PartialDerivative.
+\delta{#}::KroneckerDelta.
+\epsilon{#}::EpsilonTensor(delta = \delta).
+
+{F_{A B C}, \eta^{M N}, \eta_{M N}, \eta^{A B}, \eta_{A B}, H^{M N}, H_{M N}, H^{A B}, H_{A B},
+E_{A}^{M}, E^{A}_{M}, \partial_{K}{E^{A}_{M}}, \partial_{K}{E_{A}^{M}}, \partial_{K L}{E_{A}^{M}}}::SortOrder.
+\end{verbatim}}
+% Begin TeX comment
+Assigning list property Indices to $\{M,\; N,\; K,\; L,\; P,\; Q,\; R,\; S,\; T,\; U,\; V,\; M\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{A,\; B,\; C,\; D,\; E,\; F,\; G,\; H,\; A\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{m,\; n,\; k,\; l,\; p,\; q,\; r,\; s,\; t,\; u,\; v,\; m\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{a,\; b,\; c,\; d,\; f,\; g,\; h,\; a\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{em,\; en,\; ek,\; el,\; ep,\; eq,\; er,\; es,\; et,\; eu,\; ev,\; em\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{ea,\; eb,\; ec,\; ed,\; ef,\; eg,\; eh,\; ea\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $M$, $N$, $K$, $L$, $P$, $Q$, $R$, $S$, $T$, $U$, $V$, $M\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$, $A\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $m$, $n$, $k$, $l$, $p$, $q$, $r$, $s$, $t$, $u$, $v$, $m\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $a$, $b$, $c$, $d$, $f$, $g$, $h$, $a\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $em$, $en$, $ek$, $el$, $ep$, $eq$, $er$, $es$, $et$, $eu$, $ev$, $em\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $ea$, $eb$, $ec$, $ed$, $ef$, $eg$, $eh$, $ea\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}_{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${t}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${t}^{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${b}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${t}^{a b ea}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${f}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${F}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property PartialDerivative to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property KroneckerDelta to $\delta(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property EpsilonTensor to $\epsilon(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property SortOrder to $\{{F}_{A B C},\; {\eta}^{M N},\; {\eta}_{M N},\; {\eta}^{A B},\; {\eta}_{A B},\; {H}^{M N},\; {H}_{M N},\; {H}^{A B},\; {H}_{A B},\; {E}_{A}\,^{M},\; {E}^{A}\,_{M},\; {\partial}_{K}{{E}^{A}\,_{M}}\, ,\; {\partial}_{K}{{E}_{A}\,^{M}}\, ,\; {\partial}_{K L}{{E}_{A}\,^{M}}\, \}$.
+\\
+% End TeX comment
+{\color[named]{Blue}\begin{verbatim}
+F := t^{A B C} F_{A B C};
+#F := t^{A} F_{A};
+@distribute!!(%):
+@substitute!!(%)(
+F_{A B C} -> \frac{1}{2} * \Omega_{A B C} + \frac{1}{2} * \Omega_{B C A} + \frac{1}{2} * \Omega_{C A B}
+                    - \frac{1}{2} * \Omega_{A C B}  - \frac{1}{2} * \Omega_{B A C}  - \frac{1}{2} * \Omega_{C B A},
+F_{A} -> 2 * E_{A}^{M} \partial_{M}{d} - \partial_{M}{E_{A}^{M}},
+\Omega_{A B C} -> \eta_{K N} E_{C}^{K} E_{A}^{M} \partial_{M}{E_{B}^{N}},
+):
+@distribute!!(%);
+@prodrule!!(%):
+@distribute!!(%):
+@substitute!!(%)(
+\partial_{M}{\eta_{N K}} -> 0,
+\partial_{M}{\eta^{N K}} -> 0,
+\partial_{M}{\eta_{A B}} -> 0,
+\partial_{M}{\eta^{A B}} -> 0,
+\eta^{A B} E_{A}^{M} E_{B}^{N} -> \eta^{M N},
+\eta^{M N} E^{A}_{M} E^{B}_{N} -> \eta^{A B},
+\eta^{M N} \eta_{M K} -> \delta^{N}_{K},
+\eta^{M N} \eta_{K M} -> \delta^{N}_{K},
+\eta^{N M} \eta_{K M} -> \delta^{N}_{K},
+\eta^{N M} \eta_{M K} -> \delta^{N}_{K},
+):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% orig
+% t^{A B C} F_{A B C}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= {t}^{A B C} {F}_{A B C};
+\end{dmath*}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% orig
+% 1/2 t^{A B C} \eta_{K N} E_{C}^{K} E_{A}^{M} \partial_{M}{E_{B}^{N}} + 1/2 t^{A B C} \eta_{K N} E_{A}^{K} E_{B}^{M} \partial_{M}{E_{C}^{N}} + 1/2 t^{A B C} \eta_{K N} E_{B}^{K} E_{C}^{M} \partial_{M}{E_{A}^{N}} - 1/2 t^{A B C} \eta_{K N} E_{B}^{K} E_{A}^{M} \partial_{M}{E_{C}^{N}} - 1/2 t^{A B C} \eta_{K N} E_{C}^{K} E_{B}^{M} \partial_{M}{E_{A}^{N}} - 1/2 t^{A B C} \eta_{K N} E_{A}^{K} E_{C}^{M} \partial_{M}{E_{B}^{N}}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= \frac{1}{2}\, {t}^{A B C} {\eta}_{K N} {E}_{C}\,^{K} {E}_{A}\,^{M} {\partial}_{M}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {t}^{A B C} {\eta}_{K N} {E}_{A}\,^{K} {E}_{B}\,^{M} {\partial}_{M}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {t}^{A B C} {\eta}_{K N} {E}_{B}\,^{K} {E}_{C}\,^{M} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {t}^{A B C} {\eta}_{K N} {E}_{B}\,^{K} {E}_{A}\,^{M} {\partial}_{M}{{E}_{C}\,^{N}}\,  - \frac{1}{2}\, {t}^{A B C} {\eta}_{K N} {E}_{C}\,^{K} {E}_{B}\,^{M} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {t}^{A B C} {\eta}_{K N} {E}_{A}\,^{K} {E}_{C}\,^{M} {\partial}_{M}{{E}_{B}\,^{N}}\, ;
+\end{dmath*}
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@substitute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+% 3 \eta_{M N} E_{A}^{M} E_{B}^{K} \partial_{K}{E_{C}^{N}} t^{A B C}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 3\, {\eta}_{M N} {E}_{A}\,^{M} {E}_{B}\,^{K} {\partial}_{K}{{E}_{C}\,^{N}}\,  {t}^{A B C};
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@split_index!!(%){M, m, em}:
+@substitute!!(%)(
+\partial_{en}{A??} -> 0,
+\eta_{m em} -> g_{m em},
+\eta_{em m} -> g_{m em},
+\eta_{m n} -> 0,
+\eta_{em en} -> 0,
+\eta^{m em} -> g^{m em},
+\eta^{em m} -> g^{m em},
+\eta^{m n} -> 0,
+\eta^{em en} -> 0,
+):
+@split_index!!(%){A, a, ea}:
+@substitute!!(%)(
+\partial_{en}{A??} -> 0,
+\eta_{a ea} -> g_{a ea},
+\eta_{ea a} -> g_{a ea},
+\eta_{m n} -> 0,
+\eta_{em en} -> 0,
+\eta^{a ea} -> g^{a ea},
+\eta^{ea a} -> g^{a ea},
+\eta^{a b} -> 0,
+\eta^{ea eb} -> 0,
+H^{a b} -> s^{a b},
+H^{ea eb} -> s^{ea eb},
+H^{a ea} -> 0,
+H^{ea a} -> 0,
+H_{a b} -> s^{a b},
+H_{ea eb} -> s^{ea eb},
+H_{a ea} -> 0,
+H_{ea a} -> 0,
+E_{a}^{m} -> e_{a}^{m},
+E_{a}^{em} -> - e_{a}^{k} b_{k m} g^{m em},
+E_{ea}^{m} -> 0,
+E_{ea}^{em} -> e^{a}_{m} g_{a ea} g^{m em},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@substitute!!(%)(
+\partial_{n}{g^{m em}} -> 0,
+\partial_{n}{g_{a ea}} -> 0,
+g_{m em} g^{n em} -> \delta_{m}^{n},
+):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@substitute!!(%)(
+\partial_{m}{e_{c}^{n}} e^{a}_{n} -> - \partial_{m}{e^{a}_{n}} e_{c}^{n},
+\partial_{m}{e_{c}^{n}} -> - \partial_{m}{e^{a}_{k}} e_{c}^{k} e_{a}^{n},
+e_{a}^{k} e^{b}_{k} -> \delta_{a}^{b},
+t^{ea b a} -> t^{b a ea},
+\partial_{m}{e^{c}_{k}} -> - \frac{1}{2} * f_{a b}^{c} e^{a}_{m} e^{b}_{k} - \frac{1}{2} * F_{a b}^{c} e^{a}_{m} e^{b}_{k},
+):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@substitute!!(%)(
+\partial_{m}{e_{c}^{n}} e^{a}_{n} -> - \partial_{m}{e^{a}_{n}} e_{c}^{n},
+\partial_{m}{e_{c}^{n}} -> - \partial_{m}{e^{a}_{k}} e_{c}^{k} e_{a}^{n},
+e_{a}^{k} e^{b}_{k} -> \delta_{a}^{b},
+t^{ea b a} -> t^{b a ea},
+\partial_{m}{e^{c}_{k}} -> - \frac{1}{2} * f_{a b}^{c} e^{a}_{m} e^{b}_{k} - \frac{1}{2} * F_{a b}^{c} e^{a}_{m} e^{b}_{k},
+):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+%  - 3 \partial_{m}{b_{n k}} e_{a}^{m} e_{b}^{n} e_{c}^{k} t^{a b c} + 3 f_{a b}^{c} g_{c ea} t^{a b ea}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}=  - 3\, {\partial}_{m}{{b}_{n k}}\,  {e}_{a}\,^{m} {e}_{b}\,^{n} {e}_{c}\,^{k} {t}^{a b c} + 3\, {f}_{a b}\,^{c} {g}_{c ea} {t}^{a b ea};
+\end{dmath*}
+\end{document}

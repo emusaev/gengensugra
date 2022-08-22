@@ -1,0 +1,184 @@
+% Cadabra notebook version 1.2
+\documentclass[11pt]{article}
+\usepackage[textwidth=460pt, textheight=660pt]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{breqn}
+\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\begin{document}
+{\color[named]{Blue}\begin{verbatim}
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Indices(name=oddcurved, position=independent).
+{A,B,C,D,E,F,G,H, A#}::Indices(name=oddflat, position=independent).
+
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Integer(1..20).
+{A,B,C,D,E,F,G,H, A#}::Integer(1..20).
+
+F^{A B C}::AntiSymmetric.
+F_{A B C}::AntiSymmetric.
+
+H^{A B}::Symmetric.
+H_{A B}::Symmetric.
+\eta^{A B}::Symmetric.
+\eta_{A B}::Symmetric.
+
+\partial{#}::Derivative.
+\nabla{#}::Derivative.
+\delta{#}::KroneckerDelta.
+\epsilon{#}::EpsilonTensor(delta = \delta).
+
+\partial{#}::WeightInherit(label=all, type=Additive):
+\nabla{#}::WeightInherit(label=all, type=Additive):
+
+{u{#}, \partial_{\alpha}{u{#}}, E{#}, \partial_{\alpha}{E_{A}^{M}}, \delta{#}}::SortOrder.
+\end{verbatim}}
+% Begin TeX comment
+Assigning list property Indices to $\{M,\; N,\; K,\; L,\; P,\; Q,\; R,\; S,\; T,\; U,\; V,\; M\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{A,\; B,\; C,\; D,\; E,\; F,\; G,\; H,\; A\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $M$, $N$, $K$, $L$, $P$, $Q$, $R$, $S$, $T$, $U$, $V$, $M\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$, $A\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}_{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Derivative to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Derivative to $\nabla{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property KroneckerDelta to $\delta(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property EpsilonTensor to $\epsilon(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property WeightInherit to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property WeightInherit to $\nabla{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property SortOrder to $\{u(\#),\; {\partial}_{\alpha}{u(\#)}\, ,\; E(\#),\; {\partial}_{\alpha}{{E}_{A}\,^{M}}\, ,\; \delta(\#)\}$.
+\\
+% End TeX comment
+{\color[named]{Blue}\begin{verbatim}
+F := F_{A B C};
+#F := F_{A};
+@distribute!!(%):
+@substitute!!(%)(
+F_{A B C} -> \frac{1}{2} * \Omega_{A B C} + \frac{1}{2} * \Omega_{B C A} + \frac{1}{2} * \Omega_{C A B}
+                    - \frac{1}{2} * \Omega_{A C B}  - \frac{1}{2} * \Omega_{B A C}  - \frac{1}{2} * \Omega_{C B A},
+F_{A} -> 2 * E_{A}^{M} \partial_{M}{d} - \partial_{M}{E_{A}^{M}},
+\Omega_{A B C} -> \eta_{K N} E_{C}^{K} E_{A}^{M} \partial_{M}{E_{B}^{N}},
+):
+@distribute!!(%);
+@vary(%)(
+E_{A}^{M} -> E_{B}^{M} u^{B}_{A},
+E^{B}_{M} -> - E^{A}_{M} u^{B}_{A},
+);
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@prodsort!!(%):
+@substitute!!(%)(
+E_{A}^{M} E^{A}_{N} -> \delta_{N}^{M},
+E_{A}^{M} E^{B}_{M} -> \delta_{A}^{B},
+E_{A}^{M}  E_{B}^{N} \eta_{M N} -> \eta_{A B}
+):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% orig
+% F_{A B C}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= {F}_{A B C};
+\end{dmath*}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% orig
+% 1/2 \eta_{K N} E_{C}^{K} E_{A}^{M} \partial_{M}{E_{B}^{N}} + 1/2 \eta_{K N} E_{A}^{K} E_{B}^{M} \partial_{M}{E_{C}^{N}} + 1/2 \eta_{K N} E_{B}^{K} E_{C}^{M} \partial_{M}{E_{A}^{N}} - 1/2 \eta_{K N} E_{B}^{K} E_{A}^{M} \partial_{M}{E_{C}^{N}} - 1/2 \eta_{K N} E_{C}^{K} E_{B}^{M} \partial_{M}{E_{A}^{N}} - 1/2 \eta_{K N} E_{A}^{K} E_{C}^{M} \partial_{M}{E_{B}^{N}}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= \frac{1}{2}\, {\eta}_{K N} {E}_{C}\,^{K} {E}_{A}\,^{M} {\partial}_{M}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{A}\,^{K} {E}_{B}\,^{M} {\partial}_{M}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{B}\,^{K} {E}_{C}\,^{M} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{B}\,^{K} {E}_{A}\,^{M} {\partial}_{M}{{E}_{C}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{C}\,^{K} {E}_{B}\,^{M} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{A}\,^{K} {E}_{C}\,^{M} {\partial}_{M}{{E}_{B}\,^{N}}\, ;
+\end{dmath*}
+% orig
+% 1/2 \eta_{K N} E_{D}^{K} u^{D}_{C} E_{A}^{M} \partial_{M}{E_{B}^{N}} + 1/2 \eta_{K N} E_{C}^{K} E_{D}^{M} u^{D}_{A} \partial_{M}{E_{B}^{N}} + 1/2 \eta_{K N} E_{C}^{K} E_{A}^{M} \partial_{M}{(E_{D}^{N} u^{D}_{B})} + 1/2 \eta_{K N} E_{D}^{K} u^{D}_{A} E_{B}^{M} \partial_{M}{E_{C}^{N}} + 1/2 \eta_{K N} E_{A}^{K} E_{D}^{M} u^{D}_{B} \partial_{M}{E_{C}^{N}} + 1/2 \eta_{K N} E_{A}^{K} E_{B}^{M} \partial_{M}{(E_{D}^{N} u^{D}_{C})} + 1/2 \eta_{K N} E_{D}^{K} u^{D}_{B} E_{C}^{M} \partial_{M}{E_{A}^{N}} + 1/2 \eta_{K N} E_{B}^{K} E_{D}^{M} u^{D}_{C} \partial_{M}{E_{A}^{N}} + 1/2 \eta_{K N} E_{B}^{K} E_{C}^{M} \partial_{M}{(E_{D}^{N} u^{D}_{A})} - 1/2 \eta_{K N} E_{D}^{K} u^{D}_{B} E_{A}^{M} \partial_{M}{E_{C}^{N}} - 1/2 \eta_{K N} E_{B}^{K} E_{D}^{M} u^{D}_{A} \partial_{M}{E_{C}^{N}} - 1/2 \eta_{K N} E_{B}^{K} E_{A}^{M} \partial_{M}{(E_{D}^{N} u^{D}_{C})} - 1/2 \eta_{K N} E_{D}^{K} u^{D}_{C} E_{B}^{M} \partial_{M}{E_{A}^{N}} - 1/2 \eta_{K N} E_{C}^{K} E_{D}^{M} u^{D}_{B} \partial_{M}{E_{A}^{N}} - 1/2 \eta_{K N} E_{C}^{K} E_{B}^{M} \partial_{M}{(E_{D}^{N} u^{D}_{A})} - 1/2 \eta_{K N} E_{D}^{K} u^{D}_{A} E_{C}^{M} \partial_{M}{E_{B}^{N}} - 1/2 \eta_{K N} E_{A}^{K} E_{D}^{M} u^{D}_{C} \partial_{M}{E_{B}^{N}} - 1/2 \eta_{K N} E_{A}^{K} E_{C}^{M} \partial_{M}{(E_{D}^{N} u^{D}_{B})}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= \frac{1}{2}\, {\eta}_{K N} {E}_{D}\,^{K} {u}^{D}\,_{C} {E}_{A}\,^{M} {\partial}_{M}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{C}\,^{K} {E}_{D}\,^{M} {u}^{D}\,_{A} {\partial}_{M}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{C}\,^{K} {E}_{A}\,^{M} {\partial}_{M}{({E}_{D}\,^{N} {u}^{D}\,_{B})}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{D}\,^{K} {u}^{D}\,_{A} {E}_{B}\,^{M} {\partial}_{M}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{A}\,^{K} {E}_{D}\,^{M} {u}^{D}\,_{B} {\partial}_{M}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{A}\,^{K} {E}_{B}\,^{M} {\partial}_{M}{({E}_{D}\,^{N} {u}^{D}\,_{C})}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{D}\,^{K} {u}^{D}\,_{B} {E}_{C}\,^{M} {\partial}_{M}{{E}_{A}\,^{N}}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{B}\,^{K} {E}_{D}\,^{M} {u}^{D}\,_{C} {\partial}_{M}{{E}_{A}\,^{N}}\,  + \frac{1}{2}\, {\eta}_{K N} {E}_{B}\,^{K} {E}_{C}\,^{M} {\partial}_{M}{({E}_{D}\,^{N} {u}^{D}\,_{A})}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{D}\,^{K} {u}^{D}\,_{B} {E}_{A}\,^{M} {\partial}_{M}{{E}_{C}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{B}\,^{K} {E}_{D}\,^{M} {u}^{D}\,_{A} {\partial}_{M}{{E}_{C}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{B}\,^{K} {E}_{A}\,^{M} {\partial}_{M}{({E}_{D}\,^{N} {u}^{D}\,_{C})}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{D}\,^{K} {u}^{D}\,_{C} {E}_{B}\,^{M} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{C}\,^{K} {E}_{D}\,^{M} {u}^{D}\,_{B} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{C}\,^{K} {E}_{B}\,^{M} {\partial}_{M}{({E}_{D}\,^{N} {u}^{D}\,_{A})}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{D}\,^{K} {u}^{D}\,_{A} {E}_{C}\,^{M} {\partial}_{M}{{E}_{B}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{A}\,^{K} {E}_{D}\,^{M} {u}^{D}\,_{C} {\partial}_{M}{{E}_{B}\,^{N}}\,  - \frac{1}{2}\, {\eta}_{K N} {E}_{A}\,^{K} {E}_{C}\,^{M} {\partial}_{M}{({E}_{D}\,^{N} {u}^{D}\,_{B})}\, ;
+\end{dmath*}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@collect\_terms: not applicable.
+% End TeX comment
+% orig
+% 1/2 E_{A}^{K} \eta_{M N} u^{D}_{C} E_{D}^{M} \partial_{K}{E_{B}^{N}} + 1/2 E_{C}^{K} E_{D}^{M} \eta_{K N} u^{D}_{A} \partial_{M}{E_{B}^{N}} + 1/2 E_{A}^{K} E_{C}^{M} \eta_{M N} u^{D}_{B} \partial_{K}{E_{D}^{N}} + 1/2 E_{A}^{M} \eta_{C D} \partial_{M}{u^{D}_{B}} + 1/2 E_{B}^{K} \eta_{M N} u^{D}_{A} E_{D}^{M} \partial_{K}{E_{C}^{N}} + 1/2 E_{A}^{K} E_{D}^{M} \eta_{K N} u^{D}_{B} \partial_{M}{E_{C}^{N}} + 1/2 E_{A}^{K} E_{B}^{M} \eta_{K N} u^{D}_{C} \partial_{M}{E_{D}^{N}} + 1/2 E_{B}^{M} \eta_{A D} \partial_{M}{u^{D}_{C}} + 1/2 E_{C}^{K} \eta_{M N} u^{D}_{B} E_{D}^{M} \partial_{K}{E_{A}^{N}} + 1/2 E_{B}^{K} E_{D}^{M} \eta_{K N} u^{D}_{C} \partial_{M}{E_{A}^{N}} + 1/2 E_{B}^{K} E_{C}^{M} \eta_{K N} u^{D}_{A} \partial_{M}{E_{D}^{N}} + 1/2 E_{C}^{M} \eta_{B D} \partial_{M}{u^{D}_{A}} - 1/2 E_{A}^{K} \eta_{M N} u^{D}_{B} E_{D}^{M} \partial_{K}{E_{C}^{N}} - 1/2 E_{B}^{K} E_{D}^{M} \eta_{K N} u^{D}_{A} \partial_{M}{E_{C}^{N}} - 1/2 E_{A}^{K} E_{B}^{M} \eta_{M N} u^{D}_{C} \partial_{K}{E_{D}^{N}} - 1/2 E_{A}^{M} \eta_{B D} \partial_{M}{u^{D}_{C}} - 1/2 E_{B}^{K} \eta_{M N} u^{D}_{C} E_{D}^{M} \partial_{K}{E_{A}^{N}} - 1/2 E_{C}^{K} E_{D}^{M} \eta_{K N} u^{D}_{B} \partial_{M}{E_{A}^{N}} - 1/2 E_{B}^{K} E_{C}^{M} \eta_{M N} u^{D}_{A} \partial_{K}{E_{D}^{N}} - 1/2 E_{B}^{M} \eta_{C D} \partial_{M}{u^{D}_{A}} - 1/2 E_{C}^{K} \eta_{M N} u^{D}_{A} E_{D}^{M} \partial_{K}{E_{B}^{N}} - 1/2 E_{A}^{K} E_{D}^{M} \eta_{K N} u^{D}_{C} \partial_{M}{E_{B}^{N}} - 1/2 E_{A}^{K} E_{C}^{M} \eta_{K N} u^{D}_{B} \partial_{M}{E_{D}^{N}} - 1/2 E_{C}^{M} \eta_{A D} \partial_{M}{u^{D}_{B}}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= \frac{1}{2}\, {E}_{A}\,^{K} {\eta}_{M N} {u}^{D}\,_{C} {E}_{D}\,^{M} {\partial}_{K}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {E}_{C}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {u}^{D}\,_{A} {\partial}_{M}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {E}_{A}\,^{K} {E}_{C}\,^{M} {\eta}_{M N} {u}^{D}\,_{B} {\partial}_{K}{{E}_{D}\,^{N}}\,  + \frac{1}{2}\, {E}_{A}\,^{M} {\eta}_{C D} {\partial}_{M}{{u}^{D}\,_{B}}\,  + \frac{1}{2}\, {E}_{B}\,^{K} {\eta}_{M N} {u}^{D}\,_{A} {E}_{D}\,^{M} {\partial}_{K}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {E}_{A}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {u}^{D}\,_{B} {\partial}_{M}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {E}_{A}\,^{K} {E}_{B}\,^{M} {\eta}_{K N} {u}^{D}\,_{C} {\partial}_{M}{{E}_{D}\,^{N}}\,  + \frac{1}{2}\, {E}_{B}\,^{M} {\eta}_{A D} {\partial}_{M}{{u}^{D}\,_{C}}\,  + \frac{1}{2}\, {E}_{C}\,^{K} {\eta}_{M N} {u}^{D}\,_{B} {E}_{D}\,^{M} {\partial}_{K}{{E}_{A}\,^{N}}\,  + \frac{1}{2}\, {E}_{B}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {u}^{D}\,_{C} {\partial}_{M}{{E}_{A}\,^{N}}\,  + \frac{1}{2}\, {E}_{B}\,^{K} {E}_{C}\,^{M} {\eta}_{K N} {u}^{D}\,_{A} {\partial}_{M}{{E}_{D}\,^{N}}\,  + \frac{1}{2}\, {E}_{C}\,^{M} {\eta}_{B D} {\partial}_{M}{{u}^{D}\,_{A}}\,  - \frac{1}{2}\, {E}_{A}\,^{K} {\eta}_{M N} {u}^{D}\,_{B} {E}_{D}\,^{M} {\partial}_{K}{{E}_{C}\,^{N}}\,  - \frac{1}{2}\, {E}_{B}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {u}^{D}\,_{A} {\partial}_{M}{{E}_{C}\,^{N}}\,  - \frac{1}{2}\, {E}_{A}\,^{K} {E}_{B}\,^{M} {\eta}_{M N} {u}^{D}\,_{C} {\partial}_{K}{{E}_{D}\,^{N}}\,  - \frac{1}{2}\, {E}_{A}\,^{M} {\eta}_{B D} {\partial}_{M}{{u}^{D}\,_{C}}\,  - \frac{1}{2}\, {E}_{B}\,^{K} {\eta}_{M N} {u}^{D}\,_{C} {E}_{D}\,^{M} {\partial}_{K}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {E}_{C}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {u}^{D}\,_{B} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {E}_{B}\,^{K} {E}_{C}\,^{M} {\eta}_{M N} {u}^{D}\,_{A} {\partial}_{K}{{E}_{D}\,^{N}}\, %
+ - \frac{1}{2}\, {E}_{B}\,^{M} {\eta}_{C D} {\partial}_{M}{{u}^{D}\,_{A}}\,  - \frac{1}{2}\, {E}_{C}\,^{K} {\eta}_{M N} {u}^{D}\,_{A} {E}_{D}\,^{M} {\partial}_{K}{{E}_{B}\,^{N}}\,  - \frac{1}{2}\, {E}_{A}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {u}^{D}\,_{C} {\partial}_{M}{{E}_{B}\,^{N}}\,  - \frac{1}{2}\, {E}_{A}\,^{K} {E}_{C}\,^{M} {\eta}_{K N} {u}^{D}\,_{B} {\partial}_{M}{{E}_{D}\,^{N}}\,  - \frac{1}{2}\, {E}_{C}\,^{M} {\eta}_{A D} {\partial}_{M}{{u}^{D}\,_{B}}\, ;
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@factor_out!(%){u^{A}_{B}};
+\end{verbatim}}
+% orig
+% u^{D}_{A} (1/2 E_{C}^{K} E_{D}^{M} \eta_{K N} \partial_{M}{E_{B}^{N}} + 1/2 E_{B}^{K} \eta_{M N} E_{D}^{M} \partial_{K}{E_{C}^{N}} + 1/2 E_{B}^{K} E_{C}^{M} \eta_{K N} \partial_{M}{E_{D}^{N}} - 1/2 E_{B}^{K} E_{D}^{M} \eta_{K N} \partial_{M}{E_{C}^{N}} - 1/2 E_{B}^{K} E_{C}^{M} \eta_{M N} \partial_{K}{E_{D}^{N}} - 1/2 E_{C}^{K} \eta_{M N} E_{D}^{M} \partial_{K}{E_{B}^{N}}) + u^{D}_{B} (1/2 E_{A}^{K} E_{C}^{M} \eta_{M N} \partial_{K}{E_{D}^{N}} + 1/2 E_{A}^{K} E_{D}^{M} \eta_{K N} \partial_{M}{E_{C}^{N}} + 1/2 E_{C}^{K} \eta_{M N} E_{D}^{M} \partial_{K}{E_{A}^{N}} - 1/2 E_{A}^{K} \eta_{M N} E_{D}^{M} \partial_{K}{E_{C}^{N}} - 1/2 E_{C}^{K} E_{D}^{M} \eta_{K N} \partial_{M}{E_{A}^{N}} - 1/2 E_{A}^{K} E_{C}^{M} \eta_{K N} \partial_{M}{E_{D}^{N}}) + u^{D}_{C} (1/2 E_{A}^{K} \eta_{M N} E_{D}^{M} \partial_{K}{E_{B}^{N}} + 1/2 E_{A}^{K} E_{B}^{M} \eta_{K N} \partial_{M}{E_{D}^{N}} + 1/2 E_{B}^{K} E_{D}^{M} \eta_{K N} \partial_{M}{E_{A}^{N}} - 1/2 E_{A}^{K} E_{B}^{M} \eta_{M N} \partial_{K}{E_{D}^{N}} - 1/2 E_{B}^{K} \eta_{M N} E_{D}^{M} \partial_{K}{E_{A}^{N}} - 1/2 E_{A}^{K} E_{D}^{M} \eta_{K N} \partial_{M}{E_{B}^{N}}) + 1/2 E_{A}^{M} \eta_{C D} \partial_{M}{u^{D}_{B}} + 1/2 E_{B}^{M} \eta_{A D} \partial_{M}{u^{D}_{C}} + 1/2 E_{C}^{M} \eta_{B D} \partial_{M}{u^{D}_{A}} - 1/2 E_{A}^{M} \eta_{B D} \partial_{M}{u^{D}_{C}} - 1/2 E_{B}^{M} \eta_{C D} \partial_{M}{u^{D}_{A}} - 1/2 E_{C}^{M} \eta_{A D} \partial_{M}{u^{D}_{B}}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= {u}^{D}\,_{A} (\frac{1}{2}\, {E}_{C}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {E}_{B}\,^{K} {\eta}_{M N} {E}_{D}\,^{M} {\partial}_{K}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {E}_{B}\,^{K} {E}_{C}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{D}\,^{N}}\,  - \frac{1}{2}\, {E}_{B}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{C}\,^{N}}\,  - \frac{1}{2}\, {E}_{B}\,^{K} {E}_{C}\,^{M} {\eta}_{M N} {\partial}_{K}{{E}_{D}\,^{N}}\,  - \frac{1}{2}\, {E}_{C}\,^{K} {\eta}_{M N} {E}_{D}\,^{M} {\partial}_{K}{{E}_{B}\,^{N}}\, ) + {u}^{D}\,_{B} (\frac{1}{2}\, {E}_{A}\,^{K} {E}_{C}\,^{M} {\eta}_{M N} {\partial}_{K}{{E}_{D}\,^{N}}\,  + \frac{1}{2}\, {E}_{A}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {E}_{C}\,^{K} {\eta}_{M N} {E}_{D}\,^{M} {\partial}_{K}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {E}_{A}\,^{K} {\eta}_{M N} {E}_{D}\,^{M} {\partial}_{K}{{E}_{C}\,^{N}}\,  - \frac{1}{2}\, {E}_{C}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {E}_{A}\,^{K} {E}_{C}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{D}\,^{N}}\, ) + {u}^{D}\,_{C} (\frac{1}{2}\, {E}_{A}\,^{K} {\eta}_{M N} {E}_{D}\,^{M} {\partial}_{K}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {E}_{A}\,^{K} {E}_{B}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{D}\,^{N}}\,  + \frac{1}{2}\, {E}_{B}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {E}_{A}\,^{K} {E}_{B}\,^{M} {\eta}_{M N} {\partial}_{K}{{E}_{D}\,^{N}}\,  - \frac{1}{2}\, {E}_{B}\,^{K} {\eta}_{M N} {E}_{D}\,^{M} {\partial}_{K}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {E}_{A}\,^{K} {E}_{D}\,^{M} {\eta}_{K N} {\partial}_{M}{{E}_{B}\,^{N}}\, ) + \frac{1}{2}\, {E}_{A}\,^{M} {\eta}_{C D} {\partial}_{M}{{u}^{D}\,_{B}}\,  + \frac{1}{2}\, {E}_{B}\,^{M} {\eta}_{A D} {\partial}_{M}{{u}^{D}\,_{C}}\,  + \frac{1}{2}\, {E}_{C}\,^{M} {\eta}_{B D} {\partial}_{M}{{u}^{D}\,_{A}}\,  - \frac{1}{2}\, {E}_{A}\,^{M} {\eta}_{B D} {\partial}_{M}{{u}^{D}\,_{C}}\,  - \frac{1}{2}\, {E}_{B}\,^{M} {\eta}_{C D} {\partial}_{M}{{u}^{D}\,_{A}}\,  - \frac{1}{2}\, {E}_{C}\,^{M} {\eta}_{A D} {\partial}_{M}{{u}^{D}\,_{B}}\, ;
+\end{dmath*}
+\end{document}

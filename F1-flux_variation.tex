@@ -1,0 +1,197 @@
+% Cadabra notebook version 1.2
+\documentclass[11pt]{article}
+\usepackage[textwidth=460pt, textheight=660pt]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{breqn}
+\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\begin{document}
+{\color[named]{Blue}\begin{verbatim}
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Indices(name=oddcurved, position=independent).
+{A,B,C,D,E,F,G,H, A#}::Indices(name=oddflat, position=independent).
+
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Integer(1..20).
+{A,B,C,D,E,F,G,H, A#}::Integer(1..20).
+
+F^{A B C}::AntiSymmetric.
+F_{A B C}::AntiSymmetric.
+
+H^{A B}::Symmetric.
+H_{A B}::Symmetric.
+\eta^{A B}::Symmetric.
+\eta_{A B}::Symmetric.
+
+\partial{#}::Derivative.
+\nabla{#}::Derivative.
+\delta{#}::KroneckerDelta.
+\epsilon{#}::EpsilonTensor(delta = \delta).
+
+\partial{#}::WeightInherit(label=all, type=Additive):
+\nabla{#}::WeightInherit(label=all, type=Additive):
+
+{u{#}, \partial_{\alpha}{u{#}}, E{#}, \partial_{\alpha}{E_{A}^{M}}, \delta{#}}::SortOrder.
+\end{verbatim}}
+% Begin TeX comment
+Assigning list property Indices to $\{M,\; N,\; K,\; L,\; P,\; Q,\; R,\; S,\; T,\; U,\; V,\; M\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{A,\; B,\; C,\; D,\; E,\; F,\; G,\; H,\; A\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $M$, $N$, $K$, $L$, $P$, $Q$, $R$, $S$, $T$, $U$, $V$, $M\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$, $A\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}_{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Derivative to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Derivative to $\nabla{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property KroneckerDelta to $\delta(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property EpsilonTensor to $\epsilon(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property WeightInherit to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property WeightInherit to $\nabla{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property SortOrder to $\{u(\#),\; {\partial}_{\alpha}{u(\#)}\, ,\; E(\#),\; {\partial}_{\alpha}{{E}_{A}\,^{M}}\, ,\; \delta(\#)\}$.
+\\
+% End TeX comment
+{\color[named]{Blue}\begin{verbatim}
+#F := F_{A B C};
+F := F_{A};
+@distribute!!(%):
+@substitute!!(%)(
+F_{A B C} -> \frac{1}{2} * \Omega_{A B C} + \frac{1}{2} * \Omega_{B C A} + \frac{1}{2} * \Omega_{C A B}
+                    - \frac{1}{2} * \Omega_{A C B}  - \frac{1}{2} * \Omega_{B A C}  - \frac{1}{2} * \Omega_{C B A},
+F_{A} -> 2 * E_{A}^{M} \partial_{M}{d} - \partial_{M}{E_{A}^{M}},
+\Omega_{A B C} -> \eta_{K N} E_{C}^{K} E_{A}^{M} \partial_{M}{E_{B}^{N}},
+):
+@distribute!!(%);
+@vary(%)(
+E_{A}^{M} -> E_{B}^{M} u^{B}_{A},
+E^{B}_{M} -> - E^{A}_{M} u^{B}_{A},
+);
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@prodsort!!(%):
+@substitute!!(%)(
+E_{A}^{M} E^{A}_{N} -> \delta_{N}^{M},
+E_{A}^{M} E^{B}_{M} -> \delta_{A}^{B},
+):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% orig
+% F_{A}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= {F}_{A};
+\end{dmath*}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% orig
+% 2 E_{A}^{M} \partial_{M}{d} - \partial_{M}{E_{A}^{M}}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 2\, {E}_{A}\,^{M} {\partial}_{M}{d}\,  - {\partial}_{M}{{E}_{A}\,^{M}}\, ;
+\end{dmath*}
+% orig
+% 2 E_{B}^{M} u^{B}_{A} \partial_{M}{d} - \partial_{M}{(E_{B}^{M} u^{B}_{A})}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 2\, {E}_{B}\,^{M} {u}^{B}\,_{A} {\partial}_{M}{d}\,  - {\partial}_{M}{({E}_{B}\,^{M} {u}^{B}\,_{A})}\, ;
+\end{dmath*}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@substitute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% Begin TeX comment
+@canonicalise: not applicable.
+% End TeX comment
+% Begin TeX comment
+@collect\_terms: not applicable.
+% End TeX comment
+% orig
+% 2 u^{B}_{A} E_{B}^{M} \partial_{M}{d} + ( - u^{B}_{A} \partial_{M}{E_{B}^{M}} - \partial_{M}{u^{B}_{A}} E_{B}^{M})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 2\, {u}^{B}\,_{A} {E}_{B}\,^{M} {\partial}_{M}{d}\,  + ( - {u}^{B}\,_{A} {\partial}_{M}{{E}_{B}\,^{M}}\,  - {\partial}_{M}{{u}^{B}\,_{A}}\,  {E}_{B}\,^{M});
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@factor_out!(%){u^{A}_{B}};
+\end{verbatim}}
+% Begin TeX comment
+@factor\_out: not applicable.
+% End TeX comment
+% orig
+% 2 u^{B}_{A} E_{B}^{M} \partial_{M}{d} + ( - u^{B}_{A} \partial_{M}{E_{B}^{M}} + ( - \partial_{M}{u^{B}_{A}} E_{B}^{M}))
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 2\, {u}^{B}\,_{A} {E}_{B}\,^{M} {\partial}_{M}{d}\,  + ( - {u}^{B}\,_{A} {\partial}_{M}{{E}_{B}\,^{M}}\,  + ( - {\partial}_{M}{{u}^{B}\,_{A}}\,  {E}_{B}\,^{M}));
+\end{dmath*}
+\end{document}

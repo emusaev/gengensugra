@@ -1,0 +1,521 @@
+% Cadabra notebook version 1.2
+\documentclass[11pt]{article}
+\usepackage[textwidth=460pt, textheight=660pt]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{breqn}
+\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\begin{document}
+{\color[named]{Blue}\begin{verbatim}
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Indices(name=oddcurved, position=independent).
+{A,B,C,D,E,F,G,H, A#}::Indices(name=oddflat, position=independent).
+{m,n,k,l,p,q,r,s,t,u,v,m#}::Indices(name=gl10curved, parent=oddcurved, position=independent).
+{a,b,c,d,f,g,h,a#}::Indices(name=gl10flat, parent=oddflat, position=independent).
+{em,en,ek,el,ep,eq,er,es,et,eu,ev,em#}::Indices(name=egl10curved, parent=oddcurved, position=independent).
+{ea,eb,ec,ed,ef,eg,eh,ea#}::Indices(name=egl10flat, parent=oddflat, position=independent).
+{i,j,i#,j#}::Indices(name=Killing, position=independent).
+
+{M,N,K,L,P,Q,R,S,T,U,V, M#}::Integer(1..20).
+{A,B,C,D,E,F,G,H, A#}::Integer(1..20).
+{m,n,k,l,p,q,r,s,t,u,v,m#}::Integer(1..10).
+{a,b,c,d,f,g,h,a#}::Integer(1..10).
+{em,en,ek,el,ep,eq,er,es,et,eu,ev,em#}::Integer(1..10).
+{ea,eb,ec,ed,ef,eg,eh,ea#}::Integer(1..10).
+
+F^{A B C}::AntiSymmetric.
+F_{A B C}::AntiSymmetric.
+b_{k n}::AntiSymmetric.
+
+f_{a b}^{c}::TableauSymmetry(shape={1,1}, indices={0,1}).
+f_{i1 i2}^{i3}::TableauSymmetry(shape={1,1}, indices={0,1}).
+f^{ea eb c}::TableauSymmetry(shape={1,1}, indices={0,1}).
+F_{a b}^{c}::TableauSymmetry(shape={2}, indices={0,1}).
+
+H^{A B}::Symmetric.
+H_{A B}::Symmetric.
+\eta^{A B}::Symmetric.
+\eta_{A B}::Symmetric.
+
+h^{m n}::Symmetric.
+h_{m n}::Symmetric.
+
+\beta^{m n}::AntiSymmetric.
+r^{i j}::AntiSymmetric.
+f^{A B C}::AntiSymmetric.
+f^{a b c}::AntiSymmetric.
+fg_{a b c}::AntiSymmetric.
+
+\partial{#}::Derivative.
+\nabla{#}::Derivative.
+\delta{#}::KroneckerDelta.
+\epsilon{#}::EpsilonTensor(delta = \delta).
+
+{b_{m n}, r^{i j}, k_{i}^{m}, \partial_{n}{k_{i}^{m}}, e^{a}_{m}, e_{a}^{m}, F_{A B C}, \eta^{M N}, \eta_{M N}, \eta^{A B}, \eta_{A B}, H^{M N}, H_{M N}, H^{A B}, H_{A B},
+E_{A}^{M}, E^{A}_{M}, \partial_{K}{E^{A}_{M}}, \partial_{K}{E_{A}^{M}}, \partial_{K L}{E_{A}^{M}}, g_{ea b}, f^{ea eb c}}::SortOrder.
+
+\partial{#}::WeightInherit(label=all, type=Additive):
+\nabla{#}::WeightInherit(label=all, type=Additive):
+
+W_{M}^{N}::Weight(label=W, value=1):
+\end{verbatim}}
+% Begin TeX comment
+Assigning list property Indices to $\{M,\; N,\; K,\; L,\; P,\; Q,\; R,\; S,\; T,\; U,\; V,\; M\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{A,\; B,\; C,\; D,\; E,\; F,\; G,\; H,\; A\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{m,\; n,\; k,\; l,\; p,\; q,\; r,\; s,\; t,\; u,\; v,\; m\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{a,\; b,\; c,\; d,\; f,\; g,\; h,\; a\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{em,\; en,\; ek,\; el,\; ep,\; eq,\; er,\; es,\; et,\; eu,\; ev,\; em\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{ea,\; eb,\; ec,\; ed,\; ef,\; eg,\; eh,\; ea\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{i,\; j,\; i\#,\; j\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $M$, $N$, $K$, $L$, $P$, $Q$, $R$, $S$, $T$, $U$, $V$, $M\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $A$, $B$, $C$, $D$, $E$, $F$, $G$, $H$, $A\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $m$, $n$, $k$, $l$, $p$, $q$, $r$, $s$, $t$, $u$, $v$, $m\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $a$, $b$, $c$, $d$, $f$, $g$, $h$, $a\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $em$, $en$, $ek$, $el$, $ep$, $eq$, $er$, $es$, $et$, $eu$, $ev$, $em\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $ea$, $eb$, $ec$, $ed$, $ef$, $eg$, $eh$, $ea\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${F}_{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${b}_{k n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${f}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${f}_{i1 i2}\,^{i3}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${f}^{ea eb c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${F}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${H}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${\eta}_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${h}^{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${h}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${\beta}^{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${r}^{i j}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${f}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${f}^{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${fg}_{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Derivative to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Derivative to $\nabla{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property KroneckerDelta to $\delta(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property EpsilonTensor to $\epsilon(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property SortOrder to $\{{b}_{m n},\; {r}^{i j},\; {k}_{i}\,^{m},\; {\partial}_{n}{{k}_{i}\,^{m}}\, ,\; {e}^{a}\,_{m},\; {e}_{a}\,^{m},\; {F}_{A B C},\; {\eta}^{M N},\; {\eta}_{M N},\; {\eta}^{A B},\; {\eta}_{A B},\; {H}^{M N},\; {H}_{M N},\; {H}^{A B},\; {H}_{A B},\; {E}_{A}\,^{M},\; {E}^{A}\,_{M},\; {\partial}_{K}{{E}^{A}\,_{M}}\, ,\; {\partial}_{K}{{E}_{A}\,^{M}}\, ,\; {\partial}_{K L}{{E}_{A}\,^{M}}\, ,\; {g}_{ea b},\; {f}^{ea eb c}\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property WeightInherit to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property WeightInherit to $\nabla{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Weight to ${W}_{M}\,^{N}$.
+\\
+% End TeX comment
+{\color[named]{Blue}\begin{verbatim}
+F := f^{A B C} F_{A B C};
+#F := f^{A} F_{A};
+@distribute!!(%):
+@substitute!!(%)(
+F_{A B C} -> \frac{1}{2} * \Omega_{A B C} + \frac{1}{2} * \Omega_{B C A} + \frac{1}{2} * \Omega_{C A B}
+                    - \frac{1}{2} * \Omega_{A C B}  - \frac{1}{2} * \Omega_{B A C}  - \frac{1}{2} * \Omega_{C B A},
+F_{A} -> \eta^{B C} \Omega_{B C A} + 2 * R_{A}^{M} \partial_{M}{d},
+\Omega_{A B C} -> \eta_{K N} R_{C}^{K} R_{A}^{M} \partial_{M}{R_{B}^{N}},
+):
+@distribute!!(%):
+@substitute!!(%)(
+R_{C}^{M} -> E^{M}_{C} + W_{K}^{M} E^{K}_{C},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@substitute!!(%)(
+\partial_{M}{\eta_{N K}} -> 0,
+\partial_{M}{\eta^{N K}} -> 0,
+\partial_{M}{\eta_{A B}} -> 0,
+\partial_{M}{\eta^{A B}} -> 0,
+\eta^{A B} E_{A}^{M} E_{B}^{N} -> \eta^{M N},
+\eta^{M N} E^{A}_{M} E^{B}_{N} -> \eta^{A B},
+\eta^{M N} \eta_{M K} -> \delta^{N}_{K},
+\eta^{M N} \eta_{K M} -> \delta^{N}_{K},
+\eta^{N M} \eta_{K M} -> \delta^{N}_{K},
+\eta^{N M} \eta_{M K} -> \delta^{N}_{K},
+):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%):
+@drop_weight!!(%){W}{0};
+\end{verbatim}}
+% orig
+% f^{A B C} F_{A B C}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= {f}^{A B C} {F}_{A B C};
+\end{dmath*}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@substitute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+% 3 E^{M}_{A} E^{N}_{B} E^{K}_{C} \eta_{M L} \partial_{N}{W_{K}^{L}} f^{A B C} + 3 E^{M}_{A} E^{N}_{B} W_{K}^{L} \eta_{M L} \partial_{N}{E^{K}_{C}} f^{A B C} - 3 E^{M}_{A} E^{N}_{B} W_{M}^{K} \eta_{N L} \partial_{K}{E^{L}_{C}} f^{A B C} - 3 E^{M}_{A} E^{N}_{B} E^{K}_{C} W_{M}^{L} \eta_{N P} \partial_{L}{W_{K}^{P}} f^{A B C} - 3 E^{M}_{A} E^{N}_{B} W_{M}^{K} W_{L}^{P} \eta_{N P} \partial_{K}{E^{L}_{C}} f^{A B C} + 3 E^{M}_{A} E^{N}_{B} W_{M}^{K} \eta_{K L} \partial_{N}{E^{L}_{C}} f^{A B C} + 3 E^{M}_{A} E^{N}_{B} E^{K}_{C} W_{M}^{L} \eta_{L P} \partial_{N}{W_{K}^{P}} f^{A B C} + 3 E^{M}_{A} E^{N}_{B} W_{M}^{K} W_{L}^{P} \eta_{K P} \partial_{N}{E^{L}_{C}} f^{A B C} + 3 E^{M}_{A} E^{N}_{B} W_{M}^{K} W_{N}^{L} \eta_{K P} \partial_{L}{E^{P}_{C}} f^{A B C} + 3 E^{M}_{A} E^{N}_{B} E^{K}_{C} W_{M}^{L} W_{N}^{P} \eta_{L Q} \partial_{P}{W_{K}^{Q}} f^{A B C} + 3 E^{M}_{A} E^{N}_{B} W_{M}^{K} W_{N}^{L} W_{P}^{Q} \eta_{K Q} \partial_{L}{E^{P}_{C}} f^{A B C}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {E}^{K}\,_{C} {\eta}_{M L} {\partial}_{N}{{W}_{K}\,^{L}}\,  {f}^{A B C} + 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {W}_{K}\,^{L} {\eta}_{M L} {\partial}_{N}{{E}^{K}\,_{C}}\,  {f}^{A B C} - 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {W}_{M}\,^{K} {\eta}_{N L} {\partial}_{K}{{E}^{L}\,_{C}}\,  {f}^{A B C} - 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {E}^{K}\,_{C} {W}_{M}\,^{L} {\eta}_{N P} {\partial}_{L}{{W}_{K}\,^{P}}\,  {f}^{A B C} - 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {W}_{M}\,^{K} {W}_{L}\,^{P} {\eta}_{N P} {\partial}_{K}{{E}^{L}\,_{C}}\,  {f}^{A B C} + 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {W}_{M}\,^{K} {\eta}_{K L} {\partial}_{N}{{E}^{L}\,_{C}}\,  {f}^{A B C} + 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {E}^{K}\,_{C} {W}_{M}\,^{L} {\eta}_{L P} {\partial}_{N}{{W}_{K}\,^{P}}\,  {f}^{A B C} + 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {W}_{M}\,^{K} {W}_{L}\,^{P} {\eta}_{K P} {\partial}_{N}{{E}^{L}\,_{C}}\,  {f}^{A B C} + 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {W}_{M}\,^{K} {W}_{N}\,^{L} {\eta}_{K P} {\partial}_{L}{{E}^{P}\,_{C}}\,  {f}^{A B C} + 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {E}^{K}\,_{C} {W}_{M}\,^{L} {W}_{N}\,^{P} {\eta}_{L Q} {\partial}_{P}{{W}_{K}\,^{Q}}\,  {f}^{A B C} + 3\, {E}^{M}\,_{A} {E}^{N}\,_{B} {W}_{M}\,^{K} {W}_{N}\,^{L} {W}_{P}\,^{Q} {\eta}_{K Q} {\partial}_{L}{{E}^{P}\,_{C}}\,  {f}^{A B C};
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@split_index!!(%){M, m, em}:
+@substitute!!(%)(
+\partial_{en}{A??} -> 0,
+\partial_{en k}{A??} -> 0,
+\partial_{en ek}{A??} -> 0,
+\eta_{m em} -> \delta_{m em},
+\eta_{em m} -> \delta_{m em},
+\eta_{m n} -> 0,
+\eta_{em en} -> 0,
+\eta^{m em} -> \delta^{m em},
+\eta^{em m} -> \delta^{m em},
+\eta^{m n} -> 0,
+\eta^{em en} -> 0,
+):
+@split_index!!(%){A, a, ea}:
+@substitute!!(%)(
+X_{a} -> 0,
+X_{ea} -> X^{m} e^{a}_{m} g_{ea a},
+W_{m}^{n} -> 0,
+W_{em}^{en} -> 0,
+W_{m}^{en} -> 0,
+W_{em}^{n} -> g_{em m} \beta^{m n},
+\partial_{en}{A??} -> 0,
+\partial_{en k}{A??} -> 0,
+\partial_{en ek}{A??} -> 0,
+\eta_{a ea} -> \delta_{a ea},
+\eta_{ea a} -> \delta_{a ea},
+\eta_{a b} -> 0,
+\eta_{ea eb} -> 0,
+\eta^{a ea} -> \delta^{a ea},
+\eta^{ea a} -> \delta^{a ea},
+\eta^{a b} -> 0,
+\eta^{ea eb} -> 0,
+H^{a b} -> \delta^{a b},
+H^{ea eb} -> \delta^{ea eb},
+H^{a ea} -> 0,
+H^{ea a} -> 0,
+H_{a b} -> \delta^{a b},
+H_{ea eb} -> \delta^{ea eb},
+H_{a ea} -> 0,
+H_{ea a} -> 0,
+\delta^{ea eb} -> \delta_{a b} g^{ea a} g^{eb b},
+\delta^{a eb} -> \delta^{a}_{b} g^{eb b},
+\delta_{ea eb} -> \delta^{a b} g_{ea a} g_{eb b},
+\delta_{a eb} -> \delta_{a}^{b} g_{eb b},
+\delta^{m en} -> \delta^{m}_{n} g^{en n},
+\delta_{m en} -> \delta_{m}^{n} g_{en n},
+E^{m}_{a} -> e_{a}^{m},
+E^{m}_{ea} -> 0,
+E^{em}_{a} -> - e_{a}^{k} b_{k m} g^{em m},
+E^{em}_{ea} -> e^{a}_{m} g_{ea a} g^{em m},
+d -> \phi - \frac{1}{2} * lne,
+):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@substitute!!(%)(
+\partial_{m}{lne} -> - e^{a}_{k} \partial_{m}{e_{a}^{k}},
+\partial_{m}{g_{ea b}} -> 0,
+\partial_{m}{g^{ea a}} -> 0,
+\partial_{n}{g^{em m}} -> 0,
+\partial_{n}{g_{em m}} -> 0,
+g^{em m} g_{em n} -> \delta^{m}_{n},
+g^{ea a} g_{ea b} -> \delta^{a}_{b},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+% 3 \partial_{m}{\beta^{n k}} b_{n l} b_{k p} e_{a}^{m} e_{b}^{l} e_{c}^{p} f^{a b c} - 3 \partial_{m}{\beta^{n k}} b_{n l} e^{a}_{k} e_{b}^{m} e_{c}^{l} f^{c b ea} g_{ea a} + 3 \partial_{m}{\beta^{n k}} b_{n l} e^{a}_{k} e_{b}^{m} e_{c}^{l} f^{ea b c} g_{ea a} - 3 \partial_{m}{\beta^{n k}} e^{a}_{n} e^{b}_{k} e_{c}^{m} f^{ea c eb} g_{ea a} g_{eb b} - 3 \beta^{m n} b_{m k} e^{a}_{l} e_{b}^{k} \partial_{n}{e_{c}^{l}} f^{b ea c} g_{ea a} - 3 \beta^{m n} e^{a}_{m} e^{b}_{k} \partial_{n}{e_{c}^{k}} g_{ea a} g_{eb b} f^{ea eb c} - 3 \beta^{m n} b_{m k} \partial_{n}{b_{l p}} e_{a}^{k} e_{b}^{l} e_{c}^{p} f^{a b c} - 3 \beta^{m n} b_{m k} \partial_{n}{e^{a}_{l}} e_{b}^{k} e_{c}^{l} f^{b c ea} g_{ea a} + 3 \beta^{m n} \partial_{m}{b_{k l}} e^{a}_{n} e_{b}^{k} e_{c}^{l} f^{ea b c} g_{ea a} - 3 \beta^{m n} e^{a}_{m} \partial_{n}{e^{b}_{k}} e_{c}^{k} f^{ea c eb} g_{ea a} g_{eb b} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{n p} b_{k q} b_{l r} e_{a}^{p} e_{b}^{q} e_{c}^{r} f^{a b c} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{n p} b_{k q} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{b c ea} g_{ea a} + 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{n p} b_{k q} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{b ea c} g_{ea a} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{n p} e^{a}_{k} e^{b}_{l} e_{c}^{p} f^{c ea eb} g_{ea a} g_{eb b} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{k p} b_{l q} e^{a}_{n} e_{b}^{p} e_{c}^{q} f^{ea b c} g_{ea a} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{k p} e^{a}_{n} e^{b}_{l} e_{c}^{p} f^{ea c eb} g_{ea a} g_{eb b} + 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{k p} e^{a}_{n} e^{b}_{l} e_{c}^{p} g_{ea a} g_{eb b} f^{ea eb c} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} e^{a}_{n} e^{b}_{k} e^{c}_{l} f^{ea eb ec} g_{ea a} g_{eb b} g_{ec c} + 3 \beta^{m n} \beta^{k l} b_{m p} b_{k q} \partial_{n}{e^{a}_{l}} e_{b}^{p} e_{c}^{q} f^{b c ea} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} b_{k q} e^{a}_{n} e_{b}^{q} \partial_{l}{e_{c}^{p}} f^{b ea c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} \partial_{n}{b_{k q}} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{b ea c} g_{ea a} + 3 \beta^{m n} \beta^{k l} b_{m p} e^{a}_{k} \partial_{n}{e^{b}_{l}} e_{c}^{p} f^{c ea eb} g_{ea a} g_{eb b} + 3 \beta^{m n} \beta^{k l} b_{m p} b_{n q} e^{a}_{k} e_{b}^{p} \partial_{l}{e_{c}^{q}} f^{ea b c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} \partial_{k}{b_{n q}} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{ea b c} g_{ea a} + 3 \beta^{m n} \beta^{k l} b_{m p} e^{a}_{k} \partial_{l}{e^{b}_{n}} e_{c}^{p} f^{ea c eb} g_{ea a} g_{eb b} + 3 \beta^{m n} \beta^{k l} e^{a}_{m} e^{b}_{k} \partial_{n}{e^{c}_{l}} f^{ea eb ec} g_{ea a} g_{eb b} g_{ec c} + 3 \beta^{m n} \beta^{k l} b_{m p} b_{k q} \partial_{n}{e^{a}_{l}} e_{b}^{p} e_{c}^{q} f^{c b ea} g_{ea a} + 3 \beta^{m n} \beta^{k l} b_{m p} b_{n q} e^{a}_{k} e_{b}^{p} \partial_{l}{e_{c}^{q}} f^{b ea c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} \partial_{k}{b_{n q}} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{b ea c} g_{ea a} + 3 \beta^{m n} \beta^{k l} b_{m p} e^{a}_{k} \partial_{l}{e^{b}_{n}} e_{c}^{p} f^{c ea eb} g_{ea a} g_{eb b} - 3 \beta^{m n} \beta^{k l} b_{m p} b_{k q} e^{a}_{n} e_{b}^{q} \partial_{l}{e_{c}^{p}} f^{ea b c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} \partial_{n}{b_{k q}} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{ea b c} g_{ea a} + 3 \beta^{m n} \beta^{k l} b_{m p} e^{a}_{k} \partial_{n}{e^{b}_{l}} e_{c}^{p} f^{ea c eb} g_{ea a} g_{eb b} + 3 \beta^{m n} \beta^{k l} e^{a}_{m} e^{b}_{k} \partial_{n}{e^{c}_{l}} f^{ea eb ec} g_{ea b} g_{eb a} g_{ec c}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 3\, {\partial}_{m}{{\beta}^{n k}}\,  {b}_{n l} {b}_{k p} {e}_{a}\,^{m} {e}_{b}\,^{l} {e}_{c}\,^{p} {f}^{a b c} - 3\, {\partial}_{m}{{\beta}^{n k}}\,  {b}_{n l} {e}^{a}\,_{k} {e}_{b}\,^{m} {e}_{c}\,^{l} {f}^{c b ea} {g}_{ea a} + 3\, {\partial}_{m}{{\beta}^{n k}}\,  {b}_{n l} {e}^{a}\,_{k} {e}_{b}\,^{m} {e}_{c}\,^{l} {f}^{ea b c} {g}_{ea a} - 3\, {\partial}_{m}{{\beta}^{n k}}\,  {e}^{a}\,_{n} {e}^{b}\,_{k} {e}_{c}\,^{m} {f}^{ea c eb} {g}_{ea a} {g}_{eb b} - 3\, {\beta}^{m n} {b}_{m k} {e}^{a}\,_{l} {e}_{b}\,^{k} {\partial}_{n}{{e}_{c}\,^{l}}\,  {f}^{b ea c} {g}_{ea a} - 3\, {\beta}^{m n} {e}^{a}\,_{m} {e}^{b}\,_{k} {\partial}_{n}{{e}_{c}\,^{k}}\,  {g}_{ea a} {g}_{eb b} {f}^{ea eb c} - 3\, {\beta}^{m n} {b}_{m k} {\partial}_{n}{{b}_{l p}}\,  {e}_{a}\,^{k} {e}_{b}\,^{l} {e}_{c}\,^{p} {f}^{a b c} - 3\, {\beta}^{m n} {b}_{m k} {\partial}_{n}{{e}^{a}\,_{l}}\,  {e}_{b}\,^{k} {e}_{c}\,^{l} {f}^{b c ea} {g}_{ea a} + 3\, {\beta}^{m n} {\partial}_{m}{{b}_{k l}}\,  {e}^{a}\,_{n} {e}_{b}\,^{k} {e}_{c}\,^{l} {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {e}^{a}\,_{m} {\partial}_{n}{{e}^{b}\,_{k}}\,  {e}_{c}\,^{k} {f}^{ea c eb} {g}_{ea a} {g}_{eb b} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{n p} {b}_{k q} {b}_{l r} {e}_{a}\,^{p} {e}_{b}\,^{q} {e}_{c}\,^{r} {f}^{a b c} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{n p} {b}_{k q} {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b c ea} {g}_{ea a} + 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{n p} {b}_{k q} {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b ea c} {g}_{ea a} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{n p} {e}^{a}\,_{k} {e}^{b}\,_{l} {e}_{c}\,^{p} {f}^{c ea eb} {g}_{ea a} {g}_{eb b} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{k p} {b}_{l q} {e}^{a}\,_{n} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{k p} {e}^{a}\,_{n} {e}^{b}\,_{l} {e}_{c}\,^{p} {f}^{ea c eb} {g}_{ea a} {g}_{eb b} + 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{k p} {e}^{a}\,_{n} {e}^{b}\,_{l} {e}_{c}\,^{p} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {e}^{a}\,_{n} {e}^{b}\,_{k} {e}^{c}\,_{l} {f}^{ea eb ec} {g}_{ea a} {g}_{eb b} {g}_{ec c} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{k q} {\partial}_{n}{{e}^{a}\,_{l}}\,  {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b c ea} {g}_{ea a}%
+ - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{k q} {e}^{a}\,_{n} {e}_{b}\,^{q} {\partial}_{l}{{e}_{c}\,^{p}}\,  {f}^{b ea c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {\partial}_{n}{{b}_{k q}}\,  {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b ea c} {g}_{ea a} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {e}^{a}\,_{k} {\partial}_{n}{{e}^{b}\,_{l}}\,  {e}_{c}\,^{p} {f}^{c ea eb} {g}_{ea a} {g}_{eb b} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{n q} {e}^{a}\,_{k} {e}_{b}\,^{p} {\partial}_{l}{{e}_{c}\,^{q}}\,  {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {\partial}_{k}{{b}_{n q}}\,  {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{ea b c} {g}_{ea a} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {e}^{a}\,_{k} {\partial}_{l}{{e}^{b}\,_{n}}\,  {e}_{c}\,^{p} {f}^{ea c eb} {g}_{ea a} {g}_{eb b} + 3\, {\beta}^{m n} {\beta}^{k l} {e}^{a}\,_{m} {e}^{b}\,_{k} {\partial}_{n}{{e}^{c}\,_{l}}\,  {f}^{ea eb ec} {g}_{ea a} {g}_{eb b} {g}_{ec c} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{k q} {\partial}_{n}{{e}^{a}\,_{l}}\,  {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{c b ea} {g}_{ea a} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{n q} {e}^{a}\,_{k} {e}_{b}\,^{p} {\partial}_{l}{{e}_{c}\,^{q}}\,  {f}^{b ea c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {\partial}_{k}{{b}_{n q}}\,  {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b ea c} {g}_{ea a} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {e}^{a}\,_{k} {\partial}_{l}{{e}^{b}\,_{n}}\,  {e}_{c}\,^{p} {f}^{c ea eb} {g}_{ea a} {g}_{eb b} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{k q} {e}^{a}\,_{n} {e}_{b}\,^{q} {\partial}_{l}{{e}_{c}\,^{p}}\,  {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {\partial}_{n}{{b}_{k q}}\,  {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{ea b c} {g}_{ea a} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {e}^{a}\,_{k} {\partial}_{n}{{e}^{b}\,_{l}}\,  {e}_{c}\,^{p} {f}^{ea c eb} {g}_{ea a} {g}_{eb b} + 3\, {\beta}^{m n} {\beta}^{k l} {e}^{a}\,_{m} {e}^{b}\,_{k} {\partial}_{n}{{e}^{c}\,_{l}}\,  {f}^{ea eb ec} {g}_{ea b} {g}_{eb a} {g}_{ec c};
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@substitute!!(%)(
+f^{ea b eb} -> - f^{ea eb b},
+\partial_{m}{e_{a}^{k}} e^{c}_{k} -> - \partial_{m}{e^{c}_{k}} e_{a}^{k},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+% 3 \partial_{m}{\beta^{n k}} b_{n l} b_{k p} e_{a}^{m} e_{b}^{l} e_{c}^{p} f^{a b c} - 3 \partial_{m}{\beta^{n k}} b_{n l} e^{a}_{k} e_{b}^{m} e_{c}^{l} f^{c b ea} g_{ea a} + 3 \partial_{m}{\beta^{n k}} b_{n l} e^{a}_{k} e_{b}^{m} e_{c}^{l} f^{ea b c} g_{ea a} + 3 \partial_{m}{\beta^{n k}} e^{a}_{n} e^{b}_{k} e_{c}^{m} g_{ea a} g_{eb b} f^{ea eb c} + 3 \beta^{m n} b_{m k} \partial_{n}{e^{a}_{l}} e_{b}^{k} e_{c}^{l} f^{b ea c} g_{ea a} + 6 \beta^{m n} e^{a}_{m} \partial_{n}{e^{b}_{k}} e_{c}^{k} g_{ea a} g_{eb b} f^{ea eb c} - 3 \beta^{m n} b_{m k} \partial_{n}{b_{l p}} e_{a}^{k} e_{b}^{l} e_{c}^{p} f^{a b c} - 3 \beta^{m n} b_{m k} \partial_{n}{e^{a}_{l}} e_{b}^{k} e_{c}^{l} f^{b c ea} g_{ea a} + 3 \beta^{m n} \partial_{m}{b_{k l}} e^{a}_{n} e_{b}^{k} e_{c}^{l} f^{ea b c} g_{ea a} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{n p} b_{k q} b_{l r} e_{a}^{p} e_{b}^{q} e_{c}^{r} f^{a b c} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{n p} b_{k q} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{b c ea} g_{ea a} + 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{n p} b_{k q} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{b ea c} g_{ea a} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{n p} e^{a}_{k} e^{b}_{l} e_{c}^{p} f^{c ea eb} g_{ea a} g_{eb b} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} b_{k p} b_{l q} e^{a}_{n} e_{b}^{p} e_{c}^{q} f^{ea b c} g_{ea a} + 6 \beta^{m n} \partial_{m}{\beta^{k l}} b_{k p} e^{a}_{n} e^{b}_{l} e_{c}^{p} g_{ea a} g_{eb b} f^{ea eb c} - 3 \beta^{m n} \partial_{m}{\beta^{k l}} e^{a}_{n} e^{b}_{k} e^{c}_{l} f^{ea eb ec} g_{ea a} g_{eb b} g_{ec c} + 3 \beta^{m n} \beta^{k l} b_{m p} b_{k q} \partial_{n}{e^{a}_{l}} e_{b}^{p} e_{c}^{q} f^{b c ea} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} b_{k q} e^{a}_{n} e_{b}^{q} \partial_{l}{e_{c}^{p}} f^{b ea c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} \partial_{n}{b_{k q}} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{b ea c} g_{ea a} + 3 \beta^{m n} \beta^{k l} b_{m p} e^{a}_{k} \partial_{n}{e^{b}_{l}} e_{c}^{p} f^{c ea eb} g_{ea a} g_{eb b} + 3 \beta^{m n} \beta^{k l} b_{m p} b_{n q} e^{a}_{k} e_{b}^{p} \partial_{l}{e_{c}^{q}} f^{ea b c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} \partial_{k}{b_{n q}} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{ea b c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} e^{a}_{k} \partial_{l}{e^{b}_{n}} e_{c}^{p} g_{ea a} g_{eb b} f^{ea eb c} + 3 \beta^{m n} \beta^{k l} e^{a}_{m} e^{b}_{k} \partial_{n}{e^{c}_{l}} f^{ea eb ec} g_{ea a} g_{eb b} g_{ec c} + 3 \beta^{m n} \beta^{k l} b_{m p} b_{k q} \partial_{n}{e^{a}_{l}} e_{b}^{p} e_{c}^{q} f^{c b ea} g_{ea a} + 3 \beta^{m n} \beta^{k l} b_{m p} b_{n q} e^{a}_{k} e_{b}^{p} \partial_{l}{e_{c}^{q}} f^{b ea c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} \partial_{k}{b_{n q}} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{b ea c} g_{ea a} + 3 \beta^{m n} \beta^{k l} b_{m p} e^{a}_{k} \partial_{l}{e^{b}_{n}} e_{c}^{p} f^{c ea eb} g_{ea a} g_{eb b} - 3 \beta^{m n} \beta^{k l} b_{m p} b_{k q} e^{a}_{n} e_{b}^{q} \partial_{l}{e_{c}^{p}} f^{ea b c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} \partial_{n}{b_{k q}} e^{a}_{l} e_{b}^{p} e_{c}^{q} f^{ea b c} g_{ea a} - 3 \beta^{m n} \beta^{k l} b_{m p} e^{a}_{k} \partial_{n}{e^{b}_{l}} e_{c}^{p} g_{ea a} g_{eb b} f^{ea eb c} + 3 \beta^{m n} \beta^{k l} e^{a}_{m} e^{b}_{k} \partial_{n}{e^{c}_{l}} f^{ea eb ec} g_{ea b} g_{eb a} g_{ec c}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 3\, {\partial}_{m}{{\beta}^{n k}}\,  {b}_{n l} {b}_{k p} {e}_{a}\,^{m} {e}_{b}\,^{l} {e}_{c}\,^{p} {f}^{a b c} - 3\, {\partial}_{m}{{\beta}^{n k}}\,  {b}_{n l} {e}^{a}\,_{k} {e}_{b}\,^{m} {e}_{c}\,^{l} {f}^{c b ea} {g}_{ea a} + 3\, {\partial}_{m}{{\beta}^{n k}}\,  {b}_{n l} {e}^{a}\,_{k} {e}_{b}\,^{m} {e}_{c}\,^{l} {f}^{ea b c} {g}_{ea a} + 3\, {\partial}_{m}{{\beta}^{n k}}\,  {e}^{a}\,_{n} {e}^{b}\,_{k} {e}_{c}\,^{m} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} + 3\, {\beta}^{m n} {b}_{m k} {\partial}_{n}{{e}^{a}\,_{l}}\,  {e}_{b}\,^{k} {e}_{c}\,^{l} {f}^{b ea c} {g}_{ea a} + 6\, {\beta}^{m n} {e}^{a}\,_{m} {\partial}_{n}{{e}^{b}\,_{k}}\,  {e}_{c}\,^{k} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} - 3\, {\beta}^{m n} {b}_{m k} {\partial}_{n}{{b}_{l p}}\,  {e}_{a}\,^{k} {e}_{b}\,^{l} {e}_{c}\,^{p} {f}^{a b c} - 3\, {\beta}^{m n} {b}_{m k} {\partial}_{n}{{e}^{a}\,_{l}}\,  {e}_{b}\,^{k} {e}_{c}\,^{l} {f}^{b c ea} {g}_{ea a} + 3\, {\beta}^{m n} {\partial}_{m}{{b}_{k l}}\,  {e}^{a}\,_{n} {e}_{b}\,^{k} {e}_{c}\,^{l} {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{n p} {b}_{k q} {b}_{l r} {e}_{a}\,^{p} {e}_{b}\,^{q} {e}_{c}\,^{r} {f}^{a b c} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{n p} {b}_{k q} {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b c ea} {g}_{ea a} + 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{n p} {b}_{k q} {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b ea c} {g}_{ea a} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{n p} {e}^{a}\,_{k} {e}^{b}\,_{l} {e}_{c}\,^{p} {f}^{c ea eb} {g}_{ea a} {g}_{eb b} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{k p} {b}_{l q} {e}^{a}\,_{n} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{ea b c} {g}_{ea a} + 6\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {b}_{k p} {e}^{a}\,_{n} {e}^{b}\,_{l} {e}_{c}\,^{p} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} - 3\, {\beta}^{m n} {\partial}_{m}{{\beta}^{k l}}\,  {e}^{a}\,_{n} {e}^{b}\,_{k} {e}^{c}\,_{l} {f}^{ea eb ec} {g}_{ea a} {g}_{eb b} {g}_{ec c} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{k q} {\partial}_{n}{{e}^{a}\,_{l}}\,  {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b c ea} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{k q} {e}^{a}\,_{n} {e}_{b}\,^{q} {\partial}_{l}{{e}_{c}\,^{p}}\,  {f}^{b ea c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {\partial}_{n}{{b}_{k q}}\,  {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b ea c} {g}_{ea a}%
+ + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {e}^{a}\,_{k} {\partial}_{n}{{e}^{b}\,_{l}}\,  {e}_{c}\,^{p} {f}^{c ea eb} {g}_{ea a} {g}_{eb b} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{n q} {e}^{a}\,_{k} {e}_{b}\,^{p} {\partial}_{l}{{e}_{c}\,^{q}}\,  {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {\partial}_{k}{{b}_{n q}}\,  {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {e}^{a}\,_{k} {\partial}_{l}{{e}^{b}\,_{n}}\,  {e}_{c}\,^{p} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} + 3\, {\beta}^{m n} {\beta}^{k l} {e}^{a}\,_{m} {e}^{b}\,_{k} {\partial}_{n}{{e}^{c}\,_{l}}\,  {f}^{ea eb ec} {g}_{ea a} {g}_{eb b} {g}_{ec c} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{k q} {\partial}_{n}{{e}^{a}\,_{l}}\,  {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{c b ea} {g}_{ea a} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{n q} {e}^{a}\,_{k} {e}_{b}\,^{p} {\partial}_{l}{{e}_{c}\,^{q}}\,  {f}^{b ea c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {\partial}_{k}{{b}_{n q}}\,  {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{b ea c} {g}_{ea a} + 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {e}^{a}\,_{k} {\partial}_{l}{{e}^{b}\,_{n}}\,  {e}_{c}\,^{p} {f}^{c ea eb} {g}_{ea a} {g}_{eb b} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {b}_{k q} {e}^{a}\,_{n} {e}_{b}\,^{q} {\partial}_{l}{{e}_{c}\,^{p}}\,  {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {\partial}_{n}{{b}_{k q}}\,  {e}^{a}\,_{l} {e}_{b}\,^{p} {e}_{c}\,^{q} {f}^{ea b c} {g}_{ea a} - 3\, {\beta}^{m n} {\beta}^{k l} {b}_{m p} {e}^{a}\,_{k} {\partial}_{n}{{e}^{b}\,_{l}}\,  {e}_{c}\,^{p} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} + 3\, {\beta}^{m n} {\beta}^{k l} {e}^{a}\,_{m} {e}^{b}\,_{k} {\partial}_{n}{{e}^{c}\,_{l}}\,  {f}^{ea eb ec} {g}_{ea b} {g}_{eb a} {g}_{ec c};
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@substitute!!(%)(
+\beta^{m n} -> r^{i j} k_{i}^{m} k_{j}^{n},
+f^{ea eb ec} g_{ea a} g_{eb b} g_{ec c} -> fg_{a b c},
+e^{b}_{m} e_{b}^{n} -> \delta_{m}^{n},
+f^{a b ec} -> f^{ec a b},
+f^{a ec b} -> f^{ec b a},
+f^{ea b ec} -> f^{ec ea b},
+f^{b ea ec} -> f^{ea ec b},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@substitute!!(%)(
+\partial_{m}{r^{i j}} -> 0,
+k_{i}^{m} \partial_{m}{e^{a}_{k}} -> - e^{a}_{m} \partial_{k}{k_{i}^{m}},
+k_{i}^{m} \partial_{m}{e_{a}^{k}} -> e_{a}^{m} \partial_{m}{k_{i}^{k}},
+k_{i}^{m} \partial_{m}{b_{n k}} -> - b_{m k} \partial_{n}{k_{i}^{m}} - b_{n m} \partial_{k}{k_{i}^{m}},
+k_{i}^{m} \partial_{m}{\phi} -> 0,
+e^{b}_{m} e_{b}^{n} -> \delta_{m}^{n},
+r^{i j} k_{i}^{m} \partial_{m}{k_{j}^{n}} -> 1/2 * r^{i j} f_{i j}^{i1} k_{i1}^{n},
+r^{i j} f_{i j}^{i1} k_{i1}^{n} -> I^{n},
+):
+@distribute!!(%):
+@prodrule!!(%):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@canonicalise!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodrule: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@prodsort: not applicable.
+% End TeX comment
+% orig
+% 6 b_{m n} b_{k l} b_{p q} r^{i j} r^{i1 i2} k_{i}^{m} k_{j}^{r} k_{i1}^{k} \partial_{r}{k_{i2}^{p}} e_{a}^{n} e_{b}^{l} e_{c}^{q} f^{a b c} - 6 b_{m n} b_{k l} r^{i j} r^{i1 i2} k_{i}^{m} k_{j}^{p} k_{i1}^{q} \partial_{p}{k_{i2}^{k}} e^{a}_{q} e_{b}^{n} e_{c}^{l} f^{ea b c} g_{ea a} - 6 b_{m n} b_{k l} r^{i j} r^{i1 i2} k_{i}^{m} k_{j}^{p} k_{i1}^{k} \partial_{p}{k_{i2}^{q}} e^{a}_{q} e_{b}^{n} e_{c}^{l} f^{ea c b} g_{ea a} + 6 b_{m n} r^{i j} r^{i1 i2} k_{i}^{m} k_{j}^{k} k_{i1}^{l} \partial_{k}{k_{i2}^{p}} e^{a}_{l} e^{b}_{p} e_{c}^{n} g_{ea a} g_{eb b} f^{ea eb c} + 6 b_{m n} b_{k l} r^{i j} r^{i1 i2} k_{i}^{m} k_{i1}^{p} k_{i2}^{q} \partial_{p}{k_{j}^{k}} e^{a}_{q} e_{b}^{n} e_{c}^{l} f^{ea c b} g_{ea a} - 6 b_{m n} r^{i j} r^{i1 i2} k_{i}^{k} k_{j}^{l} k_{i1}^{p} \partial_{k}{k_{i2}^{m}} e^{a}_{l} e^{b}_{p} e_{c}^{n} g_{ea a} g_{eb b} f^{ea eb c} + 6 b_{m n} r^{i j} r^{i1 i2} k_{i}^{m} k_{i1}^{k} k_{i2}^{l} \partial_{k}{k_{j}^{p}} e^{a}_{l} e^{b}_{p} e_{c}^{n} g_{ea a} g_{eb b} f^{ea eb c} - 6 r^{i j} r^{i1 i2} k_{i}^{m} k_{j}^{n} k_{i1}^{k} \partial_{m}{k_{i2}^{l}} e^{a}_{n} e^{b}_{k} e^{c}_{l} fg_{a b c}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= 6\, {b}_{m n} {b}_{k l} {b}_{p q} {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{m} {k}_{j}\,^{r} {k}_{i1}\,^{k} {\partial}_{r}{{k}_{i2}\,^{p}}\,  {e}_{a}\,^{n} {e}_{b}\,^{l} {e}_{c}\,^{q} {f}^{a b c} - 6\, {b}_{m n} {b}_{k l} {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{m} {k}_{j}\,^{p} {k}_{i1}\,^{q} {\partial}_{p}{{k}_{i2}\,^{k}}\,  {e}^{a}\,_{q} {e}_{b}\,^{n} {e}_{c}\,^{l} {f}^{ea b c} {g}_{ea a} - 6\, {b}_{m n} {b}_{k l} {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{m} {k}_{j}\,^{p} {k}_{i1}\,^{k} {\partial}_{p}{{k}_{i2}\,^{q}}\,  {e}^{a}\,_{q} {e}_{b}\,^{n} {e}_{c}\,^{l} {f}^{ea c b} {g}_{ea a} + 6\, {b}_{m n} {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{m} {k}_{j}\,^{k} {k}_{i1}\,^{l} {\partial}_{k}{{k}_{i2}\,^{p}}\,  {e}^{a}\,_{l} {e}^{b}\,_{p} {e}_{c}\,^{n} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} + 6\, {b}_{m n} {b}_{k l} {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{m} {k}_{i1}\,^{p} {k}_{i2}\,^{q} {\partial}_{p}{{k}_{j}\,^{k}}\,  {e}^{a}\,_{q} {e}_{b}\,^{n} {e}_{c}\,^{l} {f}^{ea c b} {g}_{ea a} - 6\, {b}_{m n} {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{k} {k}_{j}\,^{l} {k}_{i1}\,^{p} {\partial}_{k}{{k}_{i2}\,^{m}}\,  {e}^{a}\,_{l} {e}^{b}\,_{p} {e}_{c}\,^{n} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} + 6\, {b}_{m n} {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{m} {k}_{i1}\,^{k} {k}_{i2}\,^{l} {\partial}_{k}{{k}_{j}\,^{p}}\,  {e}^{a}\,_{l} {e}^{b}\,_{p} {e}_{c}\,^{n} {g}_{ea a} {g}_{eb b} {f}^{ea eb c} - 6\, {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{m} {k}_{j}\,^{n} {k}_{i1}\,^{k} {\partial}_{m}{{k}_{i2}\,^{l}}\,  {e}^{a}\,_{n} {e}^{b}\,_{k} {e}^{c}\,_{l} {fg}_{a b c};
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@substitute!!(%)(
+b_{n k} -> 0,
+#r^{i1 i2} r^{j1 j2} -> 0,
+);
+@distribute!!(%):
+@eliminate_kr!!(%):
+@substitute!(%)(
+E_{C}^{k} E^{C}_{m} -> \delta_{m}^{k},
+I^{m n} \epsilon_{k l m n} -> I_{k l},
+):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% orig
+% (-6) r^{i j} r^{i1 i2} k_{i}^{m} k_{j}^{n} k_{i1}^{k} \partial_{m}{k_{i2}^{l}} e^{a}_{n} e^{b}_{k} e^{c}_{l} fg_{a b c}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= (-6)\, {r}^{i j} {r}^{i1 i2} {k}_{i}\,^{m} {k}_{j}\,^{n} {k}_{i1}\,^{k} {\partial}_{m}{{k}_{i2}\,^{l}}\,  {e}^{a}\,_{n} {e}^{b}\,_{k} {e}^{c}\,_{l} {fg}_{a b c};
+\end{dmath*}
+{\color[named]{Red}%
+ERROR: Expression (Z) does not exist.%
+} % error
+% Begin TeX comment
+@distribute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@substitute: not applicable.
+% End TeX comment
+% Begin TeX comment
+@eliminate\_kr: not applicable.
+% End TeX comment
+% Begin TeX comment
+@collect\_terms: not applicable.
+% End TeX comment
+% orig
+% (-6) r^{i i1} r^{i2 j} k_{i}^{k} k_{i1}^{l} k_{i2}^{m} \partial_{k}{k_{j}^{n}} e^{a}_{l} e^{b}_{m} e^{c}_{n} fg_{a b c}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F\specialcolon{}= (-6)\, {r}^{i i1} {r}^{i2 j} {k}_{i}\,^{k} {k}_{i1}\,^{l} {k}_{i2}\,^{m} {\partial}_{k}{{k}_{j}\,^{n}}\,  {e}^{a}\,_{l} {e}^{b}\,_{m} {e}^{c}\,_{n} {fg}_{a b c};
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+#The first and the second term here for F_{A B C} cancell, and the third is 0 due to r-matrix solve CYBE
+#
+#
+\end{verbatim}}
+\end{document}
