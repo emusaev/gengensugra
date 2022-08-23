@@ -1,0 +1,694 @@
+% Cadabra notebook version 1.2
+\documentclass[11pt]{article}
+\usepackage[textwidth=460pt, textheight=660pt]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{breqn}
+\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\begin{document}
+{\color[named]{Blue}\begin{verbatim}
+{A, B, C, D, E, F, G, A#, B#}::Indices(name=fullflat, position=independent):
+{A, B, C, D, E, F, G, A#, B#}::Integer(1..5):
+{M, N, K, L, P, Q, R,  S, T, U, V, M#, N#}::Indices(name=fullcurved, position=independent):
+{M, N, K, L, P, Q, R,  S, T, U, V, M#, N#}::Integer(1..5):
+{\alpha, \beta, \alpha#}::Indices(name=ten, position=independent):
+{a, b, c, d, e, f, g, a#, b#}::Indices(name=gl4flat, parent=fullflat, position=independent):
+{a, b, c, d, e, f, g, a#, b#}::Integer(1..4):
+{m, n, k, l, p, q, r, s, t, u ,v, m#, n#}::Indices(name=gl4curved, parent=fullcurved, position=independent):
+{m, n, k, l, p, q, r, s, t, u ,v, m#, n#}::Integer(1..4):
+\end{verbatim}}
+% Begin TeX comment
+Assigning list property Indices to $\{A,\; B,\; C,\; D,\; E,\; F,\; G,\; A\#,\; B\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $A$, $B$, $C$, $D$, $E$, $F$, $G$, $A\#$, $B\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{M,\; N,\; K,\; L,\; P,\; Q,\; R,\; S,\; T,\; U,\; V,\; M\#,\; N\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $M$, $N$, $K$, $L$, $P$, $Q$, $R$, $S$, $T$, $U$, $V$, $M\#$, $N\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{\alpha,\; \beta,\; \alpha\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{a,\; b,\; c,\; d,\; e,\; f,\; g,\; a\#,\; b\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $a$, $b$, $c$, $d$, $e$, $f$, $g$, $a\#$, $b\#$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning list property Indices to $\{m,\; n,\; k,\; l,\; p,\; q,\; r,\; s,\; t,\; u,\; v,\; m\#,\; n\#\}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Integer to $m$, $n$, $k$, $l$, $p$, $q$, $r$, $s$, $t$, $u$, $v$, $m\#$, $n\#$.
+\\
+% End TeX comment
+{\color[named]{Blue}\begin{verbatim}
+\partial{#}::PartialDerivative:
+D{#}::Derivative:
+\delta{#}::KroneckerDelta:
+\epsilon{#}::EpsilonTensor(delta=\delta):
+
+T^{\alpha}_{A B}::TableauSymmetry( shape={1,1}, indices={1,2} ):
+T^{\alpha}_{M N}::TableauSymmetry( shape={1,1}, indices={1,2} ):
+A^{A B}::AntiSymmetric:
+T^{A B}::AntiSymmetric:
+A^{M N}::AntiSymmetric:
+T^{M N}::AntiSymmetric:
+
+A^{m n k}::AntiSymmetric:
+A^{a b c}::AntiSymmetric:
+A^{A B C}::AntiSymmetric:
+
+
+X^{M N K}::TableauSymmetry(shape={1,1}, indices={0,1}):
+
+d_{M N A}::TableauSymmetry( shape={1,1}, indices={0,1} ):
+
+A^{a b}::AntiSymmetric:
+A_{a b}::AntiSymmetric:
+T^{a b}::AntiSymmetric:
+T_{a b}::AntiSymmetric:
+I^{a b}::AntiSymmetric:
+I_{a b}::AntiSymmetric:
+S^{a b}::Symmetric:
+
+A^{m n}::AntiSymmetric:
+A_{m n}::AntiSymmetric:
+T^{m n}::AntiSymmetric:
+T_{m n}::AntiSymmetric:
+I^{m n}::AntiSymmetric:
+S^{m n}::Symmetric:
+I_{m n}::AntiSymmetric:
+
+I_{M N}::AntiSymmetric:
+
+F_{A B C}^{D}::TableauSymmetry(shape={1,1}, indices={0,1}):
+X_{A B C}^{D}::TableauSymmetry(shape={1,1,1}, indices={0,1,2}):
+X_{M N K}^{L}::TableauSymmetry(shape={1,1,1}, indices={0,1,2}):
+X_{m n k}^{l}::TableauSymmetry(shape={1,1,1}, indices={0,1,2}):
+f_{a b}^{c}::TableauSymmetry(shape={1,1}, indices={0,1}):
+s_{a b}^{c}::TableauSymmetry(shape={2}, indices={0,1} ):
+\omega_{a b c}::TableauSymmetry( shape={1,1}, indices={1,2} ):
+
+\Gamma_{m n}^{k}::TableauSymmetry(shape={2}, indices={0,1}):
+\omega_{m b c}::TableauSymmetry( shape={1,1}, indices={1,2} ):
+\omega_{m n k}::TableauSymmetry( shape={1,1}, indices={1,2} ):
+
+D_{m n}^{c}::TableauSymmetry(shape={1,1}, indices={0,1}):
+des_{m n}^{c}::TableauSymmetry(shape={2}, indices={0,1} ):
+
+da_{a b}::AntiSymmetric:
+ds_{a b}::Symmetric:
+
+g_{a b}::Symmetric:
+g^{a b}::Symmetric:
+
+\rho^{a b c}::AntiSymmetric:
+
+g_{m n}::Symmetric:
+g^{m n}::Symmetric:
+
+\Omega^{m n k}::AntiSymmetric:
+
+\partial{#}::WeightInherit(label=all, type=Additive):
+
+(f_{a}, f_{a b}^{c}, \phi, Ef, d_{a}, I^{a b}, I^{m n}, I_{m n}, e_{m}^{a}, e_{a}^{m}, e, 
+E_{M}^{A}, E_{A}^{M}, E_{A}^{m}, E_{A}^{5},X_{M N K}^{L}, X_{A B C}^{D}, J^{m n},J^{a b}, 
+W_{m}, \Omega^{m n k},W^{M}_{N}, k_{a}^{m})::Depends(\partial, D):
+X_{A B C}^{D}::Weight(label=X, value = 1):
+
+W^{M}_{N}::Weight(label=W, value = 1):
+\end{verbatim}}
+% Begin TeX comment
+Assigning property PartialDerivative to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Derivative to $D{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property KroneckerDelta to $\delta(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property EpsilonTensor to $\epsilon(\#)$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${T}^{\alpha}\,_{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${T}^{\alpha}\,_{M N}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${T}^{A B}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}^{M N}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${T}^{M N}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}^{m n k}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}^{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}^{A B C}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${X}^{M N K}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${d}_{M N A}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}^{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}_{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${T}^{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${T}_{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${I}^{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${I}_{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${S}^{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}^{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${A}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${T}^{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${T}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${I}^{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${S}^{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${I}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${I}_{M N}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${F}_{A B C}\,^{D\, }$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${X}_{A B C}\,^{D\, }$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${X}_{M N K}\,^{L}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${X}_{m n k}\,^{l}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${f}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${s}_{a b}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${\omega}_{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${\Gamma}_{m n}\,^{k}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${\omega}_{m b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${\omega}_{m n k}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${D}_{m n}\,^{c}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property TableauSymmetry to ${des}_{m n}\,^{c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${da}_{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${ds}_{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${g}_{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${g}^{a b}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${\rho}^{a b c}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${g}_{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Symmetric to ${g}^{m n}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property AntiSymmetric to ${\Omega}^{m n k}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property WeightInherit to $\partial{\#}\, $.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Depends to ${f}_{a}$, ${f}_{a b}\,^{c}$, $\phi$, $Ef$, ${d}_{a}$, ${I}^{a b}$, ${I}^{m n}$, ${I}_{m n}$, ${e}_{m}\,^{a}$, ${e}_{a}\,^{m}$, $e$, ${E}_{M}\,^{A}$, ${E}_{A}\,^{M}$, ${E}_{A}\,^{m}$, ${E}_{A}\,^{5}$, ${X}_{M N K}\,^{L}$, ${X}_{A B C}\,^{D\, }$, ${J}^{m n}$, ${J}^{a b}$, ${W}_{m}$, ${\Omega}^{m n k}$, ${W}^{M}\,_{N}$, ${k}_{a}\,^{m}$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Weight to ${X}_{A B C}\,^{D\, }$.
+\\
+% End TeX comment
+% Begin TeX comment
+Assigning property Weight to ${W}^{M}\,_{N}$.
+\\
+% End TeX comment
+{\color[named]{Blue}\begin{verbatim}
+BI := {
+Z_{D F A B C}^{E} -> 
+     \frac{1}{2} T^{\alpha}_{A B}\partial_{\alpha}{F_{D F C}^{E}} 
++ \frac{1}{2} T^{\alpha}_{B C}\partial_{\alpha}{F_{D F A}^{E}} 
+- \frac{1}{2} \delta_{A}^{E} T^{\alpha}_{C G}\partial_{\alpha}{F_{D F B}^{G}}
+- \frac{1}{4} \delta_{C}^{E} T^{\alpha}_{B G}\partial_{\alpha}{F_{D F A}^{G}} 
++ \frac{1}{4} \delta_{C}^{E} T^{\alpha}_{A G}\partial_{\alpha}{F_{D F B}^{G}} 
++ \frac{1}{2} \delta_{B}^{E} T^{\alpha}_{C G}\partial_{\alpha}{F_{D F A}^{G}} 
+ - \frac{1}{2} T^{\alpha}_{A C}\partial_{\alpha}{F_{D F B}^{E}} 
+- F_{B G C}^{E} F_{D F A}^{G} + F_{A G C}^{E} F_{D F B}^{G}+ F_{A B G}^{E} F_{D F C}^{G} 
+- F_{A B C}^{G} F_{D F G}^{E} - \frac{1}{2} T^{\alpha}_{D F}\partial_{\alpha}{F_{A B C}^{E}}
+};
+
+F2dE := {
+F_{A B C}^{D} -> \frac{1}{2} E_{N}^{D} T^{\alpha}_{A B}\partial_{\alpha}{E_{C}^{N}}
++\frac{1}{2} E_{N}^{D} T^{\alpha}_{C A}\partial_{\alpha}{E_{B}^{N}}
++\frac{1}{2} E_{N}^{D} T^{\alpha}_{B C}\partial_{\alpha}{E_{A}^{N}}
+ - \frac{1}{2}E_{C}^{M} T^{\alpha}_{M N} \partial_{\alpha}{E_{B}^{N}} \delta_{A}^{D}
+ + \frac{1}{2}E_{C}^{M} T^{\alpha}_{M N} \partial_{\alpha}{E_{A}^{N}} \delta_{B}^{D}
+-  \frac{1}{4} E_{B}^{M} T^{\alpha}_{M N} \partial_{\alpha}{E_{A}^{N}} \delta_{C}^{D}
++ \frac{1}{4} E_{A}^{M} T^{\alpha}_{M N} \partial_{\alpha}{E_{B}^{N}} \delta_{C}^{D}
+};
+
+TA := {
+T^{a 5} -> - T^{5 a},
+A^{a 5} -> - A^{5 a},
+T^{m 5} -> - T^{5 m},
+A^{m 5} -> - A^{5 m},
+T^{5 5} -> 0,
+A^{5 5} -> 0,
+T_{a 5} -> - T_{5 a},
+A_{a 5} -> - A_{5 a},
+T_{m 5} -> - T_{5 m},
+A_{m 5} -> - A_{5 m},
+T_{5 5} -> 0,
+A_{5 5} -> 0,
+T^{\alpha}_{ 5 5} -> 0,
+T^{\alpha}_{m n} -> 0,
+T^{\alpha}_{m 5} -> - T^{\alpha}_{5 m},
+T^{\alpha}_{5 m}\partial_{\alpha}{A??} -> \partial_{m}{A??}
+};
+
+Fsym := {
+F_{5 5 A??}^{B??} -> 0,
+F_{a 5 A??}^{B??} -> -F_{5 a A??}^{B??}
+};
+
+E2e := {
+E_{m}^{a} -> Ef**{1/2}e**{-1/2}e_{m}^{a},
+E_{m}^{5} -> 0,
+E_{5}^{a} -> 0,
+E_{5}^{5} -> Ef**{1/2}e**{1/2},
+U_{a}^{m} ->Ef**{-1/2}e**{1/2}e_{a}^{m},
+U_{a}^{5} -> 0,
+U_{5}^{m} -> 0,
+U_{5}^{5} -> Ef**{-1/2}e**{-1/2}
+};
+
+ee := {
+e_{m}^{a}e_{a}^{n} -> \delta_{m}^{n},
+e_{a}^{m}e_{m}^{b} -> \delta_{a}^{b}
+};
+
+EE := {
+E_{M}^{A}E_{A}^{N} -> \delta_{M}^{N},
+E_{A}^{M}e_{M}^{B} -> \delta_{A}^{B}
+};
+
+ede2phi := {
+ e_{a}^{m}e_{b}^{n} \partial_{m}{e_{n}^{c}} -> -\phi_{a b}^{c}
+};
+
+F2f := {
+F_{5 5 A??}^{B??} -> 0,
+F_{a 5 A??}^{B??} -> m F_{5 a A??}^{B??},
+F_{a b c}^{A??} -> 0,
+F_{5 c a}^{b} -> \frac{1}{2}Ef**{-1}  f_{c a}^{b} - \frac{1}{4}Ef**{-1}  f_{c}\delta_{a}^{b}
+-\frac{1}{2}Ef**{-1}  d_{c}\delta_{a}^{b}+\frac{1}{2}Ef**{-1}  d_{a}\delta_{c}^{b},
+F_{5 a 5}^{5} -> A Ef**{-1} f_{a},
+F_{b c 5}^{a} -> \frac{1}{2}Ef**{-1}  f_{b c}^{a} +\frac{1}{2}Ef**{-1}  f_{c}\delta_{b}^{a}
+ -\frac{1}{2}Ef**{-1}  f_{b}\delta_{c}^{a} 
++\frac{1}{2}Ef**{-1}  d_{c}\delta_{b}^{a}
+-\frac{1}{2}Ef**{-1}  d_{b}\delta_{c}^{a},
+F_{a b 5}^{5} -> 0,
+F_{5 a 5}^{b} -> 0,
+F_{5 a b}^{5} -> 0,
+};
+
+X2I := {
+X_{5 A?? B??}^{C??} -> 0,
+X_{A?? 5 B??}^{C??} -> 0,
+X_{A?? B?? 5}^{C??} -> 0,
+X_{A?? B?? C??}^{5} -> 0,
+X_{a b c}^{d} -> \epsilon_{a b c e}Ef**{-1}J^{d e},
+X_{m n k}^{l} -> \epsilon_{m n k p}J^{p l}
+};
+
+gg := {
+g_{a c}g^{c b} -> \delta_{a}^{b},
+g_{a c}g^{b c} -> \delta_{a}^{b},
+g_{c a}g^{c b} -> \delta_{a}^{b},
+g_{c a}g^{b c} -> \delta_{a}^{b},
+g_{m k}g^{n k} -> \delta_{m}^{n},
+g_{m k}g^{k n} -> \delta_{m}^{n},
+g_{k m}g^{n k} -> \delta_{m}^{n},
+g_{k m}g^{k n} -> \delta_{m}^{n},
+};
+
+DI := {
+\partial_{c}{I^{a b}} -> (D_{c}{I^{a b}} + 1/2 I^{b d} f_{c d}^{a} - 1/2 I^{a d} f_{c d}^{b} - 1/2 I^{b d} f_{c}^{a}_{d} - 1/2 I^{b d} f_{d}^{a}_{c} + 1/2 I^{a d} f_{c}^{b}_{d} + 1/2 I^{a d} f_{d}^{b}_{c})
+};
+
+Gamma2e := {
+\Gamma_{m n}^{k} -> \frac{1}{2}g^{k l}*(\partial_{n}{g_{l m}}+\partial_{m}{g_{l n}}-\partial_{l}{g_{m n}}),
+g_{m n} -> e_{m}^{a}e_{n}^{b}g_{a b},
+g^{m n} -> e_{a}^{m}e_{b}^{n}g^{a b},
+};
+\end{verbatim}}
+% orig
+% Z_{D F A B C}^{E} -> (1/2 T^{\alpha}_{A B} \partial_{\alpha}{F_{D F C}^{E}} + 1/2 T^{\alpha}_{B C} \partial_{\alpha}{F_{D F A}^{E}} - 1/2 \delta_{A}^{E} T^{\alpha}_{C G} \partial_{\alpha}{F_{D F B}^{G}} - 1/4 \delta_{C}^{E} T^{\alpha}_{B G} \partial_{\alpha}{F_{D F A}^{G}} + 1/4 \delta_{C}^{E} T^{\alpha}_{A G} \partial_{\alpha}{F_{D F B}^{G}} + 1/2 \delta_{B}^{E} T^{\alpha}_{C G} \partial_{\alpha}{F_{D F A}^{G}} - 1/2 T^{\alpha}_{A C} \partial_{\alpha}{F_{D F B}^{E}} - F_{B G C}^{E} F_{D F A}^{G} + F_{A G C}^{E} F_{D F B}^{G} + F_{A B G}^{E} F_{D F C}^{G} - F_{A B C}^{G} F_{D F G}^{E} - 1/2 T^{\alpha}_{D F} \partial_{\alpha}{F_{A B C}^{E}})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+BI\specialcolon{}= {Z}_{D\,  F A B C}\,^{E} \rightarrow (\frac{1}{2}\, {T}^{\alpha}\,_{A B} {\partial}_{\alpha}{{F}_{D\,  F C}\,^{E}}\,  + \frac{1}{2}\, {T}^{\alpha}\,_{B C} {\partial}_{\alpha}{{F}_{D\,  F A}\,^{E}}\,  - \frac{1}{2}\, {\delta}_{A}\,^{E} {T}^{\alpha}\,_{C G} {\partial}_{\alpha}{{F}_{D\,  F B}\,^{G}}\,  - \frac{1}{4}\, {\delta}_{C}\,^{E} {T}^{\alpha}\,_{B G} {\partial}_{\alpha}{{F}_{D\,  F A}\,^{G}}\,  + \frac{1}{4}\, {\delta}_{C}\,^{E} {T}^{\alpha}\,_{A G} {\partial}_{\alpha}{{F}_{D\,  F B}\,^{G}}\,  + \frac{1}{2}\, {\delta}_{B}\,^{E} {T}^{\alpha}\,_{C G} {\partial}_{\alpha}{{F}_{D\,  F A}\,^{G}}\,  - \frac{1}{2}\, {T}^{\alpha}\,_{A C} {\partial}_{\alpha}{{F}_{D\,  F B}\,^{E}}\,  - {F}_{B G C}\,^{E} {F}_{D\,  F A}\,^{G} + {F}_{A G C}\,^{E} {F}_{D\,  F B}\,^{G} + {F}_{A B G}\,^{E} {F}_{D\,  F C}\,^{G} - {F}_{A B C}\,^{G} {F}_{D\,  F G}\,^{E} - \frac{1}{2}\, {T}^{\alpha}\,_{D\,  F} {\partial}_{\alpha}{{F}_{A B C}\,^{E}}\, );
+\end{dmath*}
+% orig
+% F_{A B C}^{D} -> (1/2 E_{N}^{D} T^{\alpha}_{A B} \partial_{\alpha}{E_{C}^{N}} + 1/2 E_{N}^{D} T^{\alpha}_{C A} \partial_{\alpha}{E_{B}^{N}} + 1/2 E_{N}^{D} T^{\alpha}_{B C} \partial_{\alpha}{E_{A}^{N}} - 1/2 E_{C}^{M} T^{\alpha}_{M N} \partial_{\alpha}{E_{B}^{N}} \delta_{A}^{D} + 1/2 E_{C}^{M} T^{\alpha}_{M N} \partial_{\alpha}{E_{A}^{N}} \delta_{B}^{D} - 1/4 E_{B}^{M} T^{\alpha}_{M N} \partial_{\alpha}{E_{A}^{N}} \delta_{C}^{D} + 1/4 E_{A}^{M} T^{\alpha}_{M N} \partial_{\alpha}{E_{B}^{N}} \delta_{C}^{D})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F2dE\specialcolon{}= {F}_{A B C}\,^{D\, } \rightarrow (\frac{1}{2}\, {E}_{N}\,^{D\, } {T}^{\alpha}\,_{A B} {\partial}_{\alpha}{{E}_{C}\,^{N}}\,  + \frac{1}{2}\, {E}_{N}\,^{D\, } {T}^{\alpha}\,_{C A} {\partial}_{\alpha}{{E}_{B}\,^{N}}\,  + \frac{1}{2}\, {E}_{N}\,^{D\, } {T}^{\alpha}\,_{B C} {\partial}_{\alpha}{{E}_{A}\,^{N}}\,  - \frac{1}{2}\, {E}_{C}\,^{M} {T}^{\alpha}\,_{M N} {\partial}_{\alpha}{{E}_{B}\,^{N}}\,  {\delta}_{A}\,^{D\, } + \frac{1}{2}\, {E}_{C}\,^{M} {T}^{\alpha}\,_{M N} {\partial}_{\alpha}{{E}_{A}\,^{N}}\,  {\delta}_{B}\,^{D\, } - \frac{1}{4}\, {E}_{B}\,^{M} {T}^{\alpha}\,_{M N} {\partial}_{\alpha}{{E}_{A}\,^{N}}\,  {\delta}_{C}\,^{D\, } + \frac{1}{4}\, {E}_{A}\,^{M} {T}^{\alpha}\,_{M N} {\partial}_{\alpha}{{E}_{B}\,^{N}}\,  {\delta}_{C}\,^{D\, });
+\end{dmath*}
+% orig
+% \{T^{a 5} -> -T^{5 a}, A^{a 5} -> -A^{5 a}, T^{m 5} -> -T^{5 m}, A^{m 5} -> -A^{5 m}, T^{5 5} -> 0, A^{5 5} -> 0, T_{a 5} -> -T_{5 a}, A_{a 5} -> -A_{5 a}, T_{m 5} -> -T_{5 m}, A_{m 5} -> -A_{5 m}, T_{5 5} -> 0, A_{5 5} -> 0, T^{\alpha}_{5 5} -> 0, T^{\alpha}_{m n} -> 0, T^{\alpha}_{m 5} -> -T^{\alpha}_{5 m}, T^{\alpha}_{5 m} \partial_{\alpha}{A??} -> \partial_{m}{A??}\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+TA\specialcolon{}= \{{T}^{a 5} \rightarrow -{T}^{5 a},\; {A}^{a 5} \rightarrow -{A}^{5 a},\; {T}^{m 5} \rightarrow -{T}^{5 m},\; {A}^{m 5} \rightarrow -{A}^{5 m},\; {T}^{5 5} \rightarrow 0,\; {A}^{5 5} \rightarrow 0,\; {T}_{a 5} \rightarrow -{T}_{5 a},\; {A}_{a 5} \rightarrow -{A}_{5 a},\; {T}_{m 5} \rightarrow -{T}_{5 m},\; {A}_{m 5} \rightarrow -{A}_{5 m},\; {T}_{5 5} \rightarrow 0,\; {A}_{5 5} \rightarrow 0,\; {T}^{\alpha}\,_{5 5} \rightarrow 0,\; {T}^{\alpha}\,_{m n} \rightarrow 0,\; {T}^{\alpha}\,_{m 5} \rightarrow -{T}^{\alpha}\,_{5 m},\; {T}^{\alpha}\,_{5 m} {\partial}_{\alpha}{A??}\,  \rightarrow {\partial}_{m}{A??}\, \};
+\end{dmath*}
+% orig
+% \{F_{5 5 A??}^{B??} -> 0, F_{a 5 A??}^{B??} -> -F_{5 a A??}^{B??}\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Fsym\specialcolon{}= \{{F}_{5 5 A??}\,^{B??} \rightarrow 0,\; {F}_{a 5 A??}\,^{B??} \rightarrow -{F}_{5 a A??}\,^{B??}\};
+\end{dmath*}
+% orig
+% \{E_{m}^{a} -> Ef**{1/2} e**{(-1/2)} e_{m}^{a}, E_{m}^{5} -> 0, E_{5}^{a} -> 0, E_{5}^{5} -> Ef**{1/2} e**{1/2}, U_{a}^{m} -> Ef**{(-1/2)} e**{1/2} e_{a}^{m}, U_{a}^{5} -> 0, U_{5}^{m} -> 0, U_{5}^{5} -> Ef**{(-1/2)} e**{(-1/2)}\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+E2e\specialcolon{}= \{{E}_{m}\,^{a} \rightarrow Ef{}^{\frac{1}{2}} e{}^{(\frac{-1}{2})} {e}_{m}\,^{a},\; {E}_{m}\,^{5} \rightarrow 0,\; {E}_{5}\,^{a} \rightarrow 0,\; {E}_{5}\,^{5} \rightarrow Ef{}^{\frac{1}{2}} e{}^{\frac{1}{2}},\; {U}_{a}\,^{m} \rightarrow Ef{}^{(\frac{-1}{2})} e{}^{\frac{1}{2}} {e}_{a}\,^{m},\; {U}_{a}\,^{5} \rightarrow 0,\; {U}_{5}\,^{m} \rightarrow 0,\; {U}_{5}\,^{5} \rightarrow Ef{}^{(\frac{-1}{2})} e{}^{(\frac{-1}{2})}\};
+\end{dmath*}
+% orig
+% \{e_{m}^{a} e_{a}^{n} -> \delta_{m}^{n}, e_{a}^{m} e_{m}^{b} -> \delta_{a}^{b}\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+ee\specialcolon{}= \{{e}_{m}\,^{a} {e}_{a}\,^{n} \rightarrow {\delta}_{m}\,^{n},\; {e}_{a}\,^{m} {e}_{m}\,^{b} \rightarrow {\delta}_{a}\,^{b}\};
+\end{dmath*}
+% orig
+% \{E_{M}^{A} E_{A}^{N} -> \delta_{M}^{N}, E_{A}^{M} e_{M}^{B} -> \delta_{A}^{B}\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+EE\specialcolon{}= \{{E}_{M}\,^{A} {E}_{A}\,^{N} \rightarrow {\delta}_{M}\,^{N},\; {E}_{A}\,^{M} {e}_{M}\,^{B} \rightarrow {\delta}_{A}\,^{B}\};
+\end{dmath*}
+% orig
+% e_{a}^{m} e_{b}^{n} \partial_{m}{e_{n}^{c}} -> -\phi_{a b}^{c}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+ede2phi\specialcolon{}= {e}_{a}\,^{m} {e}_{b}\,^{n} {\partial}_{m}{{e}_{n}\,^{c}}\,  \rightarrow -{\phi}_{a b}\,^{c};
+\end{dmath*}
+% orig
+% \{F_{5 5 A??}^{B??} -> 0, F_{a 5 A??}^{B??} -> m F_{5 a A??}^{B??}, F_{a b c}^{A??} -> 0, F_{5 c a}^{b} -> (1/2 Ef**{-1} f_{c a}^{b} - 1/4 Ef**{-1} f_{c} \delta_{a}^{b} - 1/2 Ef**{-1} d_{c} \delta_{a}^{b} + 1/2 Ef**{-1} d_{a} \delta_{c}^{b}), F_{5 a 5}^{5} -> A Ef**{-1} f_{a}, F_{b c 5}^{a} -> (1/2 Ef**{-1} f_{b c}^{a} + 1/2 Ef**{-1} f_{c} \delta_{b}^{a} - 1/2 Ef**{-1} f_{b} \delta_{c}^{a} + 1/2 Ef**{-1} d_{c} \delta_{b}^{a} - 1/2 Ef**{-1} d_{b} \delta_{c}^{a}), F_{a b 5}^{5} -> 0, F_{5 a 5}^{b} -> 0, F_{5 a b}^{5} -> 0\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+F2f\specialcolon{}= \{{F}_{5 5 A??}\,^{B??} \rightarrow 0,\; {F}_{a 5 A??}\,^{B??} \rightarrow m {F}_{5 a A??}\,^{B??},\; {F}_{a b c}\,^{A??} \rightarrow 0,\; {F}_{5 c a}\,^{b} \rightarrow (\frac{1}{2}\, Ef{}^{-1} {f}_{c a}\,^{b} - \frac{1}{4}\, Ef{}^{-1} {f}_{c} {\delta}_{a}\,^{b} - \frac{1}{2}\, Ef{}^{-1} {d}_{c} {\delta}_{a}\,^{b} + \frac{1}{2}\, Ef{}^{-1} {d}_{a} {\delta}_{c}\,^{b}),\; {F}_{5 a 5}\,^{5} \rightarrow A Ef{}^{-1} {f}_{a},\; {F}_{b c 5}\,^{a} \rightarrow (\frac{1}{2}\, Ef{}^{-1} {f}_{b c}\,^{a} + \frac{1}{2}\, Ef{}^{-1} {f}_{c} {\delta}_{b}\,^{a} - \frac{1}{2}\, Ef{}^{-1} {f}_{b} {\delta}_{c}\,^{a} + \frac{1}{2}\, Ef{}^{-1} {d}_{c} {\delta}_{b}\,^{a} - \frac{1}{2}\, Ef{}^{-1} {d}_{b} {\delta}_{c}\,^{a}),\; {F}_{a b 5}\,^{5} \rightarrow 0,\; {F}_{5 a 5}\,^{b} \rightarrow 0,\; {F}_{5 a b}\,^{5} \rightarrow 0\};
+\end{dmath*}
+% orig
+% \{X_{5 A?? B??}^{C??} -> 0, X_{A?? 5 B??}^{C??} -> 0, X_{A?? B?? 5}^{C??} -> 0, X_{A?? B?? C??}^{5} -> 0, X_{a b c}^{d} -> \epsilon_{a b c e} Ef**{-1} J^{d e}, X_{m n k}^{l} -> \epsilon_{m n k p} J^{p l}\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+X2I\specialcolon{}= \{{X}_{5 A?? B??}\,^{C??} \rightarrow 0,\; {X}_{A?? 5 B??}\,^{C??} \rightarrow 0,\; {X}_{A?? B?? 5}\,^{C??} \rightarrow 0,\; {X}_{A?? B?? C??}\,^{5} \rightarrow 0,\; {X}_{a b c}\,^{d} \rightarrow {\epsilon}_{a b c e} Ef{}^{-1} {J}^{d e},\; {X}_{m n k}\,^{l} \rightarrow {\epsilon}_{m n k p} {J}^{p l}\};
+\end{dmath*}
+% orig
+% \{g_{a c} g^{c b} -> \delta_{a}^{b}, g_{a c} g^{b c} -> \delta_{a}^{b}, g_{c a} g^{c b} -> \delta_{a}^{b}, g_{c a} g^{b c} -> \delta_{a}^{b}, g_{m k} g^{n k} -> \delta_{m}^{n}, g_{m k} g^{k n} -> \delta_{m}^{n}, g_{k m} g^{n k} -> \delta_{m}^{n}, g_{k m} g^{k n} -> \delta_{m}^{n}\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+gg\specialcolon{}= \{{g}_{a c} {g}^{c b} \rightarrow {\delta}_{a}\,^{b},\; {g}_{a c} {g}^{b c} \rightarrow {\delta}_{a}\,^{b},\; {g}_{c a} {g}^{c b} \rightarrow {\delta}_{a}\,^{b},\; {g}_{c a} {g}^{b c} \rightarrow {\delta}_{a}\,^{b},\; {g}_{m k} {g}^{n k} \rightarrow {\delta}_{m}\,^{n},\; {g}_{m k} {g}^{k n} \rightarrow {\delta}_{m}\,^{n},\; {g}_{k m} {g}^{n k} \rightarrow {\delta}_{m}\,^{n},\; {g}_{k m} {g}^{k n} \rightarrow {\delta}_{m}\,^{n}\};
+\end{dmath*}
+% orig
+% \partial_{c}{I^{a b}} -> (D_{c}{I^{a b}} + 1/2 I^{b d} f_{c d}^{a} - 1/2 I^{a d} f_{c d}^{b} - 1/2 I^{b d} f_{c}^{a}_{d} - 1/2 I^{b d} f_{d}^{a}_{c} + 1/2 I^{a d} f_{c}^{b}_{d} + 1/2 I^{a d} f_{d}^{b}_{c})
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+DI\specialcolon{}= {\partial}_{c}{{I}^{a b}}\,  \rightarrow ({D}_{c}{{I}^{a b}}\,  + \frac{1}{2}\, {I}^{b d} {f}_{c d}\,^{a} - \frac{1}{2}\, {I}^{a d} {f}_{c d}\,^{b} - \frac{1}{2}\, {I}^{b d} {f}_{c}\,^{a}\,_{d} - \frac{1}{2}\, {I}^{b d} {f}_{d}\,^{a}\,_{c} + \frac{1}{2}\, {I}^{a d} {f}_{c}\,^{b}\,_{d} + \frac{1}{2}\, {I}^{a d} {f}_{d}\,^{b}\,_{c});
+\end{dmath*}
+% orig
+% \{\Gamma_{m n}^{k} -> 1/2 g^{k l} (\partial_{n}{g_{l m}} + \partial_{m}{g_{l n}} - \partial_{l}{g_{m n}}), g_{m n} -> e_{m}^{a} e_{n}^{b} g_{a b}, g^{m n} -> e_{a}^{m} e_{b}^{n} g^{a b}\}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+Gamma2e\specialcolon{}= \{{\Gamma}_{m n}\,^{k} \rightarrow \frac{1}{2}\, {g}^{k l} ({\partial}_{n}{{g}_{l m}}\,  + {\partial}_{m}{{g}_{l n}}\,  - {\partial}_{l}{{g}_{m n}}\, ),\; {g}_{m n} \rightarrow {e}_{m}\,^{a} {e}_{n}\,^{b} {g}_{a b},\; {g}^{m n} \rightarrow {e}_{a}\,^{m} {e}_{b}\,^{n} {g}^{a b}\};
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+A^{A B}T^{C}U_{D}F_{A B C}^{D};
+@substitute!!(%)(@(F2dE)):
+@substitute!!(%)(T^{\alpha}_{A B} ->T^{\alpha}_{M N} E_{A}^{M}E_{B}^{N}):
+@substitute!!(%)(
+E_{A}^{M} -> U_{A}^{M},
+E_{M}^{A} -> U_{M}^{A}
+):
+@substitute!!(%)(
+U_{A}^{M} -> (\delta_{N}^{M} + W^{M}_{N}) E_{A}^{N},
+U_{M}^{A} -> (\delta_{M}^{N} - W^{N}_{M}) E_{N}^{A}
+):
+@distribute!!(%):
+@prodrule!!(%):
+@distribute!!(%):
+@unwrap!!(%):
+@eliminate_kr!!(%):
+@keep_weight!(%){W}{1}:
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%):
+@split_index!!(%)(M, m, 5):
+@substitute!!(%)(@(TA)):
+@substitute!!(%)(
+W^{m}_{n} -> 0,
+W^{m}_{5} -> 0,
+W^{5}_{m} -> W_{m},
+W^{5}_{5} -> 0
+):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%):
+@factor_out!!(%){A^{A B}, T^{A}, U_{A}}:
+@rename_dummies!(%):
+@factor_out!!(%){A^{A B}, T^{A}, U_{A}}:
+@sumflatten!!(%):
+@substitute!!(%)(W_{m} -> \epsilon_{m n k l}\Omega^{n k l}):
+@prodrule!!(%):
+@unwrap!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@distribute!!(%):
+@factor_out!!(%){A^{A B}, T^{A}, U_{A}, \Omega^{m n k}, E_{A}^{m}, E_{5}^{A}, E_{A}^{5}, E_{m}^{A}}:
+@rename_dummies!(%):
+@substitute!!(%)(
+\epsilon_{p n k l}\partial_{m}{A??}-\epsilon_{m n k l}\partial_{p}{A??} -> 3 \epsilon_{p m n k}\partial_{l}{A??},
+-\epsilon_{l m n k}\partial_{p}{A??}+\epsilon_{p m n k}\partial_{l}{A??} -> -3 \epsilon_{l p m n}\partial_{k}{A??},
+-\frac{1}{2}\epsilon_{p n k l}\partial_{m}{A??}+\frac{1}{2}\epsilon_{m n k l}\partial_{p}{A??} 
+-> -\frac{3}{2} \epsilon_{p m n k}\partial_{l}{A??}
+):
+@(%)  - \frac{5}{2}  A^{A B}T^{C}U_{D}\Omega^{m n k}E_{A}^{l}E_{B}^{p}E_{5}^{D}
+\epsilon_{m1 m2 m3 m4}\partial_{m5}{E_{C}^{5}}\delta_{l}^{m1}_{m}^{m2}_{n}^{m3}_{k}^{m4}_{p}^{m5}
+- \frac{5}{2}  A^{A B}T^{C}U_{D}\Omega^{k l m}E_{A}^{n}E_{B}^{p}E_{q}^{D}
+\epsilon_{m1 m2 m3 m4}\partial_{m5}{E_{C}^{q}}\delta_{l}^{m1}_{m}^{m2}_{n}^{m3}_{k}^{m4}_{p}^{m5}
+:
+@breakgendelta!!(%):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%);
+F2X := @(%):
+\end{verbatim}}
+% orig
+% A^{A B} T^{C} U_{D} F_{A B C}^{D}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+77\specialcolon{}= {A}^{A B} {T}^{C} {U}_{D\, } {F}_{A B C}\,^{D\, };
+\end{dmath*}
+% orig
+% A^{A B} T^{C} U_{A} E_{B}^{k} E_{C}^{l} \epsilon_{k m n p} \partial_{l}{\Omega^{m n p}} + 1/2 A^{A B} T^{C} U_{C} E_{A}^{k} E_{B}^{l} \epsilon_{k m n p} \partial_{l}{\Omega^{m n p}} - 3 A^{A B} T^{C} U_{A} \Omega^{k l m} E_{C}^{n} \epsilon_{k l n p} \partial_{m}{E_{B}^{p}} + 3/2 A^{A B} T^{C} U_{C} \Omega^{k l m} E_{A}^{n} \epsilon_{k l n p} \partial_{m}{E_{B}^{p}} - A^{A B} T^{C} U_{D} E_{A}^{k} E_{B}^{l} E_{5}^{D} E_{C}^{5} \epsilon_{k m n p} \partial_{l}{\Omega^{m n p}} - A^{A B} T^{C} U_{D} E_{A}^{k} E_{C}^{l} E_{5}^{D} E_{B}^{5} \epsilon_{l m n p} \partial_{k}{\Omega^{m n p}} + A^{A B} T^{C} U_{D} E_{A}^{k} E_{C}^{l} E_{5}^{D} E_{B}^{5} \epsilon_{k m n p} \partial_{l}{\Omega^{m n p}} - 3 A^{A B} T^{C} U_{D} \Omega^{k l m} E_{A}^{n} E_{C}^{p} E_{5}^{D} \epsilon_{k l n p} \partial_{m}{E_{B}^{5}} - 3 A^{A B} T^{C} U_{D} \Omega^{k l m} E_{A}^{n} E_{C}^{p} E_{q}^{D} \epsilon_{k l n p} \partial_{m}{E_{B}^{q}} + 3/2 A^{A B} T^{C} U_{D} \Omega^{k l m} E_{A}^{n} E_{B}^{p} E_{5}^{D} \epsilon_{k l n p} \partial_{m}{E_{C}^{5}} + 3/2 A^{A B} T^{C} U_{D} \Omega^{k l m} E_{A}^{n} E_{B}^{p} E_{q}^{D} \epsilon_{k l n p} \partial_{m}{E_{C}^{q}}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+78\specialcolon{}= {A}^{A B} {T}^{C} {U}_{A} {E}_{B}\,^{k} {E}_{C}\,^{l} {\epsilon}_{k m n p} {\partial}_{l}{{\Omega}^{m n p}}\,  + \frac{1}{2}\, {A}^{A B} {T}^{C} {U}_{C} {E}_{A}\,^{k} {E}_{B}\,^{l} {\epsilon}_{k m n p} {\partial}_{l}{{\Omega}^{m n p}}\,  - 3\, {A}^{A B} {T}^{C} {U}_{A} {\Omega}^{k l m} {E}_{C}\,^{n} {\epsilon}_{k l n p} {\partial}_{m}{{E}_{B}\,^{p}}\,  + \frac{3}{2}\, {A}^{A B} {T}^{C} {U}_{C} {\Omega}^{k l m} {E}_{A}\,^{n} {\epsilon}_{k l n p} {\partial}_{m}{{E}_{B}\,^{p}}\,  - {A}^{A B} {T}^{C} {U}_{D\, } {E}_{A}\,^{k} {E}_{B}\,^{l} {E}_{5}\,^{D\, } {E}_{C}\,^{5} {\epsilon}_{k m n p} {\partial}_{l}{{\Omega}^{m n p}}\,  - {A}^{A B} {T}^{C} {U}_{D\, } {E}_{A}\,^{k} {E}_{C}\,^{l} {E}_{5}\,^{D\, } {E}_{B}\,^{5} {\epsilon}_{l m n p} {\partial}_{k}{{\Omega}^{m n p}}\,  + {A}^{A B} {T}^{C} {U}_{D\, } {E}_{A}\,^{k} {E}_{C}\,^{l} {E}_{5}\,^{D\, } {E}_{B}\,^{5} {\epsilon}_{k m n p} {\partial}_{l}{{\Omega}^{m n p}}\,  - 3\, {A}^{A B} {T}^{C} {U}_{D\, } {\Omega}^{k l m} {E}_{A}\,^{n} {E}_{C}\,^{p} {E}_{5}\,^{D\, } {\epsilon}_{k l n p} {\partial}_{m}{{E}_{B}\,^{5}}\,  - 3\, {A}^{A B} {T}^{C} {U}_{D\, } {\Omega}^{k l m} {E}_{A}\,^{n} {E}_{C}\,^{p} {E}_{q}\,^{D\, } {\epsilon}_{k l n p} {\partial}_{m}{{E}_{B}\,^{q}}\,  + \frac{3}{2}\, {A}^{A B} {T}^{C} {U}_{D\, } {\Omega}^{k l m} {E}_{A}\,^{n} {E}_{B}\,^{p} {E}_{5}\,^{D\, } {\epsilon}_{k l n p} {\partial}_{m}{{E}_{C}\,^{5}}\,  + \frac{3}{2}\, {A}^{A B} {T}^{C} {U}_{D\, } {\Omega}^{k l m} {E}_{A}\,^{n} {E}_{B}\,^{p} {E}_{q}\,^{D\, } {\epsilon}_{k l n p} {\partial}_{m}{{E}_{C}\,^{q}}\, ;
+\end{dmath*}
+{\color[named]{Blue}\begin{verbatim}
+@(F2X):
+@substitute!!(%)(\Omega^{m n k} -> \rho^{a b c}k_{a}^{m}k_{b}^{n}k_{c}^{k} ):
+@prodrule!!(%):
+@unwrap!!(%):
+@distribute!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%):
+@substitute!!(%)(
+k_{a}^{m}\partial_{m}{E_{A}^{n}} -> E_{A}^{m}\partial_{m}{k_{a}^{n}} 
+- \frac{1}{2} E_{A}^{n}\partial_{m}{k_{a}^{m}},
+k_{a}^{m}\partial_{m}{E_{A}^{5}} ->  \frac{1}{2}  E_{A}^{5}\partial_{m}{k_{a}^{m}},
+):
+@distribute!!(%):
+@substitute!!(%)(E_{5}^{A}E_{B}^{5} -> \delta_{B}^{A} - E_{m}^{A}E_{B}^{m}):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%):
+@(%)+\alpha:
+@factor_out!!(%){A^{A B}, T^{A}, U_{A}, k_{a}^{m}}:
+@rename_dummies!(%):
+@canonicalise!!(%):
+@factor_out!!(%){A^{A B}, T^{A}, U_{A}, k_{a}^{m}, E_{A}^{m}, E_{m}^{A}}:
+@sumflatten!!(%):
+@rename_dummies!(%):
+@distribute!!(%):
+@factor_out!!(%){A^{A B}, T^{A}, U_{A}, k_{a}^{m}, E_{A}^{m}, E_{m}^{A}}:
+@(%) + \frac{15}{2} A^{A B}T^{C}U_{D} k_{a}^{m}k_{b}^{n}E_{A}^{k}E_{B}^{l}E_{C}^{p}E_{p}^{D}
+\delta_{m}^{m1}_{n}^{m2}_{k}^{m3}_{l}^{m4}_{q}^{m5}
+\epsilon_{m1 m2 m3 m4}\partial_{m5}{k_{c}^{q}}\rho^{a b c} 
++ 15  A^{A B}T^{C}U_{D} k_{a}^{k}k_{b}^{l}E_{A}^{m}E_{B}^{n}E_{C}^{p}E_{m}^{D}
+\delta_{k}^{m1}_{l}^{m2}_{n}^{m3}_{p}^{m4}_{q}^{m5}
+\epsilon_{m1 m2 m3 m4}\partial_{m5}{k_{c}^{q}}\rho^{a b c}
++ \frac{15}{2}  A^{A B}T^{C}U_{D} k_{a}^{k}k_{b}^{l}E_{A}^{m}E_{B}^{n}E_{C}^{p}E_{q}^{D}
+\delta_{k}^{m1}_{l}^{m2}_{m}^{m3}_{p}^{m4}_{n}^{m5}
+\epsilon_{m1 m2 m3 m4}\partial_{m5}{k_{c}^{q}}\rho^{a b c}:
+@breakgendelta!!(%):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%):
+@factor_out!!(%){A^{A B}, T^{A}, U_{A}, E_{A}^{m}, E_{m}^{A}, \epsilon_{m n k l}}:
+@substitute!!(%)(k_{a}^{k}k_{b}^{l}\partial_{l}{k_{c}^{p}} \rho^{a b c} -> J^{k q}):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@(%) + 15 A^{A B}T^{C}U_{D}E_{A}^{k}E_{B}^{l}E_{C}^{m}J^{n p}
+\delta_{k}^{m1}_{l}^{m2}_{m}^{m3}_{n}^{m4}_{p}^{m5}
+E_{m1}^{D}\epsilon_{m2 m3 m4 m5}:
+@breakgendelta!!(%):
+@distribute!!(%):
+@eliminate_kr!!(%):
+@prodsort!!(%):
+@rename_dummies!(%):
+@canonicalise!!(%):
+@collect_terms!!(%);
+\end{verbatim}}
+% orig
+% \alpha - 3 A^{A B} E_{A}^{k} E_{B}^{l} E_{C}^{m} E_{n}^{D} J^{n p} T^{C} U_{D} \epsilon_{k l m p}
+% end_orig
+\begin{dmath*}[compact, spread=2pt]
+165\specialcolon{}= \alpha - 3\, {A}^{A B} {E}_{A}\,^{k} {E}_{B}\,^{l} {E}_{C}\,^{m} {E}_{n}\,^{D\, } {J}^{n p} {T}^{C} {U}_{D\, } {\epsilon}_{k l m p};
+\end{dmath*}
+\end{document}
